@@ -13,6 +13,7 @@ jobs:
           flutter-version: '3.x'
           channel: stable
       - name: Build apk 
+        working-directory: front
         run: |
           flutter pub get
           flutter test
