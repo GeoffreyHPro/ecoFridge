@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('Verify floating button in scancode view', (WidgetTester tester) async {
+  testWidgets('Verify floating button in scancode view',
+      (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const ScanCode());
-    
+    await tester.pumpWidget(const MaterialApp(home: ScanCode()));
+
     var button = find.byType(FloatingActionButton);
     expect(button, findsOne);
-    
   });
 }
