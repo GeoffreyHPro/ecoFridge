@@ -32,6 +32,7 @@ public class AuthController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Operation(summary = "Connection with your user account", description = "You get a token and user role when you signIn correctly")
     @PostMapping(path = "/signIn")
     public ResponseEntity<TokenResponse> authenticationUser(
             @RequestBody EmailPasswordRequest content) {
@@ -44,7 +45,7 @@ public class AuthController {
         return ResponseEntity.status(200).body(tR);
     }
 
-    @Operation(summary = "create new user", description = "Create new user with unique email and a password")
+    @Operation(summary = "Create new user", description = "Create new user with unique email and a password")
     @PostMapping(path = "/signUp")
     public ResponseEntity get(@RequestBody EmailPasswordRequest content) {
 
