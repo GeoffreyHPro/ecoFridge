@@ -40,9 +40,7 @@ public class UserController {
 
         try {
             User user = userRepo.findByEmail(authentication.getName());
-            if (user == null) {
-                return ResponseEntity.status(400).body("no informations");
-            }
+            
             UserResponse r = new UserResponse(user.getUsername(), "bonjour");
 
             return ResponseEntity.status(200).body(r);
