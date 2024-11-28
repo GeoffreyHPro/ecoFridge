@@ -18,8 +18,7 @@ class _SignInState extends State<SignInView> {
     if (_formKey.currentState?.validate() ?? false) {
       String username = _usernameController.text;
       String password = _passwordController.text;
-
-
+      
       print('Username: $username');
       print('Password: $password');
 
