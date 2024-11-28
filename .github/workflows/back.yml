@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Back Spring Boot
 on: push
 jobs:
   build:
