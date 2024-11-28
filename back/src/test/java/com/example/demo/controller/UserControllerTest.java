@@ -33,7 +33,7 @@ public class UserControllerTest {
 
     @MockBean
     private JWTUtils jwtUtils;
-    
+
     @InjectMocks
     UserController userController;
 
@@ -43,7 +43,7 @@ public class UserControllerTest {
     @Test
     @WithMockUser(username = "admin@admin.com")
     public void GetUserInformations() throws Exception {
-        User user = new User("admin@admin.com","password");
+        User user = new User("admin@admin.com", "password");
 
         Mockito.when(userRepo.findByEmail("admin@admin.com")).thenReturn(user);
 
@@ -52,6 +52,16 @@ public class UserControllerTest {
                 .andReturn();
         assertEquals(200, result.getResponse().getStatus());
 
-        assertEquals("bonjour", "bonjour");
+        assertEquals("{\"email\":\"admin@admin.com\",\"name\":\"bonjour\"}", result.getResponse().getContentAsString());
+    }
+
+    @Test
+    public void GetNoInformations() throws Exception {
+
+        Mockito.when(userRepo.findByEmail("admin@admin.com")).thenReturn(null);
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders
+                .get("/user"))
+                .andReturn();
+        assertEquals(401, result.getResponse().getStatus());
     }
 }
