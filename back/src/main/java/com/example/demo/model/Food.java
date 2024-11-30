@@ -1,9 +1,13 @@
 package com.example.demo.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,6 +18,9 @@ public class Food {
     private int idFood;
 
     private String bareCode;
+
+    @OneToMany
+    private List<FoodBatch> foodBatches = new ArrayList<>();
 
     public Food() {
 
@@ -33,6 +40,18 @@ public class Food {
 
     public int getIdFood() {
         return idFood;
+    }
+
+    public List<FoodBatch> getFoodBatches() {
+        return foodBatches;
+    }
+
+    public void setFoodBatches(List<FoodBatch> foodBatches) {
+        this.foodBatches = foodBatches;
+    }
+
+    public void addFoodBatches(FoodBatch foodBatch) {
+        this.foodBatches.add(foodBatch);
     }
 
 }
