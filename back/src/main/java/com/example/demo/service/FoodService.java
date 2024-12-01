@@ -13,12 +13,12 @@ public class FoodService {
     @Autowired
     private FoodRepositoryImpl foodRepositoryImpl;
 
-    public List<Food> getFoods(){
+    public List<Food> getFoods() {
         return foodRepositoryImpl.getAllFoods();
     }
 
-    public void save(Food food){
-        foodRepositoryImpl.saveFood(new Food("152516"));
+    public void save(Food food) {
+        foodRepositoryImpl.saveFood(food);
     }
 
 }
