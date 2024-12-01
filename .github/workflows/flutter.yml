@@ -1,5 +1,8 @@
 name: Front Flutter
-on: push
+on: 
+  push:
+    paths:
+      - 'front/flutter/**'
 jobs:
   build-apk:
     runs-on: ubuntu-latest
