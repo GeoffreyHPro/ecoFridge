@@ -30,4 +30,9 @@ public class FoodRepositoryImpl implements CustomFoodRepository {
     public List<Food> getAllFoods() {
         return this.em.createQuery("SELECT f FROM Food f", Food.class).getResultList();
     }
+
+    @Override
+    public Food getFood(String bareCode) {
+        return this.em.createQuery("SELECT f FROM Food f WHERE f.bareCode =:bareCode", Food.class).getSingleResult();
+    }
 }

@@ -7,4 +7,5 @@ import com.example.demo.model.Food;
 public interface CustomFoodRepository {
     boolean saveFood(Food food);
     List<Food> getAllFoods();
+    Food getFood(String bareCode);
  }
