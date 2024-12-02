@@ -22,6 +22,9 @@ public class FoodBatch {
     private LocalDateTime expirationDate;
 
     @ManyToOne
+    private User user;
+
+    @ManyToOne
     private Food food;
 
     public FoodBatch() {

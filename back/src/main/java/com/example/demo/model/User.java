@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -23,6 +24,9 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private String role;
+
+    @OneToMany
+    private List<FoodBatch> foodBatch;
 
     public User() {
 

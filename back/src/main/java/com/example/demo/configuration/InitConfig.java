@@ -27,8 +27,8 @@ public class InitConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        userService.save(new User("admin@admin.com", passwordEncoder.encode("password")));
-        foodService.save(new Food("1502"));
+        //userService.save(new User("admin@admin.com", passwordEncoder.encode("password")));
+        //foodService.save(new Food("1502"));
     }
 
 }
