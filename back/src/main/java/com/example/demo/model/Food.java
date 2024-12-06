@@ -2,7 +2,6 @@ package com.example.demo.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,6 +29,7 @@ public class Food {
 
     public Food(String bareCode) {
         this.bareCode = bareCode;
+        this.image = "src/main/resources/static/images/default.png";
     }
 
     public String getBareCode() {

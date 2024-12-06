@@ -39,9 +39,13 @@ public class FoodRepositoryImpl implements CustomFoodRepository {
 
     @Override
     public Food getFood(String bareCode) {
-        String request = "SELECT f FROM Food f WHERE f.bareCode = :bareCode";
-        TypedQuery<Food> query = em.createQuery(request, Food.class);
-        query.setParameter("bareCode", bareCode);
-        return query.getSingleResult();
+        try {
+            String request = "SELECT f FROM Food f WHERE f.bareCode = :bareCode";
+            TypedQuery<Food> query = em.createQuery(request, Food.class);
+            query.setParameter("bareCode", bareCode);
+            return query.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
