@@ -19,6 +19,8 @@ public class Food {
 
     private String bareCode;
 
+    private String image;
+
     @OneToMany
     private List<FoodBatch> foodBatches = new ArrayList<>();
 
@@ -52,6 +54,14 @@ public class Food {
 
     public void addFoodBatches(FoodBatch foodBatch) {
         this.foodBatches.add(foodBatch);
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 }

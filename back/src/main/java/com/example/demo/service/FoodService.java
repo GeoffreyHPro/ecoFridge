@@ -21,4 +21,8 @@ public class FoodService {
         foodRepositoryImpl.saveFood(food);
     }
 
+    public Food getFood(String bareCode){
+        return foodRepositoryImpl.getFood(bareCode);
+    }
+
 }

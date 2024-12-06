@@ -8,6 +8,7 @@ import com.example.demo.model.Food;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -22,8 +23,13 @@ public class FoodRepositoryImpl implements CustomFoodRepository {
 
     @Override
     public boolean saveFood(Food food) {
-        this.em.persist(food);
-        return true;
+        Food databaseFood = getFood(food.getBareCode());
+        if (databaseFood == null) {
+            this.em.persist(food);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -33,6 +39,9 @@ public class FoodRepositoryImpl implements CustomFoodRepository {
 
     @Override
     public Food getFood(String bareCode) {
-        return this.em.createQuery("SELECT f FROM Food f WHERE f.bareCode =:bareCode", Food.class).getSingleResult();
+        String request = "SELECT f FROM Food f WHERE f.bareCode = :bareCode";
+        TypedQuery<Food> query = em.createQuery(request, Food.class);
+        query.setParameter("bareCode", bareCode);
+        return query.getSingleResult();
     }
 }
