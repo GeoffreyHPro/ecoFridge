@@ -41,7 +41,7 @@ public class SecurityConfig {
                         .requestMatchers(mvcMatcherBuilder.pattern("/v3/**")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/h2-console/**")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/auth/**")).permitAll()
-                        .requestMatchers(mvcMatcherBuilder.pattern("/image/**")).permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/image/**")).hasAnyAuthority("USER")
                         .requestMatchers(mvcMatcherBuilder.pattern("/user/**")).hasAnyAuthority("USER")
                         .requestMatchers(mvcMatcherBuilder.pattern("/food/**")).hasAnyAuthority("USER")
                         .anyRequest().authenticated())

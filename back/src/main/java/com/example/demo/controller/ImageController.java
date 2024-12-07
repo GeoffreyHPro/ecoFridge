@@ -19,6 +19,7 @@ import com.example.demo.service.FoodService;
 
 import org.springframework.core.io.Resource;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -43,39 +44,45 @@ public class ImageController {
 
     @GetMapping("/{filename}")
     public ResponseEntity<Resource> getImage(@PathVariable String filename) {
-        try {
-            Resource file = new org.springframework.core.io.FileSystemResource(
-                    Paths.get(imageStoragePath).resolve(filename).toFile());
+        if (isFile(imageStoragePath + "/" + filename)) {
+            try {
+                Resource file2 = new org.springframework.core.io.FileSystemResource(
+                        Paths.get(imageStoragePath).resolve(filename).toFile());
 
-            return ResponseEntity.ok()
-                    .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-                    .body(file);
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
+                return ResponseEntity.ok()
+                        .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+                        .body(file2);
+            } catch (Exception e) {
+                return ResponseEntity.status(203).build();
+            }
+        } else {
+            System.out.println("Le fichier n'existe pas.");
+            return ResponseEntity.status(203).build();
         }
     }
 
     @PostMapping(path = "/upload/{bareCode}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity uploadImage(@RequestParam(value = "file") MultipartFile file, @PathParam("bareCode") String bareCode) {
+    public ResponseEntity uploadImage(@RequestParam(value = "file") MultipartFile file,
+            @PathParam("bareCode") String bareCode) {
         try {
             // Vérification du fichier
             if (file.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Aucun fichier sélectionné");
             }
 
-            //Generate new fileName
+            // Generate new fileName
             String originalFilename = file.getOriginalFilename();
             String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
             String uniqueFilename = UUID.randomUUID() + extension;
 
-            //Save the image
+            // Save the image
             Path filePath = Paths.get(imageStoragePath, "/" + uniqueFilename);
             System.out.println(filePath);
             Files.createDirectories(filePath.getParent());
             file.transferTo(filePath);
 
-            //
-            foodService.updateFoodImage(bareCode,filePath.toString());
+            // Update pathfile in database
+            foodService.updateFoodImage(bareCode, filePath.toString());
 
             return ResponseEntity.ok("Image saved");
 
@@ -83,6 +90,11 @@ public class ImageController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de l'upload de l'image");
         }
+    }
+
+    boolean isFile(String pathFile){
+        File file = new File(pathFile);
+        return file.exists() && file.isFile();
     }
 
 }
