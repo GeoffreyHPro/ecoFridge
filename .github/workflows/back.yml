@@ -1,5 +1,8 @@
 name: Back Spring Boot
-on: push
+on: 
+  push:
+    paths:
+      - 'back/**'
 jobs:
   build:
     runs-on: ubuntu-latest
