@@ -10,6 +10,8 @@ import com.example.demo.repository.userRepository.UserRepositoryImpl;
 
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,7 @@ public class UserController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Operation(summary = "Get all users in the database", description = "Get all users in the database")
     @GetMapping
     public ResponseEntity getUsers(Authentication authentication) {
 
@@ -49,7 +52,8 @@ public class UserController {
         }
     }
 
-    @PatchMapping
+    @Operation(summary = "Change password of the user", description = "You can change your password with a new password")
+    @PatchMapping("/password")
     public ResponseEntity<String> updateUserPassword(
             Authentication authentication,
             @RequestBody UpdatePassword updatePassword) {
