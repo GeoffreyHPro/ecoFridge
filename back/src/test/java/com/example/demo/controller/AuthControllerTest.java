@@ -63,7 +63,7 @@ public class AuthControllerTest {
                 .andReturn();
 
         assertEquals(200, result.getResponse().getStatus());
-        assertEquals("{\"message\":\"oui\"}", result.getResponse().getContentAsString());
+        assertEquals("{\"message\":\"Your account is created\"}", result.getResponse().getContentAsString());
     }
 
     @Test

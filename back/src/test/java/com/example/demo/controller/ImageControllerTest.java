@@ -1,74 +1,69 @@
 package com.example.demo.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.mockito.InjectMocks;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.example.demo.model.User;
-import com.example.demo.repository.userRepository.UserRepository;
-import com.example.demo.repository.userRepository.UserRepositoryImpl;
+import com.example.demo.service.FoodService;
 import com.example.demo.service.JWTUtils;
 import com.example.demo.service.UserService;
 
 @ExtendWith(MockitoExtension.class)
-@WebMvcTest(UserController.class)
-public class UserControllerTest {
+@WebMvcTest(ImageController.class)
+public class ImageControllerTest {
 
     @MockBean
-    PasswordEncoder passwordEncoder;
+    private FoodService foodService;
 
     @MockBean
     private UserService userService;
 
     @MockBean
-    UserRepositoryImpl userRepositoryImpl;
-
-    @MockBean
-    private UserRepository userRepo;
-
-    @MockBean
     private JWTUtils jwtUtils;
 
     @InjectMocks
-    UserController userController;
+    ImageController imageController;
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     @WithMockUser(username = "admin@admin.com")
-    public void GetUserInformations() throws Exception {
-        User user = new User("admin@admin.com", "password");
-
-        Mockito.when(userRepo.findByEmail("admin@admin.com")).thenReturn(user);
+    public void getDefaultImage() throws Exception {
 
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/user"))
+                .get("/image/default.png"))
                 .andReturn();
         assertEquals(200, result.getResponse().getStatus());
-
-        assertEquals("{\"email\":\"admin@admin.com\",\"name\":\"bonjour\"}", result.getResponse().getContentAsString());
     }
 
     @Test
-    public void GetNoInformations() throws Exception {
+    @WithMockUser(username = "admin@admin.com")
+    public void noGetDefaultImage() throws Exception {
 
-        Mockito.when(userRepo.findByEmail("admin@admin.com")).thenReturn(null);
+        /*
+         * mockMvc.perform(MockMvcRequestBuilders
+         * .get("/image/defau.png"))
+         * .andExpect(result -> assertTrue(result.getResolvedException() instanceof
+         * Exception));
+         */
+
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/user"))
+                .get("/image/defau.png"))
                 .andReturn();
-        assertEquals(401, result.getResponse().getStatus());
+        assertEquals(203, result.getResponse().getStatus());
     }
 }
