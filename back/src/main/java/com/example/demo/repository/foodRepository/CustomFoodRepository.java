@@ -8,4 +8,6 @@ public interface CustomFoodRepository {
     boolean saveFood(Food food);
     List<Food> getAllFoods();
     Food getFood(String bareCode);
+    void updateFoodImage(String bareCode, String image);
+    void deleteFood(String bareCode);
  }

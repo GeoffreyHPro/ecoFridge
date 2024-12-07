@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +38,7 @@ public class ImageController {
     @Value("${image.storage.path}")
     private String imageStoragePath;
 
+    @Autowired
     private FoodService foodService;
 
     @GetMapping("/{filename}")
@@ -52,9 +55,8 @@ public class ImageController {
         }
     }
 
-    @PostMapping(path = "/upload/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity uploadImage(@RequestParam(value = "file") MultipartFile file, @PathParam("id") String id) {
-        // return "(ResponseEntity) ResponseEntity.ok()";
+    @PostMapping(path = "/upload/{bareCode}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity uploadImage(@RequestParam(value = "file") MultipartFile file, @PathParam("bareCode") String bareCode) {
         try {
             // Vérification du fichier
             if (file.isEmpty()) {
@@ -72,6 +74,9 @@ public class ImageController {
             Files.createDirectories(filePath.getParent());
             file.transferTo(filePath);
 
+            //
+            foodService.updateFoodImage(bareCode,filePath.toString());
+
             return ResponseEntity.ok("Image saved");
 
         } catch (IOException e) {
@@ -79,4 +84,5 @@ public class ImageController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de l'upload de l'image");
         }
     }
+
 }

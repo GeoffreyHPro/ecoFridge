@@ -25,4 +25,12 @@ public class FoodService {
         return foodRepositoryImpl.getFood(bareCode);
     }
 
+    public void updateFoodImage(String bareCode, String image){
+        foodRepositoryImpl.updateFoodImage(bareCode, image);
+    }
+
+    public void deleteImage(String bareCode){
+        foodRepositoryImpl.deleteFood(bareCode);
+    }
+
 }

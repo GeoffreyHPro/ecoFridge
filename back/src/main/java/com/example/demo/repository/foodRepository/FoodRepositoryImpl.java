@@ -48,4 +48,17 @@ public class FoodRepositoryImpl implements CustomFoodRepository {
             return null;
         }
     }
+
+    @Override
+    public void updateFoodImage(String bareCode, String image) {
+        Food food = getFood(bareCode);
+        food.setImage(image);
+        this.em.merge(food);
+    }
+
+    @Override
+    public void deleteFood(String bareCode) {
+        Food food = getFood(bareCode);
+        this.em.remove(food);
+    }
 }

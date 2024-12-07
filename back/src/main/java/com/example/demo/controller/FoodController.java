@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,5 +55,12 @@ public class FoodController {
 
         Food food = foodService.getFood(bareCode);
         return ResponseEntity.status(200).body("confirmed");
+    }
+
+    @Operation(summary = "Delete food", description = "Give a bareCode to delete the food")
+    @DeleteMapping("/{bareCode}")
+    public ResponseEntity deleteImage(@PathVariable String bareCode) {
+        foodService.deleteImage(bareCode);
+        return ResponseEntity.status(200).body("");
     }
 }
