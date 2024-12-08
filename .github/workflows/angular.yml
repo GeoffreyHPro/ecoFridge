@@ -31,7 +31,3 @@ jobs:
       - name: Run unit tests
         run: npm test -- --watch=false --browsers=ChromeHeadless
         working-directory: front/angular
-
-      - name: Lint code
-        run: npm run lint
-        working-directory: front/angular

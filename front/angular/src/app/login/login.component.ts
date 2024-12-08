@@ -18,15 +18,15 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.formLogin = this.fb.group({
-      username: this.fb.control(""),
+      mail: this.fb.control(""),
       password: this.fb.control("")
     })
   }
 
   handleLogin() {
-    let username = this.formLogin.value.username;
+    let mail = this.formLogin.value.mail;
     let password = this.formLogin.value.password;
-    if (this.authservice.login(username, password)) {
+    if (this.authservice.login(mail, password)) {
       this.router.navigateByUrl('admin')
     }else{
       alert("authentification refusée")
