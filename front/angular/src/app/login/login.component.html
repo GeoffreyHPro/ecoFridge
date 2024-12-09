@@ -1,25 +1,23 @@
 <div class="">
     <h1 class="pb-5" style="text-align: center; color: black;
     border-radius: 0px;
-    ">Sign In
+    "><b>Sign In </b>
     </h1>
 
     <div class="container">
-        <div class="col-sm">
-            <div class="card">
-                <div class="card-header">Log In</div>
-                <div class="card-body">
-                    <form [formGroup]="formLogin" (ngSubmit)="handleLogin()">
-                        <div class="mb-3">
-                            <label class="form-label">Mail</label>
-                            <input type="text" class="form-control" formControlName="mail">
-                            <label class="form-label">Password</label>
-                            <input type="text" class="form-control" formControlName="password">
-                            <button class="btn btn-success mt-3">Login</button>
-                        </div>
-                    </form>
+        <form [formGroup]="formLogin" (ngSubmit)="handleLogin()">
+            <div class="mb-1">
+                <label class="form-label">Mail</label>
+                <input width="50" placeholder="enter your mail..." type="text" class="form-control" formControlName="mail">
+                <label class="form-label">Password</label>
+                <input placeholder="enter your password..."  type="text" class="form-control" formControlName="password">
+                <div class="container mt-5">
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-success mt-3">Login</button>
+                        <button class="btn btn-primary mt-3">SignUp</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
