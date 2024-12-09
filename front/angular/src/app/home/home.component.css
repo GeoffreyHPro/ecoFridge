@@ -7,10 +7,19 @@
     height: '1000px';
 }
 
-html, body {
-    height: 100%; /* Assure que la hauteur de l'écran est prise en compte */
-    margin: 0; /* Supprime les marges par défaut */
+html,
+body {
+    height: 100%;
+    /* Assure que la hauteur de l'écran est prise en compte */
+    margin: 0;
+    /* Supprime les marges par défaut */
 }
+
 .full-height {
-    height: 100vh; /* Vueport Height : prend toute la hauteur de l'écran */
+    height: 100vh;
+    /* Vueport Height : prend toute la hauteur de l'écran */
+}
+
+.green-color {
+    background-color: rgb(44, 95, 52);
 }
