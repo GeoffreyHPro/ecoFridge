@@ -27,7 +27,7 @@ export class LoginComponent {
     let mail = this.formLogin.value.mail;
     let password = this.formLogin.value.password;
     if (this.authservice.login(mail, password)) {
-      this.router.navigateByUrl('admin')
+      this.router.navigateByUrl('user')
     }else{
       alert("authentification refusée")
     }
