@@ -7,27 +7,16 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  constructor( private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
 
   login(username: string, password: string): Observable<any> {
     const bodyUser = { email: username, password: password }
 
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'  // Spécifie que le contenu est en JSON
+      'Content-Type': 'application/json'
     });
 
     return this.http.post("http://localhost:8080/auth/signIn", bodyUser, { headers, observe: "response" });
-
-
-    /*if (username == resp.username) {
-      this.appState.setAuthState({
-        username: username,
-        roles: "USER"
-      });
-      return true
-    } else {
-      return false
-    }*/
   }
 }
