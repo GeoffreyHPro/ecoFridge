@@ -8,9 +8,13 @@
         <form [formGroup]="formLogin" (ngSubmit)="handleLogin()">
             <div class="mb-1">
                 <label class="form-label">Mail</label>
-                <input width="50" placeholder="enter your mail..." type="text" class="form-control" formControlName="mail">
+                <input width="50" placeholder="enter your mail..." type="text" class="form-control"
+                    formControlName="mail">
                 <label class="form-label">Password</label>
-                <input placeholder="enter your password..."  type="text" class="form-control" formControlName="password">
+                <input placeholder="enter your password..." type="text" class="form-control" formControlName="password">
+                <p *ngIf="signInError && signInError.length >0" style="color:red">
+                    {{signInError}}
+                </p>
                 <div class="container mt-5">
                     <div class="d-flex justify-content-between">
                         <button class="btn btn-success mt-3">Login</button>

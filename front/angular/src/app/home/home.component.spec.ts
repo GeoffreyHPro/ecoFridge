@@ -3,35 +3,33 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { LoginComponent } from '../login/login.component';
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
+  let authService: AuthService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HomeComponent, LoginComponent],
-      imports: [ReactiveFormsModule]
+      imports: [ReactiveFormsModule, HttpClientTestingModule],
+      providers: [AuthService]
     })
       .compileComponents();
-
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
+    authService = TestBed.inject(AuthService);
     fixture.detectChanges();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
 
     const h1Element = fixture.debugElement.nativeElement.querySelector('h1');
-    //expect(h1Element.textContent).toBe(' EcoFridge Authentification'); 
   });
 
   it('login form is here', () => {
@@ -71,7 +69,6 @@ describe('HomeComponent', () => {
     expect(passwordInput.value).toBe('testPassword');
 
     submitButton.click();
-    
-  });
 
+  });
 });
