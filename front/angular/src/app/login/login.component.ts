@@ -11,10 +11,13 @@ import { StateService } from '../services/state.service';
 })
 export class LoginComponent {
   formLogin!: FormGroup
-  errorMessage = undefined;
+  signInError = "";
 
-  constructor(private fb: FormBuilder, private router: Router, private authservice: AuthService, private appState: StateService) {
-
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authservice: AuthService,
+    private appState: StateService) {
   }
 
   ngOnInit(): void {
@@ -42,12 +45,12 @@ export class LoginComponent {
           this.router.navigateByUrl('user')
 
         } else {
-          alert("authentification refusée")
+          this.signInError = "wrong authentication"
         }
       },
       error => {
         console.error('Erreur lors de la récupération des données :', error);
-        alert("authentification refusée")
+        this.signInError = "wrong authentication"
       }
     );
   }
