@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserTemplateComponent } from './user-template/user-template.component';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UserHomeComponent } from './user-home/user-home.component';
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    RouterModule 
+    RouterModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

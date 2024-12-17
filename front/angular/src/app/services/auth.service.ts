@@ -1,24 +1,26 @@
 import { Injectable } from '@angular/core';
-import { StateService } from './state.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private appState: StateService) { }
+  constructor( private http: HttpClient) { }
 
 
-  login(username: string, password: string) {
+  login(username: string, password: string): Observable<any> {
+    const bodyUser = { email: username, password: password }
 
-    //let resp: any = await firstValueFrom(this.http.get("https://localhost:8080/" + username));
-    let resp: any =
-    {
-      token: "fefefef",
-      username: "geoffrey"
-    }
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'  // Spécifie que le contenu est en JSON
+    });
 
-    if (username == resp.username) {
+    return this.http.post("http://localhost:8080/auth/signIn", bodyUser, { headers, observe: "response" });
+
+
+    /*if (username == resp.username) {
       this.appState.setAuthState({
         username: username,
         roles: "USER"
@@ -26,6 +28,6 @@ export class AuthService {
       return true
     } else {
       return false
-    }
+    }*/
   }
 }

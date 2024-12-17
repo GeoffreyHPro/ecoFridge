@@ -15,7 +15,7 @@ export class authenticationGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): MaybeAsync<GuardResult> {
 
-    if (this.appState.authState.username == "geoffrey") {
+    if (this.appState.authState.token != "") {
       return true;
     }
     this.router.navigateByUrl('home');
