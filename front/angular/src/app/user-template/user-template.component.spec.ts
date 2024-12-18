@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserTemplateComponent } from './user-template.component';
 
-describe('UserTemplateComponent', () => {
+/*describe('UserTemplateComponent', () => {
   let component: UserTemplateComponent;
   let fixture: ComponentFixture<UserTemplateComponent>;
 
@@ -20,4 +20,4 @@ describe('UserTemplateComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+});*/

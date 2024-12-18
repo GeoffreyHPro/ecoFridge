@@ -42,7 +42,7 @@ export class LoginComponent {
             token: response.token,
             roles: "USER"
           });
-          this.router.navigateByUrl('user')
+          this.router.navigateByUrl('user/user-home')
 
         } else {
           this.signInError = "wrong authentication"

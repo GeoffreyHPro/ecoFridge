@@ -11,6 +11,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserTemplateComponent } from './user-template/user-template.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './navbar/navbar.component';
+import { PostFoodComponent } from './post-food/post-food.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     LoginComponent,
     UserTemplateComponent,
-    UserHomeComponent
+    UserHomeComponent,
+    NavbarComponent,
+    PostFoodComponent
   ],
   imports: [
     BrowserModule,

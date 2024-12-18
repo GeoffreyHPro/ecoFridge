@@ -5,12 +5,14 @@ import { UserTemplateComponent } from './user-template/user-template.component';
 import { authenticationGuard } from './guards/authentication.guard';
 import { authorizationGuard } from './guards/authorization.guard';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { PostFoodComponent } from './post-food/post-food.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   {
     path: "user", component: UserTemplateComponent, canActivate: [authenticationGuard, authorizationGuard], children: [
-      { path: "list", component: UserHomeComponent }
+      { path: "user-home", component: UserHomeComponent },
+      { path: "post-food", component: PostFoodComponent }
     ]
   },
   { path: "", redirectTo: "home", pathMatch: "full" }
