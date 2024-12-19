@@ -1,0 +1,21 @@
+body {
+    width: 70%;
+    margin: auto;
+}
+
+.horizontal-list {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 1rem;
+}
+
+.horizontal-list-item {
+    flex: 0 0 auto;
+    width: 150px;
+    background-color: #f8f9fa;
+    text-align: center;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 10px;
+}
