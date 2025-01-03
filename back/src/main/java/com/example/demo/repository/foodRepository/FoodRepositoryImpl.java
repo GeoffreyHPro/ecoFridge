@@ -59,6 +59,7 @@ public class FoodRepositoryImpl implements CustomFoodRepository {
     @Override
     public void deleteFood(String bareCode) {
         Food food = getFood(bareCode);
+        this.em.remove(food.getFoodBatches());
         this.em.remove(food);
     }
 }

@@ -46,6 +46,7 @@ public class SecurityConfig {
                         .requestMatchers(mvcMatcherBuilder.pattern("/image/**")).hasAnyAuthority("USER")
                         .requestMatchers(mvcMatcherBuilder.pattern("/user/**")).hasAnyAuthority("USER")
                         .requestMatchers(mvcMatcherBuilder.pattern("/food/**")).hasAnyAuthority("USER")
+                        .requestMatchers(mvcMatcherBuilder.pattern("/foodbatch/**")).hasAnyAuthority("USER")
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

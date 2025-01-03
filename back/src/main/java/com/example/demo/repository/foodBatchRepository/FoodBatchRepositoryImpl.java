@@ -2,6 +2,7 @@ package com.example.demo.repository.foodBatchRepository;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Food;
@@ -13,14 +14,14 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
-
 @Service
 @Transactional
 public class FoodBatchRepositoryImpl implements CustomFoodBatchRepository {
     @PersistenceContext
     private EntityManager em;
 
-    FoodRepositoryImpl foodRepositoryImpl;
+    @Autowired
+    private FoodRepositoryImpl foodRepositoryImpl;
 
     public FoodBatchRepositoryImpl(EntityManager emParam) {
         this.em = emParam;
@@ -29,8 +30,8 @@ public class FoodBatchRepositoryImpl implements CustomFoodBatchRepository {
     @Override
     public void saveFoodBatch(FoodBatch foodBatch, String bareCode) {
         Food food = foodRepositoryImpl.getFood(bareCode);
+        this.em.persist(foodBatch);
         food.addFoodBatches(foodBatch);
-        this.em.merge(food);
     }
 
     @Override
@@ -45,5 +46,4 @@ public class FoodBatchRepositoryImpl implements CustomFoodBatchRepository {
             return null;
         }
     }
-
 }
