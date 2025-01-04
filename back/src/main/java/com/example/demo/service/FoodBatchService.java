@@ -15,10 +15,9 @@ public class FoodBatchService {
     @Autowired
     private FoodBatchRepositoryImpl foodBatchRepositoryImpl;
 
-    public void addFoodBatch(String bareCode, FoodBatchRequest foodBatchRequest) {
+    public void addFoodBatch(String bareCode, FoodBatchRequest foodBatchRequest, String username) {
         FoodBatch foodBatch = new FoodBatch(foodBatchRequest.getQuantity(), foodBatchRequest.getExpirationDate());
-        //foodBatch.set
-        foodBatchRepositoryImpl.saveFoodBatch(foodBatch, bareCode);
+        foodBatchRepositoryImpl.saveFoodBatch(foodBatch, bareCode, username);
     }
 
     public List<FoodBatch> getFoodBatch(String bareCode) {

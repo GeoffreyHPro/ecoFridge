@@ -31,7 +31,7 @@ public class FoodBatchesController {
     @PostMapping("/{bareCode}")
     public ResponseEntity<?> addFood(Principal principal, @PathVariable("bareCode") String bareCode, FoodBatchRequest foodBatchRequest) {
         System.out.println(principal.getName());
-        foodBatchService.addFoodBatch(bareCode, foodBatchRequest);
+        foodBatchService.addFoodBatch(bareCode, foodBatchRequest, principal.getName());
         return ResponseEntity.status(200).body("");
     }
 }

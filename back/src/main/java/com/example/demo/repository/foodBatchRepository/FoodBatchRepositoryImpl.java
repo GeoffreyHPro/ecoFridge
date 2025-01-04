@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Food;
 import com.example.demo.model.FoodBatch;
+import com.example.demo.model.User;
 import com.example.demo.repository.foodRepository.FoodRepositoryImpl;
+import com.example.demo.repository.userRepository.UserRepository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -23,13 +25,18 @@ public class FoodBatchRepositoryImpl implements CustomFoodBatchRepository {
     @Autowired
     private FoodRepositoryImpl foodRepositoryImpl;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public FoodBatchRepositoryImpl(EntityManager emParam) {
         this.em = emParam;
     }
 
     @Override
-    public void saveFoodBatch(FoodBatch foodBatch, String bareCode) {
+    public void saveFoodBatch(FoodBatch foodBatch, String bareCode, String username) {
         Food food = foodRepositoryImpl.getFood(bareCode);
+        User user = userRepository.findByEmail(username);
+        foodBatch.setUser(user);
         this.em.persist(foodBatch);
         food.addFoodBatches(foodBatch);
     }
