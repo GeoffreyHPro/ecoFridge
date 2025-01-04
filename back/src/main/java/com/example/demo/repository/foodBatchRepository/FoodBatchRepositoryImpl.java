@@ -36,7 +36,7 @@ public class FoodBatchRepositoryImpl implements CustomFoodBatchRepository {
     public void saveFoodBatch(FoodBatch foodBatch, String bareCode, String username) {
         Food food = foodRepositoryImpl.getFood(bareCode);
         User user = userRepository.findByEmail(username);
-        foodBatch.setUser(user);
+        foodBatch.setUsername(user.getUsername());;
         this.em.persist(foodBatch);
         food.addFoodBatches(foodBatch);
     }
