@@ -29,7 +29,7 @@ public class FoodService {
         foodRepositoryImpl.updateFoodImage(bareCode, image);
     }
 
-    public void deleteImage(String bareCode){
+    public void deleteFood(String bareCode){
         foodRepositoryImpl.deleteFood(bareCode);
     }
 

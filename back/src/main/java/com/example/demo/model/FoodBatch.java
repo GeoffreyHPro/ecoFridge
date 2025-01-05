@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -25,7 +26,10 @@ public class FoodBatch {
     private User user;
 
     @ManyToOne
+    @JoinColumn(name = "food_id")
     private Food food;
+
+    private String username;
 
     public FoodBatch() {
 
@@ -62,6 +66,22 @@ public class FoodBatch {
 
     public void setFood(Food food) {
         this.food = food;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
 }

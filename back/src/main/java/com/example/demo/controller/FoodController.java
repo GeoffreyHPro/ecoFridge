@@ -59,8 +59,8 @@ public class FoodController {
 
     @Operation(summary = "Delete food", description = "Give a bareCode to delete the food")
     @DeleteMapping("/{bareCode}")
-    public ResponseEntity deleteImage(@PathVariable String bareCode) {
-        foodService.deleteImage(bareCode);
+    public ResponseEntity deleteFood(@PathVariable String bareCode) {
+        foodService.deleteFood(bareCode);
         return ResponseEntity.status(200).body("");
     }
 }
