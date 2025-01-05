@@ -33,12 +33,17 @@ public class FoodBatchRepositoryImpl implements CustomFoodBatchRepository {
     }
 
     @Override
-    public void saveFoodBatch(FoodBatch foodBatch, String bareCode, String username) {
+    public void saveFoodBatch(FoodBatch foodBatch, String bareCode, String username) throws Exception {
+
         Food food = foodRepositoryImpl.getFood(bareCode);
+        if(food == null){
+            throw new Exception("Food not found");    
+        }
         User user = userRepository.findByEmail(username);
-        foodBatch.setUsername(user.getUsername());;
+        foodBatch.setUsername(user.getUsername());
         this.em.persist(foodBatch);
         food.addFoodBatches(foodBatch);
+
     }
 
     @Override
