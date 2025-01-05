@@ -46,7 +46,24 @@ public class FoodBatchRepositoryImpl implements CustomFoodBatchRepository {
     }
 
     @Override
-    public List<FoodBatch> getFoodBatches(String bareCode, String username) {
+    public List<FoodBatch> getFoodBatchesWithBareCode(String bareCode, String username) {
+        try {
+            String request =    "SELECT fb FROM Food f " +
+                                "JOIN f.foodBatches fb " +
+                                "WHERE f.bareCode = :bareCode AND fb.username = :username";
+            TypedQuery<FoodBatch> query = em.createQuery(request, FoodBatch.class);
+            query.setParameter("username", username);
+            query.setParameter("bareCode", bareCode);
+            List<FoodBatch> foodBatches = query.getResultList();
+            return foodBatches;
+        } catch (Exception e) {
+            e.printStackTrace(); // Log l'erreur
+            throw new RuntimeException("Erreur lors de l'exécution de la requête", e);
+        }
+    }
+
+    @Override
+    public List<FoodBatch> getFoodBatches(String username) {
         try {
             String request = "SELECT f FROM FoodBatch f WHERE f.username = :username";
             TypedQuery<FoodBatch> query = em.createQuery(request, FoodBatch.class);

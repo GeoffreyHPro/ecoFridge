@@ -42,9 +42,16 @@ public class FoodBatchesController {
     }
 
     @Operation(summary = "Get all Foodbatches", description = "")
+    @GetMapping()
+    public ResponseEntity<?> getFoodBatch(Principal principal) {
+        List<FoodBatch> foodbatches = foodBatchService.getFoodBatch(principal.getName());
+        return ResponseEntity.status(200).body(foodbatches);
+    }
+
+    @Operation(summary = "Get all Foodbatches with bareCode", description = "")
     @GetMapping("/{bareCode}")
-    public ResponseEntity<?> getFoodBatch(Principal principal, @PathVariable("bareCode") String bareCode) {
-        List<FoodBatch> foodbatches = foodBatchService.getFoodBatch(bareCode, principal.getName());
+    public ResponseEntity<?> getFoodBatchWithBareCode(Principal principal, @PathVariable("bareCode") String bareCode) {
+        List<FoodBatch> foodbatches = foodBatchService.getFoodBatchWithBareCode(bareCode, principal.getName());
         return ResponseEntity.status(200).body(foodbatches);
     }
 }
