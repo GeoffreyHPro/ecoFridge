@@ -36,24 +36,23 @@ public class FoodBatchRepositoryImpl implements CustomFoodBatchRepository {
     public void saveFoodBatch(FoodBatch foodBatch, String bareCode, String username) throws Exception {
 
         Food food = foodRepositoryImpl.getFood(bareCode);
-        if(food == null){
-            throw new Exception("Food not found");    
+        if (food == null) {
+            throw new Exception("Food not found");
         }
         User user = userRepository.findByEmail(username);
         foodBatch.setUsername(user.getUsername());
         this.em.persist(foodBatch);
         food.addFoodBatches(foodBatch);
-
     }
 
     @Override
-    public List<FoodBatch> getFoodBatches(String bareCode) {
+    public List<FoodBatch> getFoodBatches(String bareCode, String username) {
         try {
-            String request = "SELECT f FROM FoodBatch f WHERE f.bareCode = :bareCode";
-            TypedQuery<Food> query = em.createQuery(request, Food.class);
-            query.setParameter("bareCode", bareCode);
-            Food food = query.getSingleResult();
-            return food.getFoodBatches();
+            String request = "SELECT f FROM FoodBatch f WHERE f.username = :username";
+            TypedQuery<FoodBatch> query = em.createQuery(request, FoodBatch.class);
+            query.setParameter("username", username);
+            List<FoodBatch> foodBatches = query.getResultList();
+            return foodBatches;
         } catch (Exception e) {
             return null;
         }

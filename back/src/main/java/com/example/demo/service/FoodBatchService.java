@@ -16,13 +16,12 @@ public class FoodBatchService {
     private FoodBatchRepositoryImpl foodBatchRepositoryImpl;
 
     public void addFoodBatch(String bareCode, FoodBatchRequest foodBatchRequest, String username) throws Exception{
-
         FoodBatch foodBatch = new FoodBatch(foodBatchRequest.getQuantity(), foodBatchRequest.getExpirationDate());
         foodBatchRepositoryImpl.saveFoodBatch(foodBatch, bareCode, username);
     }
 
-    public List<FoodBatch> getFoodBatch(String bareCode) {
-        return foodBatchRepositoryImpl.getFoodBatches(bareCode);
+    public List<FoodBatch> getFoodBatch(String bareCode, String username) {
+        return foodBatchRepositoryImpl.getFoodBatches(bareCode, username);
     }
 
 }
