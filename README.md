@@ -39,7 +39,11 @@ cd back
 mvn spring-boot:run
 ```
 
+URL of Swagger: http://localhost:8080/swagger-ui/index.html
+
 ```bash
 cd front/angular
 npm start
 ```
+
+URL of website: http://localhost:4200/home
