@@ -14,8 +14,9 @@ export class authorizationGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): MaybeAsync<GuardResult> {
-
-    if (this.appState.authState.roles == "USER") {
+    console.log(this.appState.authState.roles)
+    localStorage.setItem("USER","USER")
+    if (localStorage.getItem("USER") == "USER") {
       return true;
     }
     this.router.navigateByUrl('home');

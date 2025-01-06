@@ -5,9 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class StateService {
   public authState : any = {
-    username : undefined,
     roles: undefined,
-    isAuthenticated: false,
     token : undefined
   }
 
