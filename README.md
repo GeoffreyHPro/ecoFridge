@@ -22,8 +22,24 @@ This project is to reduce food waste and optimize the management of your "fridge
 
 # 🛠 Project and funtionnalities
 
-...
+✅ Connection of user succeed
+
+✅ Message when connection of user don't succeed
+
+⬜ Sign up for new users
+
+⬜ 
+
+⬜
 
 # ⚡️ Execution
 
-...
+```bash
+cd back
+mvn spring-boot:run
+```
+
+```bash
+cd front/angular
+npm start
+```
