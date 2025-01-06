@@ -44,7 +44,7 @@ export class LoginComponent {
           });
 
           localStorage.setItem("Roles", "USER");
-          localStorage.setItem("token", response.token);
+          localStorage.setItem("Token", response.body.token);
           this.router.navigateByUrl('user/user-home');
 
         } else {
