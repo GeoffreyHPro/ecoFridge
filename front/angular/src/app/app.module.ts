@@ -13,6 +13,7 @@ import { UserHomeComponent } from './user-home/user-home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PostFoodComponent } from './post-food/post-food.component';
+import { UserMyfridgeComponent } from './user-myfridge/user-myfridge.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PostFoodComponent } from './post-food/post-food.component';
     UserTemplateComponent,
     UserHomeComponent,
     NavbarComponent,
-    PostFoodComponent
+    PostFoodComponent,
+    UserMyfridgeComponent
   ],
   imports: [
     BrowserModule,

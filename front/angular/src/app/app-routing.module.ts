@@ -6,13 +6,15 @@ import { authenticationGuard } from './guards/authentication.guard';
 import { authorizationGuard } from './guards/authorization.guard';
 import { UserHomeComponent } from './user-home/user-home.component';
 import { PostFoodComponent } from './post-food/post-food.component';
+import { UserMyfridgeComponent } from './user-myfridge/user-myfridge.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   {
     path: "user", component: UserTemplateComponent, canActivate: [authenticationGuard, authorizationGuard], children: [
       { path: "user-home", component: UserHomeComponent },
-      { path: "post-food", component: PostFoodComponent }
+      { path: "post-food", component: PostFoodComponent },
+      { path: "user-myfridge", component: UserMyfridgeComponent }
     ]
   },
   { path: "", redirectTo: "home", pathMatch: "full" }
