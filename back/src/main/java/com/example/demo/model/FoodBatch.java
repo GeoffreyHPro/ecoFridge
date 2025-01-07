@@ -2,6 +2,12 @@ package com.example.demo.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +18,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "foodbatches")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idFoodBatch")
 public class FoodBatch {
 
     @Id
@@ -21,9 +28,6 @@ public class FoodBatch {
     private int quantity;
 
     private LocalDateTime expirationDate;
-
-    @ManyToOne
-    private User user;
 
     @ManyToOne
     @JoinColumn(name = "food_id")
@@ -66,14 +70,6 @@ public class FoodBatch {
 
     public void setFood(Food food) {
         this.food = food;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getUsername() {

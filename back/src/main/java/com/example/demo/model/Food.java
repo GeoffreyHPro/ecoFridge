@@ -2,6 +2,12 @@ package com.example.demo.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,6 +17,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "foods")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idFood")
 public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,7 +27,8 @@ public class Food {
 
     private String image;
 
-    @OneToMany
+    @OneToMany(mappedBy = "food", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<FoodBatch> foodBatches = new ArrayList<>();
 
     public Food() {
@@ -54,6 +62,7 @@ public class Food {
 
     public void addFoodBatches(FoodBatch foodBatch) {
         this.foodBatches.add(foodBatch);
+        foodBatch.setFood(this);
     }
 
     public String getImage() {

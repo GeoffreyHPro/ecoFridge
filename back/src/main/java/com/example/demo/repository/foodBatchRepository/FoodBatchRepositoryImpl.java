@@ -41,8 +41,9 @@ public class FoodBatchRepositoryImpl implements CustomFoodBatchRepository {
         }
         User user = userRepository.findByEmail(username);
         foodBatch.setUsername(user.getUsername());
-        this.em.persist(foodBatch);
+        foodBatch.setFood(food);
         food.addFoodBatches(foodBatch);
+        this.em.persist(foodBatch);
     }
 
     @Override
@@ -69,6 +70,7 @@ public class FoodBatchRepositoryImpl implements CustomFoodBatchRepository {
             TypedQuery<FoodBatch> query = em.createQuery(request, FoodBatch.class);
             query.setParameter("username", username);
             List<FoodBatch> foodBatches = query.getResultList();
+            FoodBatch foodBatch = foodBatches.get(0);
             return foodBatches;
         } catch (Exception e) {
             return null;

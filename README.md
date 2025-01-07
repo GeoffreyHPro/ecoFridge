@@ -28,9 +28,9 @@ This project is to reduce food waste and optimize the management of your "fridge
 
 ⬜ Sign up for new users
 
-⬜ 
+⬜ Display expired Food
 
-⬜
+⬜ Add new FoodBatch
 
 # ⚡️ Execution
 
