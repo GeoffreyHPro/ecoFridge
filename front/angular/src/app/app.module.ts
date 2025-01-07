@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -14,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PostFoodComponent } from './post-food/post-food.component';
 import { UserMyfridgeComponent } from './user-myfridge/user-myfridge.component';
+import { HomeComponent } from './unauthentied_section/home/home.component';
+import { LoginComponent } from './unauthentied_section/login/login.component';
 
 @NgModule({
   declarations: [
