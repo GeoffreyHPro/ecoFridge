@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FoodService } from '../services/food.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Food } from '../responses/FoodInterface';
 
 @Component({
   selector: 'app-user-myfridge',
@@ -7,21 +9,33 @@ import { FoodService } from '../services/food.service';
   styleUrl: './user-myfridge.component.css'
 })
 export class UserMyfridgeComponent {
-  signInError: string | undefined;
+  food: Food[] = [];
+  imageUrl: string = '../../assets/pomme.jpg';
+
   constructor(
-    private foodService: FoodService) {
+    private foodService: FoodService, private sanitizer: DomSanitizer) {
   }
 
   ngOnInit(): void {
     this.foodService.getFood().subscribe(
       response => {
-        let resp = response;
-        console.log(resp[0].bareCode)
+        this.food = response;
+        console.log(response)
+
+        this.food.forEach((element) => {
+          this.foodService.getImage(element.image).subscribe((blob) => {
+            const objectUrl = URL.createObjectURL(blob);
+            element.safeImageURL = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
+          })
+        });
       },
       error => {
         console.error('error in food request :', error);
-        this.signInError = "wrong authentication"
       }
     )
+  }
+
+  onFridgeItemClick() {
+    alert("feature arrive")
   }
 }

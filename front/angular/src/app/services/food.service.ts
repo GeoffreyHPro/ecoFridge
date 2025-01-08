@@ -18,4 +18,13 @@ export class FoodService {
 
     return this.http.get<Food[]>("http://localhost:8080/food", { headers });
   }
+
+  getImage(filename: String): Observable<Blob> {
+    const token = localStorage.getItem("Token")!
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    return this.http.get(`http://localhost:8080/image/${filename}`, { headers, responseType: 'blob' });
+  }
 }

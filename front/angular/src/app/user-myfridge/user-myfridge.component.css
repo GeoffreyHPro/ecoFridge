@@ -16,8 +16,7 @@ body {
 }
 
 .fridge-item {
-    width: 10%;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 1%;
+    height: 80px;
+    width: 80px;
+    border-radius: 15px;
 }
