@@ -81,7 +81,7 @@ public class ImageController {
             file.transferTo(filePath);
 
             // Update pathfile in database
-            foodService.updateFoodImage(bareCode, filePath.toString());
+            foodService.updateFoodImage(bareCode, uniqueFilename);
 
             return ResponseEntity.ok("Image saved");
 

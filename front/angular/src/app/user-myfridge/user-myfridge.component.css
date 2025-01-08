@@ -6,15 +6,17 @@ body {
 #food {
     width: 80%;
     margin: auto;
+    text-align: center;
 }
 
 #fridge {
+    width: 60%;
+    margin: auto;
     background-color: gray;
 }
 
 .fridge-item {
-    width: 10%;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 1%;
+    height: 80px;
+    width: 80px;
+    border-radius: 15px;
 }
