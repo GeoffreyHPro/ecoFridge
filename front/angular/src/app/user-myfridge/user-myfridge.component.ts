@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FoodService } from '../services/food.service';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Food } from '../responses/FoodInterface';
 
 @Component({
