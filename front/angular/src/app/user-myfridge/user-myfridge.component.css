@@ -1,0 +1,20 @@
+body {
+    width: 90%;
+    margin: auto;
+}
+
+#food {
+    width: 80%;
+    margin: auto;
+}
+
+#fridge {
+    background-color: gray;
+}
+
+.fridge-item {
+    width: 10%;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 1%;
+}
