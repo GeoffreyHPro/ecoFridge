@@ -6,9 +6,12 @@ body {
 #food {
     width: 80%;
     margin: auto;
+    text-align: center;
 }
 
 #fridge {
+    width: 60%;
+    margin: auto;
     background-color: gray;
 }
 
