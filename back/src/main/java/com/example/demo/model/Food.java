@@ -37,7 +37,7 @@ public class Food {
 
     public Food(String bareCode) {
         this.bareCode = bareCode;
-        this.image = "src/main/resources/static/images/default.png";
+        this.image = "default.png";
     }
 
     public String getBareCode() {
