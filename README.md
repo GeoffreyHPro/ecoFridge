@@ -32,7 +32,7 @@ This project is to reduce food waste and optimize the management of your "fridge
 
 ⬜ Add new FoodBatch
 
-# ⚡️ Execution
+# ⚡️ Standard Execution
 
 ```bash
 cd back
@@ -47,3 +47,19 @@ npm start
 ```
 
 URL of website: http://localhost:4200/home
+
+# ☁️ Docker Execution
+
+## Back - Java Spring Boot
+
+To create image Docker, execute this command
+
+```bash
+docker build -t back_ecoFridge .  
+```
+
+To execute application, execute this command. 8080:8080 is port and default port, so change it if you execute application in another port.
+
+```bash
+docker run -p 8080:8080 back_ecofridge 
+```
