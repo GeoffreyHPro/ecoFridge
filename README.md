@@ -22,17 +22,19 @@ This project is to reduce food waste and optimize the management of your "fridge
 
 # 🛠 Project and funtionnalities
 
-✅ Connection of user succeed
+✅ Connection of user succeed with securized token
 
 ✅ Message when connection of user don't succeed
+
+✅ Display food in MyFridge view for users
 
 ⬜ Sign up for new users
 
 ⬜ Display expired Food
 
-⬜ Add new FoodBatch
+⬜ Add new FoodBatch in new purshase view
 
-# ⚡️ Execution
+# ⚡️ Standard Execution
 
 ```bash
 cd back
@@ -47,3 +49,33 @@ npm start
 ```
 
 URL of website: http://localhost:4200/home
+
+# ☁️ Docker Execution
+
+## Back - Java Spring Boot
+
+To create image Docker, execute this command
+
+```bash
+docker build -t back_ecoFridge .  
+```
+
+To execute application, execute this command. 8080:8080 is port and default port, so change it if you execute application in another port.
+
+```bash
+docker run -p 8080:8080 back_ecofridge 
+```
+
+## Front - Angular
+
+To create image Docke, execute this command
+
+```bash
+docker build -t front_angular_ecofridge .
+```
+
+To execute application, execute this command. 4200:4200 is port and default port, so change it if you execute application in another port.
+
+```bash
+docker run -p 4200:4200 front_angular_ecofridge
+```    
