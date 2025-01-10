@@ -14,6 +14,7 @@ import { PostFoodComponent } from './post-food/post-food.component';
 import { UserMyfridgeComponent } from './user-myfridge/user-myfridge.component';
 import { HomeComponent } from './unauthentied_section/home/home.component';
 import { LoginComponent } from './unauthentied_section/login/login.component';
+import { SignUpComponent } from './unauthentied_section/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoginComponent } from './unauthentied_section/login/login.component';
     UserHomeComponent,
     NavbarComponent,
     PostFoodComponent,
-    UserMyfridgeComponent
+    UserMyfridgeComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
