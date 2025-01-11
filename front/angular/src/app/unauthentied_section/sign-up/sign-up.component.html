@@ -10,7 +10,7 @@
     border-radius: 0px;
     "><b>Sign Up for EcoFridge</b>
             </h1>
-            <form [formGroup]="formSignup" (ngSubmit)="handleLogin()" >
+            <form [formGroup]="formSignup">
                 <div class="mb-1">
                     <label class="form-label">Mail</label>
                     <input width="50" placeholder="enter your mail..." type="text" class="form-control"
@@ -22,7 +22,7 @@
                         {{signInError}}
                     </p>
                     <div class="d-grid mt-3">
-                        <button type="submit" class="btn btn-primary">S'inscrire</button>
+                        <button (click)="handleSignup()" type="submit" class="btn btn-primary">S'inscrire</button>
                     </div>
                 </div>
             </form>
