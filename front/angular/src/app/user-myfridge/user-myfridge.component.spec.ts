@@ -5,6 +5,7 @@ import { FoodService } from '../services/food.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Food } from '../responses/FoodInterface';
 import { of } from 'rxjs';
+import { Data } from '../responses/DataInterface';
 
 describe('UserMyfridgeComponent', () => {
   let component: UserMyfridgeComponent;
@@ -34,8 +35,9 @@ describe('UserMyfridgeComponent', () => {
     let FoodArray = [
       food
     ]
+    const dataResponse: Data = { data: FoodArray};
 
-    spyOn(foodService, "getFood").and.returnValue(of(FoodArray));
+    spyOn(foodService, "getFood").and.returnValue(of(dataResponse));
     component.ngOnInit();
 
     expect(component.food).toBe(FoodArray);
