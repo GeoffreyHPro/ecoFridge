@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { formatEmail } from '../../utils/form';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class SignUpComponent {
   formSignup!: FormGroup
-  signInError = "";
+  signUpError = "";
 
   constructor(
     private fb: FormBuilder,
@@ -27,20 +28,27 @@ export class SignUpComponent {
   }
 
   handleSignup() {
+    Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
     let mail = this.formSignup.value.mail;
     let password = this.formSignup.value.password;
 
-    this.authservice.signUp(mail, password).subscribe(
-      response => {
-        let resp = response;
-        console.log(resp)
-        if (response.status == 200) {
-          this.router.navigateByUrl("home")
+    if (formatEmail(mail)) {
+      this.signUpError = "";
+      this.authservice.signUp(mail, password).subscribe(
+        response => {
+          let resp = response;
+          console.log(resp)
+          if (response.status == 200) {
+            this.router.navigateByUrl("home")
+          }
+        },
+        error => {
+          console.log("error")
         }
-      },
-      error => {
-        console.log("error")
-      }
-    )
+      )
+
+    } else {
+      this.signUpError = "email is not in right format"
+    }
   }
 }
