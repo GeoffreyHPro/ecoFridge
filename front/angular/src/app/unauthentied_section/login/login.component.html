@@ -7,18 +7,19 @@
 
         <form [formGroup]="formLogin">
             <div class="mb-1">
-                <label class="form-label">Mail</label>
-                <input width="50" placeholder="enter your mail..." type="text" class="form-control"
-                    formControlName="mail">
+                <label class="form-label mt-3" for="email">Mail</label>
+                <input id="mail" name="mail" width="50" placeholder="enter your mail..." type="email"
+                    class="form-control" formControlName="mail">
                 <div *ngIf="signInEmailError && signInEmailError.length >0" style="color:red">
                     {{signInEmailError}}
                 </div>
-                <label class="form-label">Password</label>
-                <input placeholder="enter your password..." type="text" class="form-control" formControlName="password">
+                <label class="form-label mt-3">Password</label>
+                <input placeholder="enter your password..." type="password" class="form-control"
+                    formControlName="password">
                 <div *ngIf="signInPasswordError && signInPasswordError.length >0" style="color:red; margin-bottom: 0;">
                     {{signInPasswordError}}
                 </div>
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between mt-3">
                     <button (click)="handleLogin()" class="btn btn-success mt-3">Login</button>
                     <button (click)="signUpRedirection()" class="btn btn-primary mt-3">SignUp</button>
                 </div>
