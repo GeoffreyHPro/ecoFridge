@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent {
-  formLogin!: FormGroup
+  formSignup!: FormGroup
   signInError = "";
 
   constructor(
@@ -20,7 +20,7 @@ export class SignUpComponent {
 
   ngOnInit(): void {
 
-    this.formLogin = this.fb.group({
+    this.formSignup = this.fb.group({
       mail: this.fb.control(""),
       password: this.fb.control("")
     })
