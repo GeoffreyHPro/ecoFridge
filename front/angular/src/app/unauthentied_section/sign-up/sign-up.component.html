@@ -15,12 +15,15 @@
                     <label class="form-label">Mail</label>
                     <input width="50" id="email" placeholder="enter your mail..." type="email" class="form-control"
                         formControlName="mail">
+                    <div *ngIf="signUpEmailError && signUpEmailError.length >0" style="color:red">
+                        {{signUpEmailError}}
+                    </div>
                     <label class="form-label mt-3">Password</label>
                     <input placeholder="enter your password..." type="password" class="form-control"
                         formControlName="password">
-                    <p *ngIf="signUpError && signUpError.length >0" style="color:red">
-                        {{signUpError}}
-                    </p>
+                    <div *ngIf="signUpPasswordError && signUpPasswordError.length >0" style="color:red; margin-bottom: 0;">
+                        {{signUpPasswordError}}
+                    </div>
                     <div class="d-grid mt-3">
                         <button (click)="handleSignup()" type="submit" class="btn btn-primary">S'inscrire</button>
                     </div>
