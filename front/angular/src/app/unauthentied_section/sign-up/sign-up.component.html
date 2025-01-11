@@ -1,0 +1,35 @@
+<body class="d-flex justify-content-center align-items-center vh-100" style="background-image: url('../../../assets/bg-fridge.jpg');
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        ">
+    <div class="">
+        <div class="container p-5" style="background-color: white;">
+            <h1 class="pb-5" style="text-align: center; color: black;
+    border-radius: 0px;
+    "><b>Sign Up for EcoFridge</b>
+            </h1>
+            <form [formGroup]="formSignup" (ngSubmit)="handleLogin()" >
+                <div class="mb-1">
+                    <label class="form-label">Mail</label>
+                    <input width="50" placeholder="enter your mail..." type="text" class="form-control"
+                        formControlName="mail">
+                    <label class="form-label mt-3">Password</label>
+                    <input placeholder="enter your password..." type="text" class="form-control"
+                        formControlName="password">
+                    <p *ngIf="signInError && signInError.length >0" style="color:red">
+                        {{signInError}}
+                    </p>
+                    <div class="d-grid mt-3">
+                        <button type="submit" class="btn btn-primary">S'inscrire</button>
+                    </div>
+                </div>
+            </form>
+
+            <p class="text-center mt-3">
+                Do you have already an account ? <a href="#">SignIn</a>
+            </p>
+        </div>
+    </div>
+</body>

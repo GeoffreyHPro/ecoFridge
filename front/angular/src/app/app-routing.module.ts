@@ -7,9 +7,11 @@ import { UserHomeComponent } from './user-home/user-home.component';
 import { PostFoodComponent } from './post-food/post-food.component';
 import { UserMyfridgeComponent } from './user-myfridge/user-myfridge.component';
 import { HomeComponent } from './unauthentied_section/home/home.component';
+import { SignUpComponent } from './unauthentied_section/sign-up/sign-up.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
+  { path: "signup", component: SignUpComponent },
   {
     path: "user", component: UserTemplateComponent, canActivate: [authenticationGuard, authorizationGuard], children: [
       { path: "user-home", component: UserHomeComponent },
