@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { StateService } from '../../services/state.service';
+import { formatEmail, formatPassword } from '../../utils/form';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ import { StateService } from '../../services/state.service';
 })
 export class LoginComponent {
   formLogin!: FormGroup
-  signInError = "";
+  signInEmailError = "";
+  signInPasswordError = "";
 
   constructor(
     private fb: FormBuilder,
@@ -21,7 +23,6 @@ export class LoginComponent {
   }
 
   ngOnInit(): void {
-
     this.formLogin = this.fb.group({
       mail: this.fb.control(""),
       password: this.fb.control("")
@@ -31,34 +32,42 @@ export class LoginComponent {
   handleLogin() {
     let mail = this.formLogin.value.mail;
     let password = this.formLogin.value.password;
-    this.authservice.login(mail, password).subscribe(
-      response => {
-        let resp = response;
-        console.log('Réponse de l\'API:', resp);
-        console.log(response.status)
 
-        if (response.status == 200) {
-          this.appState.setAuthState({
-            token: response.token,
-            roles: "USER"
-          });
+    //forms validators
+    let emailValidationResult = formatEmail(mail);
+    let passwordValidationResult = formatPassword(password);
 
-          localStorage.setItem("Roles", "USER");
-          localStorage.setItem("Token", response.body.token);
-          this.router.navigateByUrl('user/user-home');
+    if (emailValidationResult + passwordValidationResult == "") {
+      this.authservice.login(mail, password).subscribe(
+        response => {
+          let resp = response;
 
-        } else {
-          this.signInError = "wrong authentication"
+          if (response.status == 200) {
+            this.appState.setAuthState({
+              token: response.token,
+              roles: "USER"
+            });
+
+            localStorage.setItem("Roles", "USER");
+            localStorage.setItem("Token", response.body.token);
+            this.router.navigateByUrl('user/user-home');
+
+          } else {
+            this.signInEmailError = "wrong authentication"
+          }
+        },
+        error => {
+          console.error('Erreur lors de la récupération des données :', error);
         }
-      },
-      error => {
-        console.error('Erreur lors de la récupération des données :', error);
-        this.signInError = "wrong authentication"
-      }
-    );
+      );
+    } else {
+      this.signInEmailError = emailValidationResult;
+      this.signInPasswordError = passwordValidationResult;
+    }
+
   }
 
-  signUp(){
+  signUpRedirection(){
     this.router.navigateByUrl('signup');
   }
 }

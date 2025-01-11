@@ -19,4 +19,14 @@ export class AuthService {
 
     return this.http.post("http://localhost:8080/auth/signIn", bodyUser, { headers, observe: "response" });
   }
+
+  signUp(username: string, password: string): Observable<any> {
+    const bodyUser = { email: username, password: password }
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post("http://localhost:8080/auth/signUp", bodyUser, { headers, observe: "response" });
+  }
 }
