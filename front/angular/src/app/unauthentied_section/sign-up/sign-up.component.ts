@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { formatEmail, formatPassword } from '../../utils/form';
@@ -28,7 +28,6 @@ export class SignUpComponent {
   }
 
   handleSignup() {
-    Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
     let mail = this.formSignup.value.mail;
     let password = this.formSignup.value.password;
 

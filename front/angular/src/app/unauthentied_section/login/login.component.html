@@ -1,25 +1,26 @@
 <div class="">
-    <h1 class="pb-5" style="text-align: center; color: black;
-    border-radius: 0px;
-    "><b>Sign In </b>
-    </h1>
+    <div class="container p-5" style="background-color: white;">
+        <h1 class="mb-1" style="text-align: center; color: black;
+        border-radius: 0px;
+        "><b>Sign In </b>
+        </h1>
 
-    <div class="container">
         <form [formGroup]="formLogin">
             <div class="mb-1">
                 <label class="form-label">Mail</label>
                 <input width="50" placeholder="enter your mail..." type="text" class="form-control"
                     formControlName="mail">
+                <div *ngIf="signInEmailError && signInEmailError.length >0" style="color:red">
+                    {{signInEmailError}}
+                </div>
                 <label class="form-label">Password</label>
                 <input placeholder="enter your password..." type="text" class="form-control" formControlName="password">
-                <p *ngIf="signInError && signInError.length >0" style="color:red">
-                    {{signInError}}
-                </p>
-                <div class="container mt-5">
-                    <div class="d-flex justify-content-between">
-                        <button (click)="handleLogin()" class="btn btn-success mt-3">Login</button>
-                        <button (click)="signUp()" class="btn btn-primary mt-3">SignUp</button>
-                    </div>
+                <div *ngIf="signInPasswordError && signInPasswordError.length >0" style="color:red; margin-bottom: 0;">
+                    {{signInPasswordError}}
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button (click)="handleLogin()" class="btn btn-success mt-3">Login</button>
+                    <button (click)="signUpRedirection()" class="btn btn-primary mt-3">SignUp</button>
                 </div>
             </div>
         </form>
