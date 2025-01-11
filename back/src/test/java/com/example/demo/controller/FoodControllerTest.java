@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.example.demo.model.Food;
+import com.example.demo.reponses.FoodResponse;
 import com.example.demo.repository.foodRepository.FoodRepositoryImpl;
 import com.example.demo.service.FoodService;
 import com.example.demo.service.JWTUtils;
@@ -60,6 +61,8 @@ public class FoodControllerTest {
         food.setBareCode("0001");
         List<Food> listFood = new ArrayList<>();
         listFood.add(food);
+        FoodResponse response = new FoodResponse(listFood);
+
 
         Mockito.when(foodService.getFoods("admin@admin.com")).thenReturn(listFood);
 
@@ -68,6 +71,6 @@ public class FoodControllerTest {
                 .andReturn();
         assertEquals(200, result.getResponse().getStatus());
 
-        assertEquals(responseAsString.getString(listFood), result.getResponse().getContentAsString());
+        assertEquals(responseAsString.getString(response), result.getResponse().getContentAsString());
     }
 }
