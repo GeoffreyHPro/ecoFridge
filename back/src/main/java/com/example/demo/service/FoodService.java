@@ -13,8 +13,8 @@ public class FoodService {
     @Autowired
     private FoodRepositoryImpl foodRepositoryImpl;
 
-    public List<Food> getFoods() {
-        return foodRepositoryImpl.getAllFoods();
+    public List<Food> getFoods(String username) {
+        return foodRepositoryImpl.getAllFoods(username);
     }
 
     public void save(Food food) {

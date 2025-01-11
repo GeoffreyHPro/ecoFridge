@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,9 +31,9 @@ public class FoodController {
 
     @Operation(summary = "Get all Foods from your fridge", description = "You can get all the foods you have saved in your fridge")
     @GetMapping
-    public ResponseEntity getFood() {
+    public ResponseEntity getFood(Authentication authentication) {
 
-        return ResponseEntity.status(200).body(foodService.getFoods());
+        return ResponseEntity.status(200).body(foodService.getFoods(authentication.getName()));
     }
 
     @Operation(summary = "Get all Foods from your fridge", description = "You can get all the foods you have saved in your fridge")
