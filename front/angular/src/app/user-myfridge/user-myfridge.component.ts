@@ -19,7 +19,7 @@ export class UserMyfridgeComponent {
   ngOnInit(): void {
     this.foodService.getFood().subscribe(
       response => {
-        this.food = response;
+        this.food = response.data;
         console.log(response)
 
         this.food.forEach((element) => {

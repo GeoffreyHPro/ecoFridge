@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Food;
+import com.example.demo.model.FoodBatch;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -33,8 +34,16 @@ public class FoodRepositoryImpl implements CustomFoodRepository {
     }
 
     @Override
-    public List<Food> getAllFoods() {
-        return this.em.createQuery("SELECT f FROM Food f", Food.class).getResultList();
+    public List<Food> getAllFoods(String username) {
+        String request =
+                                "SELECT f FROM Food f " +
+                                "JOIN f.foodBatches fb " +
+                                "WHERE fb.username = :username";
+        
+        TypedQuery<Food> query = em.createQuery(request, Food.class);
+        query.setParameter("username", username);
+        List<Food> food = query.getResultList();
+        return food;
     }
 
     @Override
