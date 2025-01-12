@@ -55,6 +55,14 @@ public class FoodControllerTest {
     private MockMvc mockMvc;
 
     @Test
+    public void GetFoodWithoutAuth() throws Exception {
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders
+                .get("/food"))
+                .andReturn();
+        assertEquals(401, result.getResponse().getStatus());
+    }
+
+    @Test
     @WithMockUser(username = "admin@admin.com")
     public void GetFood() throws Exception {
         Food food = new Food();
@@ -62,7 +70,6 @@ public class FoodControllerTest {
         List<Food> listFood = new ArrayList<>();
         listFood.add(food);
         FoodResponse response = new FoodResponse(listFood);
-
 
         Mockito.when(foodService.getFoods("admin@admin.com")).thenReturn(listFood);
 
