@@ -70,7 +70,6 @@ public class FoodBatchRepositoryImpl implements CustomFoodBatchRepository {
             TypedQuery<FoodBatch> query = em.createQuery(request, FoodBatch.class);
             query.setParameter("username", username);
             List<FoodBatch> foodBatches = query.getResultList();
-            FoodBatch foodBatch = foodBatches.get(0);
             return foodBatches;
         } catch (Exception e) {
             return null;
