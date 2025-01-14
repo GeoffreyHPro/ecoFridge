@@ -24,6 +24,10 @@ public class FoodBatchService {
         return foodBatchRepositoryImpl.getExpiredFoodBatches(username);
     }
 
+    public List<FoodBatch> getSoonExpiredFoodBatches(String username) {
+        return foodBatchRepositoryImpl.getSoonExpiredFoodBatches(username);
+    }
+
     public List<FoodBatch> getFoodBatchWithBareCode(String bareCode, String username) {
         return foodBatchRepositoryImpl.getFoodBatchesWithBareCode(bareCode, username);
     }

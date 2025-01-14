@@ -67,10 +67,25 @@ public class FoodBatchRepositoryImpl implements CustomFoodBatchRepository {
     @Override
     public List<FoodBatch> getExpiredFoodBatches(String username) {
         try {
-            String request = "SELECT f FROM FoodBatch f WHERE f.username = :username AND f.expirationDate BETWEEN f.expirationDate AND :startDate";
+            String request = "SELECT f FROM FoodBatch f WHERE f.username = :username AND f.expirationDate BETWEEN f.expirationDate AND :actualDate";
+            TypedQuery<FoodBatch> query = em.createQuery(request, FoodBatch.class);
+            query.setParameter("username", username);
+            query.setParameter("actualDate", LocalDateTime.now());
+            List<FoodBatch> foodBatches = query.getResultList();
+            return foodBatches;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public List<FoodBatch> getSoonExpiredFoodBatches(String username) {
+        try {
+            String request = "SELECT f FROM FoodBatch f WHERE f.username = :username AND f.expirationDate BETWEEN :startDate AND :endDate";
             TypedQuery<FoodBatch> query = em.createQuery(request, FoodBatch.class);
             query.setParameter("username", username);
             query.setParameter("startDate", LocalDateTime.now());
+            query.setParameter("endDate", LocalDateTime.now().plusDays(5));
             List<FoodBatch> foodBatches = query.getResultList();
             return foodBatches;
         } catch (Exception e) {

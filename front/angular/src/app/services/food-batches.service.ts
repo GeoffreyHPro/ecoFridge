@@ -10,12 +10,21 @@ export class FoodBatchesService {
 
   constructor(private http: HttpClient) { }
 
-  getFoodBatches(): Observable<DataFoodBatches> {
+  getExpiredFoodBatches(): Observable<DataFoodBatches> {
     const token = localStorage.getItem("Token")!
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}` 
     });
 
     return this.http.get<DataFoodBatches>("http://localhost:8080/foodbatch/expired", { headers });
+  }
+
+  getSoonExpiredFoodBatches(): Observable<DataFoodBatches> {
+    const token = localStorage.getItem("Token")!
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}` 
+    });
+
+    return this.http.get<DataFoodBatches>("http://localhost:8080/foodbatch/soonExpired", { headers });
   }
 }

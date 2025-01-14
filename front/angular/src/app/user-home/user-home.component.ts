@@ -11,7 +11,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class UserHomeComponent {
   signInError: string | undefined;
-  foodbatches: FoodBatch[] = [];
+  expiredFoodbatches: FoodBatch[] = [];
+  soonExpiredFoodbatches: FoodBatch[] = [];
 
   constructor(
     private foodBatchesService: FoodBatchesService,
@@ -21,13 +22,13 @@ export class UserHomeComponent {
   }
 
   ngOnInit(): void {
-    this.foodBatchesService.getFoodBatches().subscribe(
+    this.foodBatchesService.getExpiredFoodBatches().subscribe(
       response => {
         let resp = response;
-        this.foodbatches = resp.data;
+        this.expiredFoodbatches = resp.data;
         console.log(resp.data)
 
-        this.foodbatches.forEach((foodBatch) => {
+        this.expiredFoodbatches.forEach((foodBatch) => {
           this.foodService.getImage(foodBatch.food.image).subscribe((blob) => {
             const objectUrl = URL.createObjectURL(blob);
             foodBatch.safeImageURL = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
@@ -40,5 +41,26 @@ export class UserHomeComponent {
         this.signInError = "wrong authentication"
       }
     )
+
+    this.foodBatchesService.getSoonExpiredFoodBatches().subscribe(
+      response => {
+        let resp = response;
+        this.soonExpiredFoodbatches = resp.data;
+        console.log(resp.data)
+
+        this.soonExpiredFoodbatches.forEach((foodBatch) => {
+          this.foodService.getImage(foodBatch.food.image).subscribe((blob) => {
+            const objectUrl = URL.createObjectURL(blob);
+            foodBatch.safeImageURL = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
+          })
+        })
+
+      },
+      error => {
+        console.error('Erreur lors de la récupération des données :', error);
+        this.signInError = "wrong authentication"
+      }
+    )
+
   }
 }

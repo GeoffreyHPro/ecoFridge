@@ -2,9 +2,9 @@
 
 <body>
         <h1 class="mt-2">Food expired</h1>
-        <div class="container mt-5 scrollable-container">
+        <div *ngIf="expiredFoodbatches.length > 0; else noData" class="container mt-5 scrollable-container">
                 <div class="card-group card-group-scroll">
-                        <div *ngFor="let foodBatch of foodbatches" class="card">
+                        <div *ngFor="let foodBatch of expiredFoodbatches" class="card">
                                 <img [src]="foodBatch.safeImageURL" class="card-img-top p-3" style="max-height: 150px;">
                                 <div class="card-body">
                                         <h5 class="card-title">Pommes</h5>
@@ -19,10 +19,30 @@
                         </div>
                 </div>
         </div>
+        <ng-template #noData>
+                <p>Congratulations ! None food is expired</p>
+        </ng-template>
 
 
         <h1 class="mt-4">Food soon expired</h1>
-
+        <div class="container mt-5 scrollable-container">
+                <div class="card-group card-group-scroll">
+                        <div *ngFor="let foodBatch of soonExpiredFoodbatches" class="card">
+                                <img [src]="foodBatch.safeImageURL" class="card-img-top p-3"
+                                        style="max-height: 150px; max-width: 200px;">
+                                <div class="card-body">
+                                        <h5 class="card-title">Pommes</h5>
+                                        <p class="card-text">
+                                                Stock: {{foodBatch.quantity}} <br>
+                                                ExpirationDate: {{foodBatch.expirationDate}}
+                                        </p>
+                                </div>
+                                <div class="card-footer">
+                                        <small class="text-muted">favorite</small>
+                                </div>
+                        </div>
+                </div>
+        </div>
 
 
 </body>
