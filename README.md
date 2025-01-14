@@ -57,7 +57,7 @@ URL of website: http://localhost:4200/home
 To create image Docker, execute this command
 
 ```bash
-docker build -t back_ecoFridge .  
+docker build -t back_ecofridge .  
 ```
 
 To execute application, execute this command. 8080:8080 is port and default port, so change it if you execute application in another port.
