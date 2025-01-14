@@ -2,7 +2,7 @@
 
 <body>
         <h1 class="mt-2">Food expired</h1>
-        <div *ngIf="expiredFoodbatches.length > 0; else noData" class="container mt-5 scrollable-container">
+        <div *ngIf="expiredFoodbatches.length > 0; else noExpiredFoodbatchesData" class="container mt-5 scrollable-container">
                 <div class="card-group card-group-scroll">
                         <div *ngFor="let foodBatch of expiredFoodbatches" class="card">
                                 <img [src]="foodBatch.safeImageURL" class="card-img-top p-3" style="max-height: 150px;">
@@ -19,13 +19,13 @@
                         </div>
                 </div>
         </div>
-        <ng-template #noData>
+        <ng-template #noExpiredFoodbatchesData>
                 <p>Congratulations ! None food is expired</p>
         </ng-template>
 
 
         <h1 class="mt-4">Food soon expired</h1>
-        <div class="container mt-5 scrollable-container">
+        <div *ngIf="soonExpiredFoodbatches.length > 0; else noSoonExpiredFoodbatchesData" class="container mt-5 scrollable-container">
                 <div class="card-group card-group-scroll">
                         <div *ngFor="let foodBatch of soonExpiredFoodbatches" class="card">
                                 <img [src]="foodBatch.safeImageURL" class="card-img-top p-3"
@@ -43,6 +43,9 @@
                         </div>
                 </div>
         </div>
+        <ng-template #noSoonExpiredFoodbatchesData>
+                <p>Congratulations ! None food is soon expired</p>
+        </ng-template>
 
 
 </body>
