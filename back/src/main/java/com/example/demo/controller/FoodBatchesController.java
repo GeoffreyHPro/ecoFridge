@@ -49,9 +49,9 @@ public class FoodBatchesController {
     }
 
     @Operation(summary = "Get all Foodbatches", description = "")
-    @GetMapping()
+    @GetMapping("/expired")
     public ResponseEntity getFoodBatch(Principal principal) {
-        List<FoodBatch> foodbatches = foodBatchService.getFoodBatch(principal.getName());
+        List<FoodBatch> foodbatches = foodBatchService.getExpiredFoodBatches(principal.getName());
         List<FoodBatchDTO> foodbatchesDTO = foodbatches.stream().map(foodMapper::toFoodBatchDTO).collect(Collectors.toList());
         ListResponse foodResponse = new ListResponse(foodbatchesDTO);
         return ResponseEntity.status(200).body(foodResponse);

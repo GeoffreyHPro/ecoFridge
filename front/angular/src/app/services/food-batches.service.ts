@@ -16,6 +16,6 @@ export class FoodBatchesService {
       Authorization: `Bearer ${token}` 
     });
 
-    return this.http.get<DataFoodBatches>("http://localhost:8080/foodbatch", { headers });
+    return this.http.get<DataFoodBatches>("http://localhost:8080/foodbatch/expired", { headers });
   }
 }
