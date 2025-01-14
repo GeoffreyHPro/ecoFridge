@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { FoodBatchesService } from '../services/food-batches.service';
-import { FoodService } from '../services/food.service';
-import { FoodBatch } from '../responses/FoodBatchInterface';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FoodBatch } from '../../responses/FoodBatchInterface';
+import { FoodBatchesService } from '../../services/food-batches.service';
+import { FoodService } from '../../services/food.service';
 
 @Component({
   selector: 'app-user-home',

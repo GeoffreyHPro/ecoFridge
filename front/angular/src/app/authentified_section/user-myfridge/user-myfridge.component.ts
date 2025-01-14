@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FoodService } from '../services/food.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Food } from '../responses/FoodInterface';
+import { FoodService } from '../../services/food.service';
+import { Food } from '../../responses/FoodInterface';
 
 @Component({
   selector: 'app-user-myfridge',
@@ -13,7 +13,7 @@ export class UserMyfridgeComponent {
   imageUrl: string = '../../assets/pomme.jpg';
 
   constructor(
-    private foodService: FoodService, 
+    private foodService: FoodService,
     private sanitizer: DomSanitizer) {
   }
 

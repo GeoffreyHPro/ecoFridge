@@ -1,5 +1,4 @@
 import { ActivatedRouteSnapshot, CanActivate, CanActivateFn, GuardResult, MaybeAsync, Router, RouterStateSnapshot } from '@angular/router';
-import { StateService } from '../services/state.service';
 import { Injectable } from '@angular/core';
 
 
@@ -7,16 +6,15 @@ import { Injectable } from '@angular/core';
   providedIn: "root"
 })
 export class authorizationGuard implements CanActivate {
-  constructor(private appState: StateService, private router: Router) {
+  constructor(private router: Router) {
 
   }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): MaybeAsync<GuardResult> {
-    console.log(this.appState.authState.roles)
-    localStorage.setItem("USER","USER")
-    if (localStorage.getItem("USER") == "USER") {
+
+    if (localStorage.getItem("Role") == "USER") {
       return true;
     }
     this.router.navigateByUrl('home');

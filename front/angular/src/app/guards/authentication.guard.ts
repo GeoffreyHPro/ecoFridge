@@ -1,5 +1,4 @@
 import { ActivatedRouteSnapshot, CanActivate, CanActivateFn, GuardResult, MaybeAsync, Router, RouterStateSnapshot } from '@angular/router';
-import { StateService } from '../services/state.service';
 import { Injectable } from '@angular/core';
 
 
@@ -7,7 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: "root"
 })
 export class authenticationGuard implements CanActivate {
-  constructor(private appState: StateService, private router: Router) {
+  constructor(private router: Router) {
 
   }
 
@@ -15,7 +14,7 @@ export class authenticationGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): MaybeAsync<GuardResult> {
 
-    if (this.appState.authState.token != "") {
+    if (localStorage.getItem('Token') != "") {
       return true;
     }
     this.router.navigateByUrl('home');
