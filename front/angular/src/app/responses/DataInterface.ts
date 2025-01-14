@@ -1,5 +1,5 @@
 import { Food } from "./FoodInterface";
 
-export interface Data{
+export interface Data {
     data: Food[];
 }

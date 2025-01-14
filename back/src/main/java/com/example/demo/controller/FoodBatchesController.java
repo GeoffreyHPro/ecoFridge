@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.FoodBatchDTO;
 import com.example.demo.model.FoodBatch;
 import com.example.demo.payload.FoodBatchRequest;
+import com.example.demo.reponses.ListResponse;
 import com.example.demo.service.FoodBatchService;
+import com.example.demo.service.FoodMapper;
 
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,6 +31,9 @@ public class FoodBatchesController {
 
     @Autowired
     private FoodBatchService foodBatchService;
+
+    @Autowired
+    FoodMapper foodMapper;
 
     @Operation(summary = "Add new foodbatch", description = "")
     @PostMapping("/{bareCode}")
@@ -42,10 +49,21 @@ public class FoodBatchesController {
     }
 
     @Operation(summary = "Get all Foodbatches", description = "")
-    @GetMapping()
-    public ResponseEntity<?> getFoodBatch(Principal principal) {
-        List<FoodBatch> foodbatches = foodBatchService.getFoodBatch(principal.getName());
-        return ResponseEntity.status(200).body(foodbatches);
+    @GetMapping("/expired")
+    public ResponseEntity getExpiredFoodBatch(Principal principal) {
+        List<FoodBatch> foodbatches = foodBatchService.getExpiredFoodBatches(principal.getName());
+        List<FoodBatchDTO> foodbatchesDTO = foodbatches.stream().map(foodMapper::toFoodBatchDTO).collect(Collectors.toList());
+        ListResponse foodResponse = new ListResponse(foodbatchesDTO);
+        return ResponseEntity.status(200).body(foodResponse);
+    }
+
+    @Operation(summary = "Get all Foodbatches", description = "")
+    @GetMapping("/soonExpired")
+    public ResponseEntity getSoonExpiredFoodBatch(Principal principal) {
+        List<FoodBatch> foodbatches = foodBatchService.getSoonExpiredFoodBatches(principal.getName());
+        List<FoodBatchDTO> foodbatchesDTO = foodbatches.stream().map(foodMapper::toFoodBatchDTO).collect(Collectors.toList());
+        ListResponse foodResponse = new ListResponse(foodbatchesDTO);
+        return ResponseEntity.status(200).body(foodResponse);
     }
 
     @Operation(summary = "Get all Foodbatches with bareCode", description = "")

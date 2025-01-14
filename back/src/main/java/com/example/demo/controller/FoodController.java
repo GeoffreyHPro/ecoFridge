@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Food;
 import com.example.demo.payload.FoodRequest;
-import com.example.demo.reponses.FoodResponse;
+import com.example.demo.reponses.ListResponse;
 import com.example.demo.service.FoodService;
 
 import io.swagger.annotations.Api;
@@ -35,7 +35,7 @@ public class FoodController {
     @GetMapping
     public ResponseEntity getFood(Authentication authentication) {
         List<Food> listFood = foodService.getFoods(authentication.getName());
-        FoodResponse foodResponse = new FoodResponse(listFood);
+        ListResponse foodResponse = new ListResponse(listFood);
 
         return ResponseEntity.status(200).body(foodResponse);
     }

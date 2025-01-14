@@ -13,7 +13,8 @@ export class UserMyfridgeComponent {
   imageUrl: string = '../../assets/pomme.jpg';
 
   constructor(
-    private foodService: FoodService, private sanitizer: DomSanitizer) {
+    private foodService: FoodService, 
+    private sanitizer: DomSanitizer) {
   }
 
   ngOnInit(): void {

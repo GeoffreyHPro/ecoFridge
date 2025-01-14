@@ -1,5 +1,6 @@
 package com.example.demo.repository.foodBatchRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,13 +65,28 @@ public class FoodBatchRepositoryImpl implements CustomFoodBatchRepository {
     }
 
     @Override
-    public List<FoodBatch> getFoodBatches(String username) {
+    public List<FoodBatch> getExpiredFoodBatches(String username) {
         try {
-            String request = "SELECT f FROM FoodBatch f WHERE f.username = :username";
+            String request = "SELECT f FROM FoodBatch f WHERE f.username = :username AND f.expirationDate BETWEEN f.expirationDate AND :actualDate";
             TypedQuery<FoodBatch> query = em.createQuery(request, FoodBatch.class);
             query.setParameter("username", username);
+            query.setParameter("actualDate", LocalDateTime.now());
             List<FoodBatch> foodBatches = query.getResultList();
-            FoodBatch foodBatch = foodBatches.get(0);
+            return foodBatches;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public List<FoodBatch> getSoonExpiredFoodBatches(String username) {
+        try {
+            String request = "SELECT f FROM FoodBatch f WHERE f.username = :username AND f.expirationDate BETWEEN :startDate AND :endDate";
+            TypedQuery<FoodBatch> query = em.createQuery(request, FoodBatch.class);
+            query.setParameter("username", username);
+            query.setParameter("startDate", LocalDateTime.now());
+            query.setParameter("endDate", LocalDateTime.now().plusDays(5));
+            List<FoodBatch> foodBatches = query.getResultList();
             return foodBatches;
         } catch (Exception e) {
             return null;
