@@ -6,15 +6,15 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { UserTemplateComponent } from './user-template/user-template.component';
-import { UserHomeComponent } from './user-home/user-home.component';
+import { UserTemplateComponent } from './authentified_section/user-template/user-template.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NavbarComponent } from './navbar/navbar.component';
-import { PostFoodComponent } from './post-food/post-food.component';
-import { UserMyfridgeComponent } from './user-myfridge/user-myfridge.component';
-import { HomeComponent } from './unauthentied_section/home/home.component';
-import { LoginComponent } from './unauthentied_section/login/login.component';
-import { SignUpComponent } from './unauthentied_section/sign-up/sign-up.component';
+import { NavbarComponent } from './authentified_section/navbar/navbar.component';
+import { HomeComponent } from './unidentified_section/home/home.component';
+import { LoginComponent } from './unidentified_section/login/login.component';
+import { SignUpComponent } from './unidentified_section/sign-up/sign-up.component';
+import { UserHomeComponent } from './authentified_section/user-home/user-home.component';
+import { UserMyfridgeComponent } from './authentified_section/user-myfridge/user-myfridge.component';
+import { PostFoodComponent } from './authentified_section/post-food/post-food.component';
 
 @NgModule({
   declarations: [
