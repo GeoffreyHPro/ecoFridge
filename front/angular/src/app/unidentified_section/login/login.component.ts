@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { StateService } from '../../services/state.service';
 import { formatEmail, formatPassword } from '../../utils/form';
 
 @Component({
@@ -18,8 +17,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authservice: AuthService,
-    private appState: StateService) {
+    private authservice: AuthService) {
   }
 
   ngOnInit(): void {
@@ -40,15 +38,8 @@ export class LoginComponent {
     if (emailValidationResult + passwordValidationResult == "") {
       this.authservice.login(mail, password).subscribe(
         response => {
-          let resp = response;
-
           if (response.status == 200) {
-            this.appState.setAuthState({
-              token: response.token,
-              roles: "USER"
-            });
-
-            localStorage.setItem("Roles", "USER");
+            localStorage.setItem("Role", response.body.role);
             localStorage.setItem("Token", response.body.token);
             this.router.navigateByUrl('user/user-home');
 
@@ -67,7 +58,7 @@ export class LoginComponent {
 
   }
 
-  signUpRedirection(){
+  signUpRedirection() {
     this.router.navigateByUrl('signup');
   }
 }
