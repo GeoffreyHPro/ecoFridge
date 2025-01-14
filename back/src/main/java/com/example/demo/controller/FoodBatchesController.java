@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.FoodBatchDTO;
 import com.example.demo.model.FoodBatch;
 import com.example.demo.payload.FoodBatchRequest;
+import com.example.demo.reponses.ListResponse;
 import com.example.demo.service.FoodBatchService;
 import com.example.demo.service.FoodMapper;
 
@@ -50,8 +52,9 @@ public class FoodBatchesController {
     @GetMapping()
     public ResponseEntity getFoodBatch(Principal principal) {
         List<FoodBatch> foodbatches = foodBatchService.getFoodBatch(principal.getName());
-
-        return ResponseEntity.status(200).body(foodbatches.stream().map(foodMapper::toFoodBatchDTO).collect(Collectors.toList()));
+        List<FoodBatchDTO> foodbatchesDTO = foodbatches.stream().map(foodMapper::toFoodBatchDTO).collect(Collectors.toList());
+        ListResponse foodResponse = new ListResponse(foodbatchesDTO);
+        return ResponseEntity.status(200).body(foodResponse);
     }
 
     @Operation(summary = "Get all Foodbatches with bareCode", description = "")
