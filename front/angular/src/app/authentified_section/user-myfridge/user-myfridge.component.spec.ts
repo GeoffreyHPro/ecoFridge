@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserMyfridgeComponent } from './user-myfridge.component';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { FoodService } from '../services/food.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Food } from '../responses/FoodInterface';
 import { of } from 'rxjs';
-import { Data } from '../responses/DataInterface';
+import { FoodService } from '../../services/food.service';
+import { Data } from '../../responses/DataInterface';
+import { Food } from '../../responses/FoodInterface';
 
 describe('UserMyfridgeComponent', () => {
   let component: UserMyfridgeComponent;
