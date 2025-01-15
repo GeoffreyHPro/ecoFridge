@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Food;
 import com.example.demo.payload.FoodRequest;
 import com.example.demo.reponses.ListResponse;
+import com.example.demo.reponses.payload.MessagePayload;
 import com.example.demo.service.FoodService;
 
 import io.swagger.annotations.Api;
@@ -52,7 +53,8 @@ public class FoodController {
     public ResponseEntity addFood(@PathVariable("bareCode") String bareCode) {
 
         foodService.save(new Food(bareCode));
-        return ResponseEntity.status(200).body("confirmed");
+        MessagePayload messagePayload = new MessagePayload("Food saved");
+        return ResponseEntity.status(200).body(messagePayload);
     }
 
     @Operation(summary = "Add new food with bareCode", description = "Give a bareCode of the food to add it")
