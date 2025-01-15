@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,7 +39,7 @@ public class FoodBatchesController {
     @Operation(summary = "Add new foodbatch", description = "")
     @PostMapping("/{bareCode}")
     public ResponseEntity<?> addFoodBatch(Principal principal, @PathVariable("bareCode") String bareCode,
-            FoodBatchRequest foodBatchRequest) {
+    @RequestBody FoodBatchRequest foodBatchRequest) {
         try {
             foodBatchService.addFoodBatch(bareCode, foodBatchRequest, principal.getName());
             return ResponseEntity.status(200).body("foodBatch added");
