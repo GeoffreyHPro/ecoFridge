@@ -1,3 +1,43 @@
 <app-navbar></app-navbar>
 
-<p>post-food works!</p>
+<body>
+    <div class="form-container mt-4">
+
+        <form class="border p-4 rounded shadow-sm bg-light">
+            <h3 class="mb-4">Add new food in application</h3>
+            <div class="mb-3">
+                <label for="foodBarcode" class="form-label">Bar code of food</label>
+                <input type="text" class="form-control" id="foodBarcode" placeholder="Type the bar code of food">
+            </div>
+            <div class="mb-3">
+                <label for="foodName" class="form-label">Name of food</label>
+                <input type="text" class="form-control" id="foodName" placeholder="Type the name of food">
+            </div>
+            <div class="mb-3">
+                <label for="foodDescription" class="form-label">Description of food</label>
+                <input type="text" class="form-control" id="foodDescription" placeholder="Type the description of food">
+            </div>
+            <button type="submit" class="btn btn-primary">Add food</button>
+        </form>
+
+        <form class="border p-4 rounded shadow-sm bg-light">
+            <h3 class="mb-4">Add new foodBatch to your account</h3>
+            <div class="mb-3">
+                <label for="foodBarcode" class="form-label">Bar code of food</label>
+                <input type="email" class="form-control" id="foodBarcode" placeholder="Type the bar code of food">
+            </div>
+            <div class="mb-3 row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="expirationDate" class="form-label">Expiration date</label>
+                    <input type="date" id="expirationDate" name="expirationDate" class="form-control" required>
+                </div>
+                <div class="col-auto">
+                    <label for="foodQuantity" class="form-label">Quantity of food</label>
+                    <input value="1" type="number" id="foodQuantity" name="foodQuantity" class="form-control"
+                        placeholder="Type your quantity" min="1" step="1" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Add food batch</button>
+        </form>
+    </div>
+</body>
