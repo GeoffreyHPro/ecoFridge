@@ -27,4 +27,14 @@ export class FoodService {
 
     return this.http.get(`http://localhost:8080/image/${filename}`, { headers, responseType: 'blob' });
   }
+
+  addFood(bareCode: string): Observable<any> {
+    const token = localStorage.getItem("Token")!
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    return this.http.post(`http://localhost:8080/food/${bareCode}`, null, { headers });
+  }
 }
