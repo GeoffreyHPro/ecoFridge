@@ -9,4 +9,6 @@ public class FoodDTO {
     private int idFood;
     private String bareCode;
     private String image;
+    private String name;
+    private String description;
 }

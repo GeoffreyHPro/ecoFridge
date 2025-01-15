@@ -25,6 +25,10 @@ public class Food {
 
     private String bareCode;
 
+    private String name;
+
+    private String description;
+
     private String image;
 
     @OneToMany(mappedBy = "food", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -71,6 +75,22 @@ public class Food {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

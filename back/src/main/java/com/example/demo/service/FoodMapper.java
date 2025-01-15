@@ -14,6 +14,8 @@ public class FoodMapper {
         foodDTO.setIdFood(food.getIdFood());
         foodDTO.setBareCode(food.getBareCode());
         foodDTO.setImage(food.getImage());
+        foodDTO.setName(food.getName());
+        foodDTO.setDescription(food.getDescription());
         return foodDTO;
     }
 
