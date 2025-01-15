@@ -27,24 +27,24 @@
             </p>
         </form>
 
-        <form class="border p-4 rounded shadow-sm bg-light">
+        <form [formGroup]="formAddFoodBatch" class="border p-4 rounded shadow-sm bg-light">
             <h3 class="mb-4">Add new foodBatch to your account</h3>
             <div class="mb-3">
                 <label for="foodBarcode" class="form-label">Bar code of food</label>
-                <input type="email" class="form-control" id="foodBarcode" placeholder="Type the bar code of food">
+                <input formControlName="foodBarcode" type="text" class="form-control" id="foodBarcode" placeholder="Type the bar code of food">
             </div>
             <div class="mb-3 row g-3 align-items-center">
                 <div class="col-auto">
                     <label for="expirationDate" class="form-label">Expiration date</label>
-                    <input type="date" id="expirationDate" name="expirationDate" class="form-control" required>
+                    <input formControlName="expirationDate" type="date" id="expirationDate" name="expirationDate" class="form-control" required>
                 </div>
                 <div class="col-auto">
                     <label for="foodQuantity" class="form-label">Quantity of food</label>
-                    <input value="1" type="number" id="foodQuantity" name="foodQuantity" class="form-control"
+                    <input formControlName="foodQuantity" value="1" type="number" id="foodQuantity" name="foodQuantity" class="form-control"
                         placeholder="Type your quantity" min="1" step="1" required>
                 </div>
             </div>
-            <button class="btn btn-primary">Add food batch</button>
+            <button (click)="handleAddFoodBatch()" class="btn btn-primary">Add food batch</button>
         </form>
     </div>
 </body>
