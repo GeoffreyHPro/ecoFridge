@@ -15,6 +15,9 @@ import { SignUpComponent } from './unidentified_section/sign-up/sign-up.componen
 import { UserHomeComponent } from './authentified_section/user-home/user-home.component';
 import { UserMyfridgeComponent } from './authentified_section/user-myfridge/user-myfridge.component';
 import { PostFoodComponent } from './authentified_section/post-food/post-food.component';
+import { PopupMessageComponent } from './utils/popup-message/popup-message.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { PostFoodComponent } from './authentified_section/post-food/post-food.co
     NavbarComponent,
     PostFoodComponent,
     UserMyfridgeComponent,
-    SignUpComponent
+    SignUpComponent,
+    PopupMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,9 @@ import { PostFoodComponent } from './authentified_section/post-food/post-food.co
     NgbModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

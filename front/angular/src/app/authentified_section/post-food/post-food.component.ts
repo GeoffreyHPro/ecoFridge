@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FoodService } from '../../services/food.service';
 import { FoodBatchesService } from '../../services/food-batches.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupMessageComponent } from '../../utils/popup-message/popup-message.component';
 
 @Component({
   selector: 'app-post-food',
@@ -16,7 +18,8 @@ export class PostFoodComponent {
   constructor(
     private fb: FormBuilder,
     private foodService: FoodService,
-    private foodBatchService: FoodBatchesService) {
+    private foodBatchService: FoodBatchesService,
+    private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -36,6 +39,7 @@ export class PostFoodComponent {
   handleAddFood() {
     this.foodService.addFood(this.formAddFood.value.foodBarcode).subscribe(
       response => {
+        //this.showMessage("Add food", "The food given is correctly added");
       }, error => {
         if (error.status == 409) {
           this.messageError = "The food with this bar code is already created";
@@ -53,6 +57,19 @@ export class PostFoodComponent {
           console.log(error)
         }
       )
+  }
+
+  showMessage(title: string, message: string) {
+    const dialogRef = this.dialog.open(PopupMessageComponent, {
+      data: {
+        title: title,
+        message: message
+      }
+    });
+
+    /*setTimeout(() => {
+      dialogRef.close();
+    }, 3000);*/
   }
 
 }
