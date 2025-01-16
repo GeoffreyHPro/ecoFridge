@@ -20,9 +20,11 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.example.demo.configuration.SecurityConfig;
 import com.example.demo.payload.EmailPasswordRequest;
+import com.example.demo.reponses.payload.MessagePayload;
 import com.example.demo.service.JWTUtils;
 import com.example.demo.service.UserService;
 import com.example.demo.shared.RequestBodyAsString;
+import com.example.demo.shared.ResponseAsString;
 
 @ExtendWith(MockitoExtension.class)
 @Import(SecurityConfig.class)
@@ -45,6 +47,9 @@ public class AuthControllerTest {
     private WebApplicationContext context;
 
     @InjectMocks
+    ResponseAsString responseAsString;
+
+    @InjectMocks
     private RequestBodyAsString objectToString;
 
     @BeforeEach
@@ -62,7 +67,7 @@ public class AuthControllerTest {
                 .content(objectToString.getString(content)))
                 .andReturn();
 
-        assertEquals(200, result.getResponse().getStatus());
+        assertEquals(201, result.getResponse().getStatus());
         assertEquals("{\"message\":\"Your account is created\"}", result.getResponse().getContentAsString());
     }
 
@@ -76,8 +81,9 @@ public class AuthControllerTest {
                 .content(objectToString.getString(content)))
                 .andReturn();
 
-        assertEquals(300, result.getResponse().getStatus());
-        assertEquals("please give an email", result.getResponse().getContentAsString());
+        assertEquals(400, result.getResponse().getStatus());
+        assertEquals(responseAsString.getString(new MessagePayload("Please give an email")),
+                result.getResponse().getContentAsString());
 
         content.setPassword("");
 
@@ -87,8 +93,9 @@ public class AuthControllerTest {
                 .content(objectToString.getString(content)))
                 .andReturn();
 
-        assertEquals(300, result2.getResponse().getStatus());
-        assertEquals("please give an email", result2.getResponse().getContentAsString());
+        assertEquals(400, result2.getResponse().getStatus());
+        assertEquals(responseAsString.getString(new MessagePayload("Please give an email")),
+                result2.getResponse().getContentAsString());
     }
 
     @Test
@@ -101,7 +108,23 @@ public class AuthControllerTest {
                 .content(objectToString.getString(content)))
                 .andReturn();
 
-        assertEquals(300, result.getResponse().getStatus());
-        assertEquals("please give an email", result.getResponse().getContentAsString());
+        assertEquals(400, result.getResponse().getStatus());
+        assertEquals(responseAsString.getString(new MessagePayload("Please give an email")),
+                result.getResponse().getContentAsString());
+    }
+
+    @Test
+    public void WrongSigIn() throws Exception {
+        EmailPasswordRequest content = new EmailPasswordRequest("admin", "password");
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders
+                .post("/auth/signIn")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectToString.getString(content)))
+                .andReturn();
+
+        assertEquals(401, result.getResponse().getStatus());
+        assertEquals(responseAsString.getString(new MessagePayload("Wrong mail/password")),
+                result.getResponse().getContentAsString());
     }
 }
