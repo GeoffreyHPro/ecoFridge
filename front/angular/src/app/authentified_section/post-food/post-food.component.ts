@@ -45,8 +45,8 @@ export class PostFoodComponent {
   }
 
   handleAddFoodBatch() {
-    this.foodBatchService.addFoodBatch("0001",
-      this.formAddFoodBatch.value.foodQuantity, this.formAddFoodBatch.value.expirationDate + "T20:05:10").subscribe(
+    this.foodBatchService.addFoodBatch(this.formAddFoodBatch.value.foodBarcode,
+      this.formAddFoodBatch.value.foodQuantity, this.formAddFoodBatch.value.expirationDate + "T00:00:00").subscribe(
         response => {
           console.log(response)
         }, error => {
