@@ -26,7 +26,7 @@ export class FoodBatchesService {
       Authorization: `Bearer ${token}`
     });
 
-    return this.http.get<DataFoodBatches>(`${this.baseUrl}/ foodbatch / soonExpired`, { headers });
+    return this.http.get<DataFoodBatches>(`${this.baseUrl}/foodbatch/soonExpired`, { headers });
   }
 
   addFoodBatch(bareCode: string, quantity: Number, expirationDate: string): Observable<any> {

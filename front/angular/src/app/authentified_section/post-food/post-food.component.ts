@@ -52,15 +52,23 @@ export class PostFoodComponent {
   }
 
   handleAddFoodBatch() {
-    this.foodBatchService.addFoodBatch(this.formAddFoodBatch.value.foodBarcode,
-      this.formAddFoodBatch.value.foodQuantity, this.formAddFoodBatch.value.expirationDate + "T00:00:00").subscribe(
-        response => {
-          this.showMessage("Add foodbatch", "The foodbatch is correctly added");
-          this.addFoodBatchErrorMessage = "";
-        }, error => {
-          this.addFoodBatchErrorMessage = "The food with this bar code is already created";
-        }
-      )
+
+    if (this.formAddFoodBatch.value.foodBarcode == "" || this.formAddFoodBatch.value.foodQuantity == "" || this.formAddFoodBatch.value.expirationDate == "") {
+      this.addFoodBatchErrorMessage = "Please type all informations";
+    } else {
+      this.foodBatchService.addFoodBatch(this.formAddFoodBatch.value.foodBarcode,
+        this.formAddFoodBatch.value.foodQuantity, this.formAddFoodBatch.value.expirationDate + "T00:00:00").subscribe(
+          response => {
+            this.showMessage("Add foodbatch", "The foodbatch is correctly added");
+            this.addFoodBatchErrorMessage = "";
+            console.log(response)
+          }, error => {
+            console.log(error)
+            this.addFoodBatchErrorMessage = "The food with this bar code is already created";
+          }
+        )
+    }
+
   }
 
   showMessage(title: string, message: string) {
