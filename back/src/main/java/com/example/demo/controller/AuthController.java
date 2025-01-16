@@ -36,7 +36,7 @@ public class AuthController {
     @PostMapping(path = "/signIn")
     public ResponseEntity<TokenResponse> authenticationUser(
             @RequestBody EmailPasswordRequest content) {
-
+                //
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 content.getEmail(), content.getPassword()));
 
