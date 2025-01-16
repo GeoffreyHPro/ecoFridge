@@ -28,9 +28,9 @@ This project is to reduce food waste and optimize the management of your "fridge
 
 ✅ Display food in MyFridge view for users
 
-⬜ Sign up for new users
+✅ Sign up for new users
 
-⬜ Display expired Food
+✅ Display expired Food
 
 ⬜ Add new FoodBatch in new purshase view
 
