@@ -6,10 +6,10 @@ import lombok.Data;
 
 @Data
 public class FoodBatchRequest {
-    private int quantity;
+    private Integer quantity;
     private LocalDateTime expirationDate;
 
-    public FoodBatchRequest(int quantity, LocalDateTime expirationDate) {
+    public FoodBatchRequest(Integer quantity, LocalDateTime expirationDate) {
         this.quantity = quantity;
         this.expirationDate = expirationDate;
     }

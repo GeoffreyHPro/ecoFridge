@@ -1,9 +1,36 @@
 html {
-    height: 100%; 
-    margin: 0; 
+    height: 100%;
+    margin: 0;
 }
 
 .container {
     border: 2px solid grey;
     border-radius: 10px;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    padding: 50px;
+}
+
+.image-bg {
+    background-image: url('../../../assets/fridge-background1.jpg');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.image-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    filter: blur(7px);
+    z-index: 1;
 }

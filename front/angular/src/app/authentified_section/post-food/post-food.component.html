@@ -1,3 +1,56 @@
 <app-navbar></app-navbar>
 
-<p>post-food works!</p>
+<body>
+    <div class="form-container mt-4">
+
+        <form [formGroup]="formAddFood" class="border p-4 rounded shadow-sm bg-light">
+            <h3 class="mb-4">Add new food in application</h3>
+            <div class="mb-3">
+                <label for="foodBarcode" class="form-label">Bar code of food</label>
+                <input formControlName="foodBarcode" name="foodBarcode" type="text" class="form-control"
+                    id="foodBarcode" placeholder="Type the bar code of food">
+            </div>
+            <div class="mb-3">
+                <label for="foodName" class="form-label">Name of food</label>
+                <input formControlName="foodName" name="foodName" type="text" class="form-control" id="foodName"
+                    placeholder="Type the name of food">
+            </div>
+            <div class="mb-3">
+                <label for="foodDescription" class="form-label">Description of food</label>
+                <input formControlName="foodDescription" type="text" class="form-control" id="foodDescription"
+                    placeholder="Type the description of food">
+            </div>
+            <button (click)="handleAddFood()" class="btn btn-primary">Add food</button>
+
+            <p class="mt-4" *ngIf="addFoodErrorMessage.length > 0" style="color:red">
+                {{ addFoodErrorMessage }}
+            </p>
+        </form>
+
+        <form [formGroup]="formAddFoodBatch" class="border p-4 rounded shadow-sm bg-light">
+            <h3 class="mb-4">Add new foodBatch to your account</h3>
+            <div class="mb-3">
+                <label for="foodBarcode" class="form-label">Bar code of food</label>
+                <input formControlName="foodBarcode" type="text" class="form-control" id="foodBarcode"
+                    placeholder="Type the bar code of food">
+            </div>
+            <div class="mb-3 row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="expirationDate" class="form-label">Expiration date</label>
+                    <input formControlName="expirationDate" type="date" id="expirationDate" name="expirationDate"
+                        class="form-control" required>
+                </div>
+                <div class="col-auto">
+                    <label for="foodQuantity" class="form-label">Quantity of food</label>
+                    <input formControlName="foodQuantity" value="1" type="number" id="foodQuantity" name="foodQuantity"
+                        class="form-control" placeholder="Type your quantity" min="1" step="1" required>
+                </div>
+            </div>
+            <button (click)="handleAddFoodBatch()" class="btn btn-primary">Add food batch</button>
+
+            <p class="mt-4" *ngIf="addFoodBatchErrorMessage.length > 0" style="color:red">
+                {{ addFoodBatchErrorMessage }}
+            </p>
+        </form>
+    </div>
+</body>

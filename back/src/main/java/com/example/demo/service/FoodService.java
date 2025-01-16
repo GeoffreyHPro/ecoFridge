@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.error.AlreadySavedError;
 import com.example.demo.model.Food;
 import com.example.demo.repository.foodRepository.FoodRepositoryImpl;
 
@@ -17,8 +18,12 @@ public class FoodService {
         return foodRepositoryImpl.getAllFoods(username);
     }
 
-    public void save(Food food) {
-        foodRepositoryImpl.saveFood(food);
+    public void save(Food food) throws AlreadySavedError {
+        Boolean saved = foodRepositoryImpl.saveFood(food);
+        if( !saved ){
+            throw new AlreadySavedError();
+        }
+        
     }
 
     public Food getFood(String bareCode){

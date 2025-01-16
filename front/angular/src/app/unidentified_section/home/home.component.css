@@ -8,6 +8,6 @@ body {
     height: 100vh;
 }
 
-.green-color {
-    background-color: rgb(44, 95, 52);
+.home-background {
+    background-color: white;
 }

@@ -1,0 +1,18 @@
+.success-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+mat-dialog-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+mat-dialog-content {
+    font-size: 16px;
+    text-align: center;
+    color: #4caf50;
+}

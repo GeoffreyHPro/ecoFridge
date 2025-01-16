@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import com.example.demo.dto.FoodBatchDTO;
 import com.example.demo.model.FoodBatch;
 import com.example.demo.payload.FoodBatchRequest;
 import com.example.demo.reponses.ListResponse;
+import com.example.demo.reponses.payload.MessagePayload;
 import com.example.demo.service.FoodBatchService;
 import com.example.demo.service.FoodMapper;
 
@@ -37,13 +39,13 @@ public class FoodBatchesController {
 
     @Operation(summary = "Add new foodbatch", description = "")
     @PostMapping("/{bareCode}")
-    public ResponseEntity<?> addFoodBatch(Principal principal, @PathVariable("bareCode") String bareCode,
-            FoodBatchRequest foodBatchRequest) {
+    public ResponseEntity<MessagePayload> addFoodBatch(Principal principal, @PathVariable("bareCode") String bareCode,
+            @RequestBody FoodBatchRequest foodBatchRequest) {
         try {
             foodBatchService.addFoodBatch(bareCode, foodBatchRequest, principal.getName());
-            return ResponseEntity.status(200).body("foodBatch added");
+            return ResponseEntity.status(200).body(new MessagePayload("foodBatch added"));
         } catch (Exception e) {
-            return ResponseEntity.status(404).body("Food not found");
+            return ResponseEntity.status(409).body(new MessagePayload("Food not found"));
         }
 
     }
@@ -52,7 +54,8 @@ public class FoodBatchesController {
     @GetMapping("/expired")
     public ResponseEntity getExpiredFoodBatch(Principal principal) {
         List<FoodBatch> foodbatches = foodBatchService.getExpiredFoodBatches(principal.getName());
-        List<FoodBatchDTO> foodbatchesDTO = foodbatches.stream().map(foodMapper::toFoodBatchDTO).collect(Collectors.toList());
+        List<FoodBatchDTO> foodbatchesDTO = foodbatches.stream().map(foodMapper::toFoodBatchDTO)
+                .collect(Collectors.toList());
         ListResponse foodResponse = new ListResponse(foodbatchesDTO);
         return ResponseEntity.status(200).body(foodResponse);
     }
@@ -61,7 +64,8 @@ public class FoodBatchesController {
     @GetMapping("/soonExpired")
     public ResponseEntity getSoonExpiredFoodBatch(Principal principal) {
         List<FoodBatch> foodbatches = foodBatchService.getSoonExpiredFoodBatches(principal.getName());
-        List<FoodBatchDTO> foodbatchesDTO = foodbatches.stream().map(foodMapper::toFoodBatchDTO).collect(Collectors.toList());
+        List<FoodBatchDTO> foodbatchesDTO = foodbatches.stream().map(foodMapper::toFoodBatchDTO)
+                .collect(Collectors.toList());
         ListResponse foodResponse = new ListResponse(foodbatchesDTO);
         return ResponseEntity.status(200).body(foodResponse);
     }
