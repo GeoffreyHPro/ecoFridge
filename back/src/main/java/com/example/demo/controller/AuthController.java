@@ -18,6 +18,10 @@ import com.example.demo.service.UserService;
 
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 @RequestMapping(path = "/auth")
@@ -33,16 +37,25 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @Operation(summary = "Connection with your user account", description = "You get a token and user role when you signIn correctly")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Login successful", content = @Content(mediaType = "application/json", schema = @Schema(implementation = TokenResponse.class))),
+            @ApiResponse(responseCode = "401", description = "Wrong login parameters", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MessagePayload.class)))
+    })
+
     @PostMapping(path = "/signIn")
-    public ResponseEntity<TokenResponse> authenticationUser(
+    public ResponseEntity<?> authenticationUser(
             @RequestBody EmailPasswordRequest content) {
-                //
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                content.getEmail(), content.getPassword()));
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                    content.getEmail(), content.getPassword()));
 
-        TokenResponse tR = userService.getTokenResponse(content);
+            TokenResponse tR = userService.getTokenResponse(content);
 
-        return ResponseEntity.status(200).body(tR);
+            return ResponseEntity.status(200).body(tR);
+        } catch (Exception e) {
+            return ResponseEntity.status(401).body(new MessagePayload("Wrong mail/password"));
+        }
+
     }
 
     @Operation(summary = "Create new user", description = "Create new user with unique email and a password")
