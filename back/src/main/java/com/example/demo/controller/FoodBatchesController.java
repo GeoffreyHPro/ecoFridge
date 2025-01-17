@@ -23,7 +23,11 @@ import com.example.demo.service.FoodMapper;
 
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @RestController
 @RequestMapping(path = "/foodbatch")
@@ -77,6 +81,10 @@ public class FoodBatchesController {
     }
 
     @Operation(summary = "Get all Foodbatches with bareCode", description = "")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "FoodBatch is correctly getting", content = @Content(mediaType = "application/json", schema = @Schema(implementation = FoodBatchDTO.class))),
+            @ApiResponse(responseCode = "404", description = "FoodBatch with this id doesn't exist", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MessagePayload.class))),
+    })
     @GetMapping("/id/{idFoodbatch}")
     public ResponseEntity<?> getFoodBatch(@PathVariable("idFoodbatch") String idFoodbatch) {
         try {
