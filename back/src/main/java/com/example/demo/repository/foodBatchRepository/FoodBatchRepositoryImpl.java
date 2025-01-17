@@ -50,16 +50,16 @@ public class FoodBatchRepositoryImpl implements CustomFoodBatchRepository {
     @Override
     public List<FoodBatch> getFoodBatchesWithBareCode(String bareCode, String username) {
         try {
-            String request =    "SELECT fb FROM Food f " +
-                                "JOIN f.foodBatches fb " +
-                                "WHERE f.bareCode = :bareCode AND fb.username = :username";
+            String request = "SELECT fb FROM Food f " +
+                    "JOIN f.foodBatches fb " +
+                    "WHERE f.bareCode = :bareCode AND fb.username = :username";
             TypedQuery<FoodBatch> query = em.createQuery(request, FoodBatch.class);
             query.setParameter("username", username);
             query.setParameter("bareCode", bareCode);
             List<FoodBatch> foodBatches = query.getResultList();
             return foodBatches;
         } catch (Exception e) {
-            e.printStackTrace(); // Log l'erreur
+            e.printStackTrace();
             throw new RuntimeException("Erreur lors de l'exécution de la requête", e);
         }
     }
@@ -88,6 +88,19 @@ public class FoodBatchRepositoryImpl implements CustomFoodBatchRepository {
             query.setParameter("endDate", LocalDateTime.now().plusDays(5));
             List<FoodBatch> foodBatches = query.getResultList();
             return foodBatches;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public FoodBatch getFoodBatch(int idFoodBatch) {
+        try {
+            String request = "SELECT fb FROM FoodBatch fb WHERE fb.idFoodBatch = :idFoodBatch";
+            TypedQuery<FoodBatch> query = em.createQuery(request, FoodBatch.class);
+            query.setParameter("idFoodBatch", idFoodBatch);
+            FoodBatch foodBatch = query.getSingleResult();
+            return foodBatch;
         } catch (Exception e) {
             return null;
         }

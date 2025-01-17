@@ -47,7 +47,6 @@ public class FoodBatchesController {
         } catch (Exception e) {
             return ResponseEntity.status(409).body(new MessagePayload("Food not found"));
         }
-
     }
 
     @Operation(summary = "Get all Foodbatches", description = "")
@@ -75,5 +74,16 @@ public class FoodBatchesController {
     public ResponseEntity<?> getFoodBatchWithBareCode(Principal principal, @PathVariable("bareCode") String bareCode) {
         List<FoodBatch> foodbatches = foodBatchService.getFoodBatchWithBareCode(bareCode, principal.getName());
         return ResponseEntity.status(200).body(foodbatches);
+    }
+
+    @Operation(summary = "Get all Foodbatches with bareCode", description = "")
+    @GetMapping("/id/{idFoodbatch}")
+    public ResponseEntity<?> getFoodBatch(@PathVariable("idFoodbatch") String idFoodbatch) {
+        try {
+            FoodBatch foodbatch = foodBatchService.getFoodBatch(Integer.parseInt(idFoodbatch));
+            return ResponseEntity.status(200).body(foodMapper.toFoodBatchDTO(foodbatch));
+        } catch (Exception e) {
+            return ResponseEntity.status(404).body(new MessagePayload("This foodbatch is not found"));
+        }
     }
 }

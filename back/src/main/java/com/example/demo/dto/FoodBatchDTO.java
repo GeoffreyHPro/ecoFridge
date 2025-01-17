@@ -13,4 +13,5 @@ public class FoodBatchDTO {
     private LocalDateTime expirationDate;
     private String username;
     private FoodDTO food;
+
 }

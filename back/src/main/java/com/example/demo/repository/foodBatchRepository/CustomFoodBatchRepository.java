@@ -9,4 +9,5 @@ public interface CustomFoodBatchRepository {
     List<FoodBatch> getFoodBatchesWithBareCode(String bareCode, String username);
     List<FoodBatch> getExpiredFoodBatches(String username);
     List<FoodBatch> getSoonExpiredFoodBatches(String username);
+    FoodBatch getFoodBatch(int idFoodBatch);
 }
