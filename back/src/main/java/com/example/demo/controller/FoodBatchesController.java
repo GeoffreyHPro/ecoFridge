@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.FoodBatchDTO;
+import com.example.demo.error.NotFoundError;
 import com.example.demo.model.FoodBatch;
 import com.example.demo.payload.FoodBatchRequest;
 import com.example.demo.reponses.ListResponse;
@@ -80,7 +81,7 @@ public class FoodBatchesController {
         return ResponseEntity.status(200).body(foodbatches);
     }
 
-    @Operation(summary = "Get all Foodbatches with bareCode", description = "")
+    @Operation(summary = "Get the foodbatch with his id", description = "")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "FoodBatch is correctly getting", content = @Content(mediaType = "application/json", schema = @Schema(implementation = FoodBatchDTO.class))),
             @ApiResponse(responseCode = "404", description = "FoodBatch with this id doesn't exist", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MessagePayload.class))),
@@ -90,7 +91,7 @@ public class FoodBatchesController {
         try {
             FoodBatch foodbatch = foodBatchService.getFoodBatch(Integer.parseInt(idFoodbatch));
             return ResponseEntity.status(200).body(foodMapper.toFoodBatchDTO(foodbatch));
-        } catch (Exception e) {
+        } catch (NotFoundError e) {
             return ResponseEntity.status(404).body(new MessagePayload("This foodbatch is not found"));
         }
     }
