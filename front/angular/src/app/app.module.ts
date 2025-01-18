@@ -19,6 +19,7 @@ import { PopupMessageComponent } from './utils/popup-message/popup-message.compo
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { UserModifyComponent } from './authentified_section/user-modify/user-modify.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { UserModifyComponent } from './authentified_section/user-modify/user-mod
     RouterModule,
     HttpClientModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

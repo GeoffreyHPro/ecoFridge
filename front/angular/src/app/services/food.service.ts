@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Data } from '../responses/DataInterface';
 import { environment } from '../../environments/environments';
+import { Food } from '../responses/FoodInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,15 @@ export class FoodService {
     });
 
     return this.http.get<Data>(`${this.baseUrl}/food`, { headers });
+  }
+
+  getFoodWithBarCode(barCode: string): Observable<Food> {
+    const token = localStorage.getItem("Token")!
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    return this.http.get<Food>(`${this.baseUrl}/food/${barCode}`, { headers });
   }
 
   getImage(filename: String): Observable<Blob> {

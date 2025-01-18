@@ -1,40 +1,51 @@
 <app-navbar></app-navbar>
 
 <body>
+    <div class="container h-100 mt-4">
+        <div class="d-flex justify-content-center h-100">
+            <div class="search">
+                <input [(ngModel)]="barCode" class="form-control" class="search_input" type="text" name=""
+                    placeholder="Search here...">
+                <a (click)="searchFood()" class="search_icon"><i class="fa fa-search"></i></a>
+            </div>
+        </div>
+    </div>
+
     <div class="form-container mt-4 row">
         <div class="col-md-6">
             <div class="border p-4 rounded shadow-sm bg-light">
                 <h2 class="mb-4">Information preview of the food</h2>
                 <div class="mb-3">
                     <h4>Bar code of the food</h4>
-                    <label for="foodBarcode" class="form-label">00001</label>
+                    <label for="foodBarcode">{{ food.bareCode }}</label>
                 </div>
                 <div class="mb-3">
                     <h4>Name of the food</h4>
-                    <label for="foodName" class="form-label">Yaourt 0%</label>
+                    <label for="foodName">{{ food.name }}</label>
                 </div>
                 <div class="mb-3">
                     <h4>Description of the food</h4>
-                    <label for="foodDescription" class="form-label">Description of food</label>
+                    <label for="foodDescription">{{ food.description }}</label>
                 </div>
             </div>
         </div>
         <div class="col-md-6 d-flex flex-column">
-
             <div class="col-12">
                 <div class="border p-3 rounded bg-light border">
                     <h3 class="mb-4">Modify image Food</h3>
-                    <img *ngIf="imageUrl" id="imagePreview" [src]="imageUrl" class="img-preview"><br><br>
+                    <img id="imagePreview" [src]="imageUrl" class="img-preview"><br><br>
                     <label for="image-food"></label>
                     <input (change)="changedImage($event)" type="file" class="" id="image-food" accept="image/*">
                 </div>
             </div>
             <div class="col-12 mt-auto">
                 <div class="border p-3 rounded bg-light" style="height: auto;">
-                    fgzerogzriughzouierg
+                    <div class="d-flex align-items-center justify-content-between">
+                        <p class="mb-0">Voici un texte sur une ligne.</p>
+                        <button class="btn btn-primary">Bouton</button>
+                      </div>
                 </div>
             </div>
-
         </div>
     </div>
 </body>
