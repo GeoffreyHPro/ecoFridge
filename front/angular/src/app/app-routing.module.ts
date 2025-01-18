@@ -8,6 +8,7 @@ import { SignUpComponent } from './unidentified_section/sign-up/sign-up.componen
 import { UserHomeComponent } from './authentified_section/user-home/user-home.component';
 import { UserMyfridgeComponent } from './authentified_section/user-myfridge/user-myfridge.component';
 import { PostFoodComponent } from './authentified_section/post-food/post-food.component';
+import { UserModifyComponent } from './authentified_section/user-modify/user-modify.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
     path: "user", component: UserTemplateComponent, canActivate: [authenticationGuard, authorizationGuard], children: [
       { path: "user-home", component: UserHomeComponent },
       { path: "post-food", component: PostFoodComponent },
-      { path: "user-myfridge", component: UserMyfridgeComponent }
+      { path: "user-myfridge", component: UserMyfridgeComponent },
+      { path: "modify", component: UserModifyComponent }
     ]
   },
   { path: "", redirectTo: "home", pathMatch: "full" }

@@ -1,0 +1,16 @@
+body {
+    width: 70%;
+    margin: auto;
+}
+
+.img-preview {
+    margin-top: 20px;
+    max-width: 120px;
+    max-height: 120px;
+    width: 120px;
+    height: 120px;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
