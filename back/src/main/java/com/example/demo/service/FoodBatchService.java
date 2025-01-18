@@ -40,4 +40,9 @@ public class FoodBatchService {
         }
         return foodBatch;
     }
+
+    public void updateFoodBatch(int idFoodBatch, FoodBatchRequest foodBatchRequest) throws NotFoundError {
+        foodBatchRepositoryImpl.updateFoodBatch(idFoodBatch, foodBatchRequest);
+    }
+
 }

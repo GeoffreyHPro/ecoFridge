@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -94,5 +95,25 @@ public class FoodBatchesController {
         } catch (NotFoundError e) {
             return ResponseEntity.status(404).body(new MessagePayload("This foodbatch is not found"));
         }
+    }
+
+    @Operation(summary = "Update the foodbatch with his id", description = "")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "FoodBatch is correctly updated", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MessagePayload.class))),
+            @ApiResponse(responseCode = "400", description = "Parameters are empty or invalid", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MessagePayload.class))),
+            @ApiResponse(responseCode = "404", description = "FoodBatch with this id doesn't exist", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MessagePayload.class))),
+    })
+    @PutMapping("/id/{idFoodbatch}")
+    public ResponseEntity<?> updateFoodBatch(@PathVariable("idFoodbatch") String idFoodbatch,
+            @RequestBody FoodBatchRequest foodBatchRequest) {
+        if (foodBatchRequest.getQuantity() > 0 && foodBatchRequest.getQuantity() <= 99) {
+            try {
+                foodBatchService.updateFoodBatch(Integer.parseInt(idFoodbatch), foodBatchRequest);
+                return ResponseEntity.status(200).body(new MessagePayload("The foodbatch is correctly updated"));
+            } catch (NotFoundError e) {
+                return ResponseEntity.status(404).body(new MessagePayload("This foodbatch is not found"));
+            }
+        }
+        return ResponseEntity.status(400).body(new MessagePayload("The parameters are empty or invalid"));
     }
 }
