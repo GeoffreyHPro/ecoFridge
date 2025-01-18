@@ -112,5 +112,20 @@ public class FoodBatchControllerTest {
                 .andReturn();
 
         assertEquals(200, result.getResponse().getStatus());
+        assertEquals(responseAsString.getString(new MessagePayload("This foodbatch is correctly deleted")), result.getResponse().getContentAsString());
+    }
+
+    @Test
+    @WithMockUser(username = "admin@admin.com")
+    public void DeleteFoodBatchThrowsException() throws Exception {
+        Mockito.doThrow(new NotFoundError()).when(foodBatchService).deleteFoodBatch(1);
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders
+                .delete("/foodbatch/1")
+                .with(csrf()))
+                .andReturn();
+
+        assertEquals(404, result.getResponse().getStatus());
+        assertEquals(responseAsString.getString(new MessagePayload("This foodbatch is not found")), result.getResponse().getContentAsString());
     }
 }
