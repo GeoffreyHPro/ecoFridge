@@ -119,4 +119,14 @@ public class FoodBatchRepositoryImpl implements CustomFoodBatchRepository {
             throw new NotFoundError();
         }
     }
+
+    @Override
+    public void deleteFoodBatch(int idFoodBatch) throws NotFoundError {
+        FoodBatch foodBatch = getFoodBatch(idFoodBatch);
+        if (foodBatch != null) {
+            this.em.remove(foodBatch);
+        } else {
+            throw new NotFoundError();
+        }
+    }
 }

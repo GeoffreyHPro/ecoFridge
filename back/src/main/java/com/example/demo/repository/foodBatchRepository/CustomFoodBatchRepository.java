@@ -18,4 +18,6 @@ public interface CustomFoodBatchRepository {
     FoodBatch getFoodBatch(int idFoodBatch);
 
     void updateFoodBatch(int idFoodBatch, FoodBatchRequest foodBatchRequest) throws NotFoundError;
+
+    void deleteFoodBatch(int idFoodBatch) throws NotFoundError;
 }

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -115,5 +116,20 @@ public class FoodBatchesController {
             }
         }
         return ResponseEntity.status(400).body(new MessagePayload("The parameters are empty or invalid"));
+    }
+
+    @Operation(summary = "Delete the foodbatch with his id", description = "Delete the foodbatch if he exists. If foodbatch not found with his id, there is error")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "FoodBatch is correctly deleting", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MessagePayload.class))),
+            @ApiResponse(responseCode = "404", description = "FoodBatch with this id doesn't exist", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MessagePayload.class))),
+    })
+    @DeleteMapping("/{idFoodbatch}")
+    public ResponseEntity<?> deleteFoodBatch(@PathVariable("idFoodbatch") String idFoodbatch) {
+        try {
+            foodBatchService.deleteFoodBatch(Integer.parseInt(idFoodbatch));
+            return ResponseEntity.status(200).body(new MessagePayload("This foodbatch is correctly deleted"));
+        } catch (NotFoundError e) {
+            return ResponseEntity.status(404).body(new MessagePayload("This foodbatch is not found"));
+        }
     }
 }

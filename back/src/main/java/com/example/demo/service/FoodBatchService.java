@@ -45,4 +45,7 @@ public class FoodBatchService {
         foodBatchRepositoryImpl.updateFoodBatch(idFoodBatch, foodBatchRequest);
     }
 
+    public void deleteFoodBatch(int idFoodBatch) throws NotFoundError {
+        foodBatchRepositoryImpl.deleteFoodBatch(idFoodBatch);
+    }
 }
