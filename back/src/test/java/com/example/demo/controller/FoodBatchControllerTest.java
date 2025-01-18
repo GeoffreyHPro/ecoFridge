@@ -20,7 +20,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.example.demo.dto.FoodBatchDTO;
 import com.example.demo.error.NotFoundError;
-import com.example.demo.model.Food;
 import com.example.demo.model.FoodBatch;
 import com.example.demo.reponses.payload.MessagePayload;
 import com.example.demo.repository.foodRepository.FoodRepositoryImpl;
@@ -29,6 +28,8 @@ import com.example.demo.service.FoodMapper;
 import com.example.demo.service.JWTUtils;
 import com.example.demo.service.UserService;
 import com.example.demo.shared.ResponseAsString;
+
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
 @ExtendWith(MockitoExtension.class)
 @WebMvcTest(FoodBatchesController.class)
@@ -87,8 +88,6 @@ public class FoodBatchControllerTest {
         FoodBatch foodBatch = new FoodBatch(20, LocalDateTime.of(2000, 12, 1, 0, 0));
         FoodBatchDTO foodBatchDTO = new FoodBatchDTO();
 
-        System.out.println(foodBatchDTO);
-
         Mockito.when(foodBatchService.getFoodBatch(1)).thenReturn(foodBatch);
         Mockito.when(foodMapper.toFoodBatchDTO(foodBatch)).thenReturn(foodBatchDTO);
 
@@ -97,5 +96,21 @@ public class FoodBatchControllerTest {
                 .andReturn();
         assertEquals(200, result.getResponse().getStatus());
         assertEquals(responseAsString.getString(foodBatchDTO), result.getResponse().getContentAsString());
+    }
+
+    @Test
+    @WithMockUser(username = "admin@admin.com")
+    public void DeleteFoodBatch() throws Exception {
+        FoodBatch foodBatch = new FoodBatch(20, LocalDateTime.of(2000, 12, 1, 0, 0));
+
+        Mockito.when(foodBatchService.getFoodBatch(1)).thenReturn(foodBatch);
+        Mockito.doNothing().when(foodBatchService).deleteFoodBatch(1);
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders
+                .delete("/foodbatch/1")
+                .with(csrf()))
+                .andReturn();
+
+        assertEquals(200, result.getResponse().getStatus());
     }
 }
