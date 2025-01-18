@@ -6,9 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.error.NotFoundError;
 import com.example.demo.model.Food;
 import com.example.demo.model.FoodBatch;
 import com.example.demo.model.User;
+import com.example.demo.payload.FoodBatchRequest;
 import com.example.demo.repository.foodRepository.FoodRepositoryImpl;
 import com.example.demo.repository.userRepository.UserRepository;
 
@@ -103,6 +105,28 @@ public class FoodBatchRepositoryImpl implements CustomFoodBatchRepository {
             return foodBatch;
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    @Override
+    public void updateFoodBatch(int idFoodBatch, FoodBatchRequest foodBatchRequest) throws NotFoundError {
+        FoodBatch foodBatch = getFoodBatch(idFoodBatch);
+        if (foodBatch != null) {
+            foodBatch.setExpirationDate(foodBatchRequest.getExpirationDate());
+            foodBatch.setQuantity(foodBatchRequest.getQuantity());
+            this.em.merge(foodBatch);
+        } else {
+            throw new NotFoundError();
+        }
+    }
+
+    @Override
+    public void deleteFoodBatch(int idFoodBatch) throws NotFoundError {
+        FoodBatch foodBatch = getFoodBatch(idFoodBatch);
+        if (foodBatch != null) {
+            this.em.remove(foodBatch);
+        } else {
+            throw new NotFoundError();
         }
     }
 }

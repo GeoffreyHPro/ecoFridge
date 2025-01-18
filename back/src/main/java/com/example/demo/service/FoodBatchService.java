@@ -40,4 +40,12 @@ public class FoodBatchService {
         }
         return foodBatch;
     }
+
+    public void updateFoodBatch(int idFoodBatch, FoodBatchRequest foodBatchRequest) throws NotFoundError {
+        foodBatchRepositoryImpl.updateFoodBatch(idFoodBatch, foodBatchRequest);
+    }
+
+    public void deleteFoodBatch(int idFoodBatch) throws NotFoundError {
+        foodBatchRepositoryImpl.deleteFoodBatch(idFoodBatch);
+    }
 }
