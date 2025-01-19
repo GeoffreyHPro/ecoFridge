@@ -78,6 +78,7 @@ public class FoodRepositoryImpl implements CustomFoodRepository {
         if (food != null) {
             food.setDescription(foodUpdateRequest.getDescription());
             food.setName(foodUpdateRequest.getName());
+            this.em.merge(food);
         } else {
             throw new NotFoundError();
         }
