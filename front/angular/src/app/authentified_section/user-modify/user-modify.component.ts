@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { FoodService } from '../../services/food.service';
 import { Food } from '../../responses/FoodInterface';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -11,8 +10,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class UserModifyComponent {
   imageUrl!: any;
-  food: Food = { idFood: 0, bareCode: "####", description: "", image: "", name : "", safeImageURL: ""};
+  food: Food = { idFood: 0, bareCode: "####", description: "", image: "", name: "", safeImageURL: "" };
   barCode: string = "";
+  errorMessage: string = "";
 
   constructor(
     private foodService: FoodService,
@@ -20,7 +20,7 @@ export class UserModifyComponent {
   }
 
   ngOnInit(): void {
-    
+
   }
 
   changedImage(event: any): void {
@@ -34,20 +34,20 @@ export class UserModifyComponent {
     }
   }
 
-  searchFood(){
+  searchFood() {
     this.foodService.getFoodWithBarCode(this.barCode).subscribe(
       response => {
-        console.log(response);
         this.food = response;
-
+        this.errorMessage = "";
         this.foodService.getImage(this.food.image).subscribe((blob) => {
           const objectUrl = URL.createObjectURL(blob);
           this.food.safeImageURL = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
           this.imageUrl = this.food.safeImageURL;
-        }, error => {
-          console.log(error);
-        });
+        })
+      },
+      error => {
+        this.errorMessage = "The food is not found";
       }
-    )
+    );
   }
 }

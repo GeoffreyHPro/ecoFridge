@@ -11,6 +11,10 @@
         </div>
     </div>
 
+    <div *ngIf="errorMessage.length > 0">
+        {{ errorMessage }}
+    </div>
+
     <div class="form-container mt-4 row">
         <div class="col-md-6">
             <div class="border p-4 rounded shadow-sm bg-light">
@@ -32,18 +36,18 @@
         <div class="col-md-6 d-flex flex-column">
             <div class="col-12">
                 <div class="border p-3 rounded bg-light border">
-                    <h3 class="mb-4">Modify image Food</h3>
+                    <h3 class="mb-2">Modify image Food</h3>
                     <img id="imagePreview" [src]="imageUrl" class="img-preview"><br><br>
-                    <label for="image-food"></label>
+
                     <input (change)="changedImage($event)" type="file" class="" id="image-food" accept="image/*">
                 </div>
             </div>
             <div class="col-12 mt-auto">
                 <div class="border p-3 rounded bg-light" style="height: auto;">
                     <div class="d-flex align-items-center justify-content-between">
-                        <p class="mb-0">Voici un texte sur une ligne.</p>
-                        <button class="btn btn-primary">Bouton</button>
-                      </div>
+                        <p class="mb-0">Modify all informations ? </p>
+                        <button class="btn btn-primary">Modify</button>
+                    </div>
                 </div>
             </div>
         </div>
