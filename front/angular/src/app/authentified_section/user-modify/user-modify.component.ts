@@ -46,6 +46,7 @@ export class UserModifyComponent {
         })
       },
       error => {
+        this.food.idFood = 0;
         this.errorMessage = "The food is not found";
       }
     );

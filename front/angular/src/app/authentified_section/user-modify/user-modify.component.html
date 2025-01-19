@@ -14,22 +14,22 @@
     <div *ngIf="errorMessage.length > 0">
         {{ errorMessage }}
     </div>
-
-    <div class="form-container mt-4 row">
+    
+    <div *ngIf="food.idFood != 0" class="form-container mt-4 row">
         <div class="col-md-6">
             <div class="border p-4 rounded shadow-sm bg-light">
                 <h2 class="mb-4">Information preview of the food</h2>
                 <div class="mb-3">
                     <h4>Bar code of the food</h4>
-                    <label for="foodBarcode">{{ food.bareCode }}</label>
+                    <input type="text" [(ngModel)]="food.bareCode">
                 </div>
                 <div class="mb-3">
                     <h4>Name of the food</h4>
-                    <label for="foodName">{{ food.name }}</label>
+                    <input type="text" [(ngModel)]="food.name">
                 </div>
                 <div class="mb-3">
                     <h4>Description of the food</h4>
-                    <label for="foodDescription">{{ food.description }}</label>
+                    <input type="text" [(ngModel)]="food.description">
                 </div>
             </div>
         </div>

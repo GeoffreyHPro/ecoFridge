@@ -16,6 +16,12 @@ body {
 }
 
 
+.container {
+    height: 450px;
+}
+
+
+
 /*  search   */
 
 .search {
