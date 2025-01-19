@@ -21,7 +21,7 @@
                 <h2 class="mb-4">Information preview of the food</h2>
                 <div class="mb-3">
                     <h4>Bar code of the food</h4>
-                    <label type="text" [(ngModel)]="food.bareCode">{{ food.bareCode }}</label>
+                    <label type="text">{{ food.bareCode }}</label>
                 </div>
                 <div class="mb-3">
                     <h4>Name of the food</h4>
@@ -46,7 +46,7 @@
                 <div class="border p-3 rounded bg-light" style="height: auto;">
                     <div class="d-flex align-items-center justify-content-between">
                         <p class="mb-0">Modify all informations ? </p>
-                        <button (click)="updateFood()" class="btn btn-primary">Modify</button>
+                        <button (click)="updateFoodInformations()" class="btn btn-primary">Modify</button>
                     </div>
                 </div>
             </div>

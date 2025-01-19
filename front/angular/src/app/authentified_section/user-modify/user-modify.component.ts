@@ -52,6 +52,23 @@ export class UserModifyComponent {
     );
   }
 
+  updateFoodInformations() {
+    this.updateImageFood();
+    this.updateFood();
+  }
+
+  updateImageFood() {
+    const file = this.base64ToFile(this.imageUrl, "image.png");  //Convert Base64 into File to upload image
+
+    this.foodService.updateImageFood(this.barCode, file).subscribe(
+      response => {
+        console.log(response);
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
+
   updateFood() {
     this.foodService.updateFood(this.barCode, this.food.name, this.food.description).subscribe(
       response => {
@@ -60,5 +77,19 @@ export class UserModifyComponent {
         console.log(error);
       }
     );
+  }
+
+  base64ToFile(base64Image: any, fileName: any) {
+    const base64Data = base64Image.split(",")[1];
+    const binaryString = atob(base64Data);
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+
+    const blob = new Blob([bytes], { type: "image/png" });
+    return new File([blob], fileName, { type: "image/png" });
   }
 }

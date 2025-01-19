@@ -58,4 +58,17 @@ export class FoodService {
 
     return this.http.put(`${this.baseUrl}/food/${bareCode}`, bodyJSON, { headers });
   }
+
+  updateImageFood(bareCode: string, file: File): Observable<any> {
+    const token = localStorage.getItem("Token")!
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('bareCode', bareCode)
+
+    return this.http.post(`${this.baseUrl}/image/upload/${bareCode}`, formData, { headers });
+  }
 }
