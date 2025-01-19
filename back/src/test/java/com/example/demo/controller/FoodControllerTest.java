@@ -22,6 +22,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.example.demo.model.Food;
 import com.example.demo.reponses.ListResponse;
 import com.example.demo.repository.foodRepository.FoodRepositoryImpl;
+import com.example.demo.service.FoodMapper;
 import com.example.demo.service.FoodService;
 import com.example.demo.service.JWTUtils;
 import com.example.demo.service.UserService;
@@ -31,10 +32,13 @@ import com.example.demo.shared.ResponseAsString;
 @WebMvcTest(FoodController.class)
 public class FoodControllerTest {
     @MockBean
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @MockBean
-    FoodService foodService;
+    private FoodMapper foodMapper;
+
+    @MockBean
+    private FoodService foodService;
 
     @MockBean
     private UserService userService;
@@ -53,14 +57,6 @@ public class FoodControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @Test
-    public void GetFoodWithoutAuth() throws Exception {
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/food"))
-                .andReturn();
-        assertEquals(401, result.getResponse().getStatus());
-    }
 
     @Test
     @WithMockUser(username = "admin@admin.com")

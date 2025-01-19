@@ -18,6 +18,8 @@ import { PostFoodComponent } from './authentified_section/post-food/post-food.co
 import { PopupMessageComponent } from './utils/popup-message/popup-message.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { UserModifyComponent } from './authentified_section/user-modify/user-modify.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { MatIconModule } from '@angular/material/icon';
     PostFoodComponent,
     UserMyfridgeComponent,
     SignUpComponent,
-    PopupMessageComponent
+    PopupMessageComponent,
+    UserModifyComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { MatIconModule } from '@angular/material/icon';
     RouterModule,
     HttpClientModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

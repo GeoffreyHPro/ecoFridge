@@ -31,11 +31,11 @@ describe('UserMyfridgeComponent', () => {
   });
 
   it('should fetch data using FoodService', () => {
-    const food: Food = { 'idFood': 0, 'image': 'default.png', 'bareCode': "001", 'safeImageURL': '' }
+    const food: Food = { 'idFood': 0, 'image': 'default.png', 'bareCode': "001", 'safeImageURL': '', description: "", name: "" }
     let FoodArray = [
       food
     ]
-    const dataResponse: Data = { data: FoodArray};
+    const dataResponse: Data = { data: FoodArray };
 
     spyOn(foodService, "getFood").and.returnValue(of(dataResponse));
     component.ngOnInit();

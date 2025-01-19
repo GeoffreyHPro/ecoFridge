@@ -24,7 +24,7 @@ describe('NavbarComponent', () => {
     expect(navElement).toBeTruthy();
 
     const links = navElement.querySelectorAll('a');
-    expect(links.length).toBe(3);
+    expect(links.length).toBe(4);
   });
 
   it('is there right name of balises', () => {
@@ -35,5 +35,6 @@ describe('NavbarComponent', () => {
     expect(links[0].textContent).toContain('Home');
     expect(links[1].textContent).toContain('New purchase');
     expect(links[2].textContent).toContain('MyFridge');
+    expect(links[3].textContent).toContain('Modify');
   });
 });
