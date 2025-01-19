@@ -13,15 +13,21 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.FoodDTO;
 import com.example.demo.error.AlreadySavedError;
 import com.example.demo.model.Food;
 import com.example.demo.payload.FoodRequest;
 import com.example.demo.reponses.ListResponse;
 import com.example.demo.reponses.payload.MessagePayload;
+import com.example.demo.service.FoodMapper;
 import com.example.demo.service.FoodService;
 
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
@@ -33,6 +39,9 @@ public class FoodController {
     @Autowired
     private FoodService foodService;
 
+    @Autowired
+    FoodMapper foodMapper;
+
     @Operation(summary = "Get all Foods from your fridge", description = "You can get all the foods you have saved in your fridge")
     @GetMapping
     public ResponseEntity getFood(Authentication authentication) {
@@ -42,11 +51,18 @@ public class FoodController {
         return ResponseEntity.status(200).body(foodResponse);
     }
 
-    @Operation(summary = "Get all Foods from your fridge", description = "You can get all the foods you have saved in your fridge")
+    @Operation(summary = "Get the food with his barCode", description = "")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Food is correctly getting", content = @Content(mediaType = "application/json", schema = @Schema(implementation = FoodDTO.class))),
+            @ApiResponse(responseCode = "404", description = "Food is not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MessagePayload.class))),
+    })
     @GetMapping("/{bareCode}")
-    public ResponseEntity getFoodWithBareCode(@PathVariable("bareCode") String bareCode) {
-
-        return ResponseEntity.status(200).body(foodService.getFood(bareCode));
+    public ResponseEntity<?> getFoodWithBareCode(@PathVariable("bareCode") String bareCode) {
+        try {
+            return ResponseEntity.status(200).body(foodMapper.toFoodDTO(foodService.getFood(bareCode)));
+        } catch (Exception e) {
+            return ResponseEntity.status(404).body(new MessagePayload("The food is not found"));
+        }
     }
 
     @Operation(summary = "Add new food with bareCode", description = "Give a bareCode of the food to add it")
@@ -54,7 +70,7 @@ public class FoodController {
     public ResponseEntity addFood(@PathVariable("bareCode") String bareCode) {
         try {
             foodService.save(new Food(bareCode));
-            MessagePayload messagePayload = new MessagePayload("Food saved");  
+            MessagePayload messagePayload = new MessagePayload("Food saved");
             return ResponseEntity.status(201).body(messagePayload);
         } catch (AlreadySavedError e) {
             return ResponseEntity.status(409).body(new MessagePayload("This food is already created"));
@@ -64,9 +80,13 @@ public class FoodController {
     @Operation(summary = "Add new food with bareCode", description = "Give a bareCode of the food to add it")
     @PutMapping("/{bareCode}")
     public ResponseEntity updateFood(@PathVariable("bareCode") String bareCode, FoodRequest foodRequest) {
+        try {
 
-        Food food = foodService.getFood(bareCode);
-        return ResponseEntity.status(200).body("confirmed");
+            return ResponseEntity.status(200).body(new MessagePayload(""));
+        } catch (Exception e) {
+            return ResponseEntity.status(404).body(new MessagePayload(""));
+        }
+
     }
 
     @Operation(summary = "Delete food", description = "Give a bareCode to delete the food")
