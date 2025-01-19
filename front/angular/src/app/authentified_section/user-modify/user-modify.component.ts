@@ -51,4 +51,14 @@ export class UserModifyComponent {
       }
     );
   }
+
+  updateFood() {
+    this.foodService.updateFood(this.barCode, this.food.name, this.food.description).subscribe(
+      response => {
+        console.log(response);
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
 }

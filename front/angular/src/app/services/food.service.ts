@@ -48,4 +48,14 @@ export class FoodService {
 
     return this.http.post(`${this.baseUrl}/food/${bareCode}`, null, { headers });
   }
+
+  updateFood(bareCode: string, name: string, description: string): Observable<any> {
+    const token = localStorage.getItem("Token")!
+    const bodyJSON = { name: name, description: description }
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    return this.http.put(`${this.baseUrl}/food/${bareCode}`, bodyJSON, { headers });
+  }
 }
