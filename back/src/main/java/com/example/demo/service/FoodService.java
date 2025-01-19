@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException.NotFound;
 
 import com.example.demo.error.AlreadySavedError;
 import com.example.demo.error.NotFoundError;
 import com.example.demo.model.Food;
+import com.example.demo.payload.FoodUpdateRequest;
 import com.example.demo.repository.foodRepository.FoodRepositoryImpl;
 
 @Service
@@ -43,4 +45,7 @@ public class FoodService {
         foodRepositoryImpl.deleteFood(bareCode);
     }
 
+    public void updateFoodInformations(String bareCode, FoodUpdateRequest foodUpdateRequest) throws NotFoundError {
+        foodRepositoryImpl.updateFood(bareCode, foodUpdateRequest);
+    }
 }

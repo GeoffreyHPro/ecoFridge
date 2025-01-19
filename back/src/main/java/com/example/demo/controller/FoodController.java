@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.FoodDTO;
 import com.example.demo.error.AlreadySavedError;
+import com.example.demo.error.NotFoundError;
 import com.example.demo.model.Food;
 import com.example.demo.payload.FoodRequest;
+import com.example.demo.payload.FoodUpdateRequest;
 import com.example.demo.reponses.ListResponse;
 import com.example.demo.reponses.payload.MessagePayload;
 import com.example.demo.service.FoodMapper;
@@ -26,6 +28,7 @@ import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -79,12 +82,13 @@ public class FoodController {
 
     @Operation(summary = "Add new food with bareCode", description = "Give a bareCode of the food to add it")
     @PutMapping("/{bareCode}")
-    public ResponseEntity updateFood(@PathVariable("bareCode") String bareCode, FoodRequest foodRequest) {
+    public ResponseEntity<MessagePayload> updateFood(@PathVariable("bareCode") String bareCode,
+            @RequestBody FoodUpdateRequest foodUpdateRequest) {
         try {
-
-            return ResponseEntity.status(200).body(new MessagePayload(""));
-        } catch (Exception e) {
-            return ResponseEntity.status(404).body(new MessagePayload(""));
+            foodService.updateFoodInformations(bareCode, foodUpdateRequest);
+            return ResponseEntity.status(200).body(new MessagePayload("The food is correctly modified"));
+        } catch (NotFoundError e) {
+            return ResponseEntity.status(404).body(new MessagePayload("The food is not found"));
         }
 
     }

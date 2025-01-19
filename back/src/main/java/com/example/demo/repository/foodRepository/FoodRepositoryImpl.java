@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.error.NotFoundError;
 import com.example.demo.model.Food;
-import com.example.demo.model.FoodBatch;
+import com.example.demo.payload.FoodUpdateRequest;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -35,11 +36,10 @@ public class FoodRepositoryImpl implements CustomFoodRepository {
 
     @Override
     public List<Food> getAllFoods(String username) {
-        String request =
-                                "SELECT f FROM Food f " +
-                                "JOIN f.foodBatches fb " +
-                                "WHERE fb.username = :username";
-        
+        String request = "SELECT f FROM Food f " +
+                "JOIN f.foodBatches fb " +
+                "WHERE fb.username = :username";
+
         TypedQuery<Food> query = em.createQuery(request, Food.class);
         query.setParameter("username", username);
         List<Food> food = query.getResultList();
@@ -70,5 +70,16 @@ public class FoodRepositoryImpl implements CustomFoodRepository {
         Food food = getFood(bareCode);
         this.em.remove(food.getFoodBatches());
         this.em.remove(food);
+    }
+
+    @Override
+    public void updateFood(String barCode, FoodUpdateRequest foodUpdateRequest) throws NotFoundError {
+        Food food = getFood(barCode);
+        if (food != null) {
+            food.setDescription(foodUpdateRequest.getDescription());
+            food.setName(foodUpdateRequest.getName());
+        } else {
+            throw new NotFoundError();
+        }
     }
 }
