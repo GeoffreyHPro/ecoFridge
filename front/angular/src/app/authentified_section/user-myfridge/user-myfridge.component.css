@@ -1,6 +1,12 @@
+#background_fridge {
+    background-image: url("../../../assets/bg-myfridge.jpg");
+    background-size: cover;
+}
+
 body {
     width: 90%;
     margin: auto;
+    background-color: transparent;
 }
 
 #food {
@@ -19,4 +25,5 @@ body {
     height: 80px;
     width: 80px;
     border-radius: 15px;
+    border: solid 2px grey;
 }
