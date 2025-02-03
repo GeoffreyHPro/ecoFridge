@@ -1,20 +1,22 @@
 <app-navbar></app-navbar>
 
-<body>
-    <div id="fridge" class="p-5" style="background-image: url('../../assets/free-fridge.jpg');
+<div id="background_fridge">
+    <body>
+        <div id="fridge" class="p-5" style="background-image: url('../../assets/free-fridge.jpg');
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     ">
-        <div id="food" class="d-flex container justify-content-center">
-            <div class="container mt-3">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
-                    <div *ngFor="let element of food" class="col">
-                        <img [src]="element.safeImageURL" class="fridge-item" (click)="onFridgeItemClick()">
+            <div id="food" class="d-flex container justify-content-center">
+                <div class="container mt-3">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+                        <div *ngFor="let element of food" class="col">
+                            <img [src]="element.safeImageURL" class="fridge-item" (click)="onFridgeItemClick()">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
+</div>

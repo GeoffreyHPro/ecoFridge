@@ -1,6 +1,12 @@
+#background_fridge {
+    background-image: url("../../../assets/konsis\ 13.jpg");
+    background-size: cover;
+}
+
 body {
     width: 90%;
     margin: auto;
+    background-color: transparent;
 }
 
 #food {
