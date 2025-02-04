@@ -1,0 +1,13 @@
+.navbar {
+    background-color: #1f9f53;
+    color: white;
+}
+
+a {
+    color: white;
+    font-weight: bold;
+}
+
+.nav-link.active {
+    color: rgb(68, 49, 7);
+}

@@ -1,5 +1,5 @@
-#background_home{
-    background-image: url("../../../assets/12.jpg");
+#background_home {
+    background-image: url("../../../assets/bg-home.png");
     background-size: cover;
     height: 1000px;
 }
@@ -10,6 +10,11 @@ body {
     background-color: transparent;
 }
 
+h1 {
+    color: green;
+    font-weight: bold;
+}
+
 @media (min-width: 576px) {
     .card-group.card-group-scroll {
         overflow-x: auto;
@@ -17,10 +22,11 @@ body {
     }
 }
 
-.card-group.card-group-scroll > .card {
+.card-group.card-group-scroll>.card {
     flex-basis: 25%;
 }
 
 .card {
     align-items: center;
+    margin-right: 1px;
 }
