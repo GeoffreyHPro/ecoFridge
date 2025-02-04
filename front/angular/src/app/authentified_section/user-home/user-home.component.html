@@ -1,51 +1,51 @@
 <app-navbar></app-navbar>
 
-<body>
-        <h1 class="mt-2">Food expired</h1>
-        <div *ngIf="expiredFoodbatches.length > 0; else noExpiredFoodbatchesData" class="container mt-5 scrollable-container">
-                <div class="card-group card-group-scroll">
-                        <div *ngFor="let foodBatch of expiredFoodbatches" class="card">
-                                <img [src]="foodBatch.safeImageURL" class="card-img-top p-3" style="max-height: 150px; max-width: 200px;">
-                                <div class="card-body">
-                                        <h5 class="card-title">Pommes</h5>
-                                        <p class="card-text">
-                                                Stock: {{foodBatch.quantity}} <br>
-                                                ExpirationDate: {{foodBatch.expirationDate}}
-                                        </p>
-                                </div>
-                                <div class="card-footer">
-                                        <small class="text-muted">favorite</small>
-                                </div>
-                        </div>
-                </div>
-        </div>
-        <ng-template #noExpiredFoodbatchesData>
-                <p>Congratulations ! None food is expired</p>
-        </ng-template>
+<div id="background_home">
 
-
-        <h1 class="mt-4">Food soon expired</h1>
-        <div *ngIf="soonExpiredFoodbatches.length > 0; else noSoonExpiredFoodbatchesData" class="container mt-5 scrollable-container">
-                <div class="card-group card-group-scroll">
-                        <div *ngFor="let foodBatch of soonExpiredFoodbatches" class="card">
-                                <img [src]="foodBatch.safeImageURL" class="card-img-top p-3"
-                                        style="max-height: 150px; max-width: 200px;">
-                                <div class="card-body">
-                                        <h5 class="card-title">Pommes</h5>
-                                        <p class="card-text">
-                                                Stock: {{foodBatch.quantity}} <br>
-                                                ExpirationDate: {{foodBatch.expirationDate}}
-                                        </p>
-                                </div>
-                                <div class="card-footer">
-                                        <small class="text-muted">favorite</small>
+        <body>
+                <h1>Food expired</h1>
+                <div *ngIf="expiredFoodbatches.length > 0; else noExpiredFoodbatchesData"
+                        class="container mt-4 scrollable-container">
+                        <div class="card-group card-group-scroll">
+                                <div *ngFor="let foodBatch of expiredFoodbatches" class="card">
+                                        <img [src]="foodBatch.safeImageURL" class="card-img-top p-1"
+                                                style="max-height: 200px; max-width: auto;">
+                                        <div class="card-body">
+                                                <h5 class="card-title">{{ foodBatch.food.name }}</h5>
+                                                <p class="card-text">
+                                                        Stock: {{foodBatch.quantity}} <br>
+                                                        ExpirationDate: {{foodBatch.expirationDate}}
+                                                </p>
+                                        </div>
                                 </div>
                         </div>
                 </div>
-        </div>
-        <ng-template #noSoonExpiredFoodbatchesData>
-                <p>Congratulations ! None food is soon expired</p>
-        </ng-template>
+                <ng-template #noExpiredFoodbatchesData>
+                        <p>Congratulations ! None food is expired</p>
+                </ng-template>
 
 
-</body>
+                <h1 class="mt-4">Food soon expired</h1>
+                <div *ngIf="soonExpiredFoodbatches.length > 0; else noSoonExpiredFoodbatchesData"
+                        class="container mt-5 scrollable-container">
+                        <div class="card-group card-group-scroll">
+                                <div *ngFor="let foodBatch of soonExpiredFoodbatches" class="card">
+                                        <img [src]="foodBatch.safeImageURL" class="card-img-top p-3"
+                                                style="max-height: 200px; max-width: auto;">
+                                        <div class="card-body">
+                                                <h5 class="card-title">Pommes</h5>
+                                                <p class="card-text">
+                                                        Stock: {{foodBatch.quantity}} <br>
+                                                        ExpirationDate: {{foodBatch.expirationDate}}
+                                                </p>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                <ng-template #noSoonExpiredFoodbatchesData>
+                        <p>Congratulations ! None food is soon expired</p>
+                </ng-template>
+
+
+        </body>
+</div>

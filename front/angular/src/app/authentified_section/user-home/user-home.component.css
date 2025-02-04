@@ -1,6 +1,13 @@
+#background_home{
+    background-image: url("../../../assets/12.jpg");
+    background-size: cover;
+    height: 1000px;
+}
+
 body {
     width: 70%;
     margin: auto;
+    background-color: transparent;
 }
 
 @media (min-width: 576px) {
@@ -12,4 +19,8 @@ body {
 
 .card-group.card-group-scroll > .card {
     flex-basis: 25%;
+}
+
+.card {
+    align-items: center;
 }
