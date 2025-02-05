@@ -1,6 +1,18 @@
+#background_home {
+    background-image: url("../../../assets/stone-surface-background.jpg");
+    background-size: cover;
+    height: 1000px;
+}
+
 body {
     width: 70%;
     margin: auto;
+    background-color: transparent;
+}
+
+h1 {
+    color: green;
+    font-weight: bold;
 }
 
 @media (min-width: 576px) {
@@ -10,6 +22,18 @@ body {
     }
 }
 
-.card-group.card-group-scroll > .card {
+.card-group.card-group-scroll>.card {
     flex-basis: 25%;
+}
+
+.card {
+    align-items: center;
+    margin-right: 1px;
+    margin-right: 25px;
+}
+
+.card-body {
+    background-color: #4d745d;
+    width: 100%;
+    color: white;
 }
