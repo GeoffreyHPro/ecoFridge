@@ -3,18 +3,18 @@
 <div id="background_home">
 
         <body>
-                <h1 class="mt-3" style="color: red;">Food expired</h1>
+                <h1 style="color: red;">Food expired</h1>
                 <div *ngIf="expiredFoodbatches.length > 0; else noExpiredFoodbatchesData"
                         class="container mt-5 scrollable-container">
                         <div class="card-group card-group-scroll">
                                 <div *ngFor="let foodBatch of expiredFoodbatches" class="card">
-                                        <img [src]="foodBatch.safeImageURL" class="card-img-top p-1"
+                                        <img [src]="foodBatch.safeImageURL" class="card-img-top"
                                                 style="max-height: 200px; max-width: auto;">
                                         <div class="card-body">
-                                                <h5 class="card-title">{{ foodBatch.food.name }}</h5>
-                                                <p class="card-text" style="padding: 5px;">
+                                                <h5 class="card-title">{{foodBatch.food.name}}</h5>
+                                                <p class="card-text">
                                                         Stock: {{foodBatch.quantity}} <br>
-                                                        ExpirationDate: {{foodBatch.expirationDate.split('T')[0] }}
+                                                        ExpirationDate: {{foodBatch.expirationDate.split('T')[0]}}
                                                 </p>
                                         </div>
                                 </div>
@@ -29,13 +29,13 @@
                         class="container mt-5 scrollable-container">
                         <div class="card-group card-group-scroll">
                                 <div *ngFor="let foodBatch of soonExpiredFoodbatches" class="card">
-                                        <img [src]="foodBatch.safeImageURL" class="card-img-top p-1"
+                                        <img [src]="foodBatch.safeImageURL" class="card-img-top"
                                                 style="max-height: 200px; max-width: auto;">
                                         <div class="card-body">
-                                                <h5 class="card-title">{{ foodBatch.food.name }}</h5>
+                                                <h5 class="card-title">{{foodBatch.food.name}}</h5>
                                                 <p class="card-text">
                                                         Stock: {{foodBatch.quantity}} <br>
-                                                        ExpirationDate: {{foodBatch.expirationDate.split('T')[0] }}
+                                                        ExpirationDate: {{foodBatch.expirationDate.split('T')[0]}}
                                                 </p>
                                         </div>
                                 </div>

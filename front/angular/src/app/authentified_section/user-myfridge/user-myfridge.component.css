@@ -1,6 +1,7 @@
 #background_fridge {
-    background-image: url("../../../assets/bg-myfridge.png");
-    background-size: cover;
+    /*background-image: url("../../../assets/bg-myfridge.png");
+    background-size: cover;*/
+    background-color: #4d745d;
 }
 
 body {

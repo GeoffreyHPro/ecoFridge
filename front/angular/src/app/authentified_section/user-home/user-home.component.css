@@ -1,5 +1,5 @@
 #background_home {
-    background-image: url("../../../assets/bg-home.png");
+    background-image: url("../../../assets/stone-surface-background.jpg");
     background-size: cover;
     height: 1000px;
 }
@@ -29,4 +29,11 @@ h1 {
 .card {
     align-items: center;
     margin-right: 1px;
+    margin-right: 25px;
+}
+
+.card-body {
+    background-color: #4d745d;
+    width: 100%;
+    color: white;
 }
