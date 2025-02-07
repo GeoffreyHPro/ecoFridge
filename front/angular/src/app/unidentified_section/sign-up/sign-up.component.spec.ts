@@ -36,7 +36,7 @@ describe('SignUpComponent', () => {
     const form = fixture.debugElement.query(By.css('form'));
     const mailInput = form.query(By.css('input[formControlName="mail"]'));
     const passwordInput = form.query(By.css('input[formControlName="password"]'));
-    const submitButton = form.query(By.css('button.btn-primary'));
+    const submitButton = form.query(By.css('button'));
 
     expect(mailInput).toBeTruthy();
     expect(passwordInput).toBeTruthy();
