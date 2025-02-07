@@ -41,7 +41,7 @@ describe('HomeComponent', () => {
     const loginForm = fixture.debugElement.query(By.css('app-login form'));
     const mailInput = loginForm.query(By.css('input[formControlName="mail"]'));
     const passwordInput = loginForm.query(By.css('input[formControlName="password"]'));
-    const submitButton = loginForm.query(By.css('button.btn-success'));
+    const submitButton = loginForm.query(By.css('button'));
 
     expect(mailInput).toBeTruthy();
     expect(passwordInput).toBeTruthy();
@@ -52,7 +52,7 @@ describe('HomeComponent', () => {
     const loginForm = fixture.debugElement.query(By.css('app-login form')).nativeElement;
     const mailInput = loginForm.querySelector('input[formControlName="mail"]');
     const passwordInput = loginForm.querySelector('input[formControlName="password"]');
-    const submitButton = loginForm.querySelector('button.btn-success');
+    const submitButton = loginForm.querySelector('button');
 
     expect(mailInput.value).toBe('');
     expect(passwordInput.value).toBe('');
