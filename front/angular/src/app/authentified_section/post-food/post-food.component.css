@@ -1,7 +1,6 @@
 body {
     width: 70%;
     margin: auto;
-    font-family: Georgia ;
 }
 
 .form-container {
@@ -11,3 +10,8 @@ body {
     gap: 30px;
     padding: 20px;
 }
+
+h2, .section {
+    border-bottom: rgb(212, 209, 209) 2px solid;
+}
+

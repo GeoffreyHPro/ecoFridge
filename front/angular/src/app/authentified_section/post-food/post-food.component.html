@@ -6,8 +6,7 @@
             style="width: 70%; margin: auto;">
             <h2 class="mb-4">Add new foodBatch of food</h2>
             <br>
-            <br>
-            <div class="mb-3 g-2 row">
+            <div class="mb-3 g-2 row section">
                 <div class="col-md-4">
                     Food
                 </div>
@@ -17,11 +16,11 @@
                         placeholder="Type the bar code of food">
                 </div>
             </div>
-            <div class="row mb-3 g-2">
+            <div class="mb-3 g-2 section">
                 <div class="col-md-4">
                     FoodBatch
                 </div>
-                <div class="g-3 col-md-8 ms-auto align-items-start">
+                <div class="mb-3 col-md-8 ms-auto align-items-start">
                     <div class="col">
                         <label for="expirationDate" class="form-label">Expiration date</label>
                         <input formControlName="expirationDate" type="date" id="expirationDate" name="expirationDate"
@@ -37,11 +36,13 @@
                 </div>
             </div>
             <br>
-            <button (click)="handleAddFoodBatch()" class="btn" style="background-color: #4d745d; color: white;">Add
-                food
-                batch</button>
-            <div class="mt-3" *ngIf="addFoodBatchErrorMessage.length > 0" style="color:red">
-                {{ addFoodBatchErrorMessage }}
+            <div style="text-align: end;">
+                <button (click)="handleAddFoodBatch()" class="btn" style="background-color: #4d745d; color: white;">Add
+                    food
+                    batch</button>
+                <div class="mt-3" *ngIf="addFoodBatchErrorMessage.length > 0" style="color:red">
+                    {{ addFoodBatchErrorMessage }}
+                </div>
             </div>
         </form>
     </div>
