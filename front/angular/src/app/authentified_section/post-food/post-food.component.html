@@ -7,26 +7,27 @@
             <h2 class="mb-4">Add new foodBatch of food</h2>
             <br>
             <br>
-            <div class="mb-3 g-2">
+            <div class="mb-3 g-2 row">
                 <div class="col-md-4">
                     Food
                 </div>
-                <div class="row mb-3 col-md-8 ms-auto">
+                <div class="mb-3 col-md-8 ms-auto">
                     <label for="foodBarcode" class="form-label">Bar code of food</label>
                     <input formControlName="foodBarcode" type="text" class="form-control" id="foodBarcode"
                         placeholder="Type the bar code of food">
                 </div>
             </div>
-            <div class="mb-3 g-2">
+            <div class="row mb-3 g-2">
                 <div class="col-md-4">
                     FoodBatch
                 </div>
-                <div class="row g-3 col-md-8 ms-auto align-items-start">
+                <div class="g-3 col-md-8 ms-auto align-items-start">
                     <div class="col">
                         <label for="expirationDate" class="form-label">Expiration date</label>
                         <input formControlName="expirationDate" type="date" id="expirationDate" name="expirationDate"
                             class="form-control" required>
                     </div>
+                    <br>
                     <div class="col-auto">
                         <label for="foodQuantity" class="form-label">Quantity of food</label>
                         <input formControlName="foodQuantity" value="1" type="number" id="foodQuantity"
@@ -42,7 +43,6 @@
             <div class="mt-3" *ngIf="addFoodBatchErrorMessage.length > 0" style="color:red">
                 {{ addFoodBatchErrorMessage }}
             </div>
-
         </form>
     </div>
 </body>
