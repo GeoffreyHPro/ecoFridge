@@ -32,7 +32,7 @@ This project is to reduce food waste and optimize the management of your "fridge
 
 ✅ Display expired Food
 
-⬜ Add new FoodBatch in new purshase view
+✅ Add new FoodBatch in new purshase view
 
 # ⚡️ Standard Execution
 
