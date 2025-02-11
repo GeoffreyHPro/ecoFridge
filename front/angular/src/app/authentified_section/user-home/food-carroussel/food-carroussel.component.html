@@ -1,0 +1,15 @@
+<h1 *ngIf="typeListFoodBatch == 'expired'; else soonExpired" style="color: #a51b1b;">Food expired</h1>
+<ng-template #soonExpired>
+    <h1 style="color: orange;">Food soon expired</h1>
+</ng-template>
+
+<div *ngIf="listFoodbatches.length > 0; else noExpiredFoodbatchesData" class="container mt-5 scrollable-container">
+    <div class="card-group card-group-scroll">
+        <div *ngFor="let foodBatch of listFoodbatches" class="card">
+            <app-food-card [foodBatch]="foodBatch"></app-food-card>
+        </div>
+    </div>
+</div>
+<ng-template #noExpiredFoodbatchesData>
+    <p>Congratulations ! None food is {{ typeListFoodBatch }}</p>
+</ng-template>

@@ -1,31 +1,11 @@
 <app-navbar></app-navbar>
 
 <div id="background_home">
-        <body>
-                <h1 style="color: #a51b1b;">Food expired</h1>
-                <div *ngIf="expiredFoodbatches.length > 0; else noExpiredFoodbatchesData"
-                        class="container mt-5 scrollable-container">
-                        <div class="card-group card-group-scroll">
-                                <div *ngFor="let foodBatch of expiredFoodbatches" class="card">
-                                        <app-food-card [foodBatch]="foodBatch"></app-food-card>
-                                </div>
-                        </div>
-                </div>
-                <ng-template #noExpiredFoodbatchesData>
-                        <p>Congratulations ! None food is expired</p>
-                </ng-template>
 
-                <h1 class="mt-4" style="color: #f49812;">Food soon expired</h1>
-                <div *ngIf="soonExpiredFoodbatches.length > 0; else noSoonExpiredFoodbatchesData"
-                        class="container mt-5 scrollable-container">
-                        <div class="card-group card-group-scroll">
-                                <div *ngFor="let foodBatch of soonExpiredFoodbatches" class="card">
-                                        <app-food-card [foodBatch]="foodBatch"></app-food-card>
-                                </div>
-                        </div>
-                </div>
-                <ng-template #noSoonExpiredFoodbatchesData>
-                        <p>Congratulations ! None food is soon expired</p>
-                </ng-template>
+        <body>
+                <app-food-carroussel [listFoodbatches]="listExpiredFoodbatches"
+                        [typeListFoodBatch]="'expired'"></app-food-carroussel>
+                <app-food-carroussel [listFoodbatches]="listSoonExpiredFoodbatches"
+                        [typeListFoodBatch]="'soon expired'"></app-food-carroussel>
         </body>
 </div>

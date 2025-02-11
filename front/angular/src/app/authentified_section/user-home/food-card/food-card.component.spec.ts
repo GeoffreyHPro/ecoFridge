@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FoodCardComponent } from './food-card.component';
-import { Food } from '../responses/FoodInterface';
-import { FoodBatch } from '../responses/FoodBatchInterface';
+import { Food } from '../../../responses/FoodInterface';
+import { FoodBatch } from '../../../responses/FoodBatchInterface';
 import { By } from '@angular/platform-browser';
 
 describe('FoodCardComponent', () => {
