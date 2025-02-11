@@ -1,9 +1,12 @@
-<img [src]="foodBatch.safeImageURL" class="card-img-top" style="max-height: 150px; max-width: auto;">
+<img [src]="foodBatch.safeImageURL" class="card-img-top" style="max-height: 200px; max-width: auto;">
 <div class="card-body">
-    <div class="card-title">
-        <div style="font-weight: bold; font-size: 30px; overflow: auto;">
-            {{foodBatch.food.name}}</div>
+    <div>
+        <div 
+            style="font-weight: bold; font-size: 30px; white-space: nowrap; overflow: hidden;">
+            {{foodBatch.food.name}}
+        </div>
     </div>
+    <br>
     <div class="card-text row">
         <div class="col">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive"
