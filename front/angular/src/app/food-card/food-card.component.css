@@ -1,0 +1,27 @@
+h1 {
+    color: green;
+    font-weight: bold;
+}
+
+@media (min-width: 576px) {
+    .card-group.card-group-scroll {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+}
+
+.card-group.card-group-scroll>.card {
+    flex-basis: 25%;
+}
+
+.card {
+    align-items: center;
+    margin-right: 1px;
+    margin-right: 25px;
+}
+
+.card-body {
+    background-color: #4d745d;
+    width: 100%;
+    color: white;
+}

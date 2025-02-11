@@ -20,6 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { UserModifyComponent } from './authentified_section/user-modify/user-modify.component';
 import { FormsModule } from '@angular/forms';
+import { FoodCardComponent } from './food-card/food-card.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FormsModule } from '@angular/forms';
     UserMyfridgeComponent,
     SignUpComponent,
     PopupMessageComponent,
-    UserModifyComponent
+    UserModifyComponent,
+    FoodCardComponent
   ],
   imports: [
     BrowserModule,
