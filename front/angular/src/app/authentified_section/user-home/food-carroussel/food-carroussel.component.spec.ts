@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FoodCarrousselComponent } from './food-carroussel.component';
 import { By } from '@angular/platform-browser';
+import { FoodCardComponent } from '../food-card/food-card.component';
+import { Food } from '../../../responses/FoodInterface';
+import { FoodBatch } from '../../../responses/FoodBatchInterface';
 
 describe('FoodCarrousselComponent', () => {
   let component: FoodCarrousselComponent;
@@ -9,7 +11,7 @@ describe('FoodCarrousselComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FoodCarrousselComponent]
+      declarations: [FoodCarrousselComponent, FoodCardComponent]
     })
       .compileComponents();
 
@@ -50,5 +52,29 @@ describe('FoodCarrousselComponent', () => {
     expect(h1).toBeTruthy();
     expect(h1Element.textContent).toContain('Food');
     expect(getComputedStyle(h1Element).color).toBe('rgb(255, 165, 0)');
+  });
+
+  it('should have food card', () => {
+    component.listFoodbatches = [
+      {
+        expirationDate: "fegfer",
+        food: {
+          bareCode: "0101",
+          description: "example",
+          idFood: 1,
+          image: "http://example.com",
+          name: "example",
+          safeImageURL: "http://example.com"
+        },
+        idFoodBatch: 1,
+        quantity: 1,
+        safeImageURL: "http://example.com"
+      }];
+    fixture.detectChanges();
+
+    const child = fixture.nativeElement;
+    const childElement = child.querySelector('app-food-card');
+
+    expect(childElement).toBeTruthy();
   });
 });
