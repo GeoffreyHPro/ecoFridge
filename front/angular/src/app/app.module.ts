@@ -20,7 +20,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { UserModifyComponent } from './authentified_section/user-modify/user-modify.component';
 import { FormsModule } from '@angular/forms';
-import { FoodCardComponent } from './food-card/food-card.component';
+import { FoodCardComponent } from './authentified_section/user-home/food-card/food-card.component';
+import { FoodCarrousselComponent } from './authentified_section/user-home/food-carroussel/food-carroussel.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FoodCardComponent } from './food-card/food-card.component';
     SignUpComponent,
     PopupMessageComponent,
     UserModifyComponent,
-    FoodCardComponent
+    FoodCardComponent,
+    FoodCarrousselComponent
   ],
   imports: [
     BrowserModule,

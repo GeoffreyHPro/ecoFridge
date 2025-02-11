@@ -11,8 +11,8 @@ import { FoodService } from '../../services/food.service';
 })
 export class UserHomeComponent {
   signInError: string | undefined;
-  expiredFoodbatches: FoodBatch[] = [];
-  soonExpiredFoodbatches: FoodBatch[] = [];
+  listExpiredFoodbatches: FoodBatch[] = [];
+  listSoonExpiredFoodbatches: FoodBatch[] = [];
 
   constructor(
     private foodBatchesService: FoodBatchesService,
@@ -25,10 +25,10 @@ export class UserHomeComponent {
     this.foodBatchesService.getExpiredFoodBatches().subscribe(
       response => {
         let resp = response;
-        this.expiredFoodbatches = resp.data;
+        this.listExpiredFoodbatches = resp.data;
         console.log(resp.data)
 
-        this.expiredFoodbatches.forEach((foodBatch) => {
+        this.listExpiredFoodbatches.forEach((foodBatch) => {
           this.foodService.getImage(foodBatch.food.image).subscribe((blob) => {
             const objectUrl = URL.createObjectURL(blob);
             foodBatch.safeImageURL = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
@@ -45,10 +45,10 @@ export class UserHomeComponent {
     this.foodBatchesService.getSoonExpiredFoodBatches().subscribe(
       response => {
         let resp = response;
-        this.soonExpiredFoodbatches = resp.data;
+        this.listSoonExpiredFoodbatches = resp.data;
         console.log(resp.data)
 
-        this.soonExpiredFoodbatches.forEach((foodBatch) => {
+        this.listSoonExpiredFoodbatches.forEach((foodBatch) => {
           this.foodService.getImage(foodBatch.food.image).subscribe((blob) => {
             const objectUrl = URL.createObjectURL(blob);
             foodBatch.safeImageURL = this.sanitizer.bypassSecurityTrustUrl(objectUrl);

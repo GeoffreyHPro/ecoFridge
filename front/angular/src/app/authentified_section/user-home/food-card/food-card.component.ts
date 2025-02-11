@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FoodBatch } from '../responses/FoodBatchInterface';
+import { FoodBatch } from '../../../responses/FoodBatchInterface';
 
 @Component({
   selector: 'app-food-card',
