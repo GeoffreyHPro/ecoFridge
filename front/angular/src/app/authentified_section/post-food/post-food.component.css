@@ -1,6 +1,13 @@
+#principal {
+    background-image: url(../../../assets/stone-surface-background.jpg);
+    background-size: cover;
+    height: 1000px;
+}
+
 body {
     width: 70%;
     margin: auto;
+    background-color: transparent;
 }
 
 .form-container {
