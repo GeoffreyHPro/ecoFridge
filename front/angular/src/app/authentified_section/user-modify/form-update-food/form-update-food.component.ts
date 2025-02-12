@@ -11,6 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class FormUpdateFoodComponent {
   @Input() food: Food = { idFood: 0, bareCode: "####", description: "", image: "", name: "", safeImageURL: "" };
   imageUrl: any;
+  fileName: string = "None file";
   errorMessage: string = "";
 
   constructor(
@@ -30,6 +31,8 @@ export class FormUpdateFoodComponent {
       const reader = new FileReader();
       reader.onload = () => {
         this.imageUrl = reader.result;
+        this.fileName = file.name;
+        console.log(this.fileName);
       };
       reader.readAsDataURL(file);
     }
@@ -49,15 +52,17 @@ export class FormUpdateFoodComponent {
   }
 
   updateImageFood() {
-    const file = this.base64ToFile(this.imageUrl, "image.png");
+    if (this.fileName !== "None file") {
+      const file = this.base64ToFile(this.imageUrl, "image.png");
+      this.foodService.updateImageFood(this.food.bareCode, file).subscribe(
+        response => {
+          console.log(response);
+        }, error => {
+          console.log(error);
+        }
+      )
+    }
 
-    this.foodService.updateImageFood(this.food.bareCode, file).subscribe(
-      response => {
-        console.log(response);
-      }, error => {
-        console.log(error);
-      }
-    )
   }
 
   updateFood() {
