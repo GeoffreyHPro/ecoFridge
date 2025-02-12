@@ -13,3 +13,11 @@
 h1 {
     font-weight: bold;
 }
+
+svg {
+    width: 3%;
+    min-width: 30px;
+    height: auto;
+    margin-top: -10px;
+    margin-left: 5px;
+}
