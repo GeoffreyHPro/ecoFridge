@@ -15,7 +15,6 @@ body {
     margin-top: auto;
 }
 
-
 .container {
     height: 450px;
 }
@@ -26,14 +25,12 @@ body {
     height: 1000px;
 }
 
-
-
-/*  search   */
-
 .search {
     margin-bottom: auto;
     margin-top: auto;
     height: 70px;
+    width: 90%;
+    max-width: 700px;
     background-color: #fff;
     border-radius: 40px;
     padding: 10px;
@@ -50,13 +47,9 @@ body {
     caret-color: transparent;
     line-height: 40px;
     transition: width 0.4s linear;
-}
-
-.search .search_input {
-    padding: 0 10px;
+    padding: 0 40px;
     width: 550px;
     caret-color: red;
-    transition: width 0.4s linear;
 }
 
 .search:hover>.search_icon {
@@ -71,6 +64,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    vertical-align: middle;
     border-radius: 50%;
     color: white;
     background-color: black;
