@@ -21,9 +21,8 @@
         </div>
         <div *ngIf="food.idFood != 0">
             <div>
-                <app-form-update-food></app-form-update-food>
+                <app-form-update-food [food]="food"></app-form-update-food>
             </div>
         </div>
-
     </body>
 </div>

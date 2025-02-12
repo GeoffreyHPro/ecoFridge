@@ -15,8 +15,7 @@ export class UserModifyComponent {
   errorMessage: string = "";
 
   constructor(
-    private foodService: FoodService,
-    private sanitizer: DomSanitizer) {
+    private foodService: FoodService) {
   }
 
   searchFood() {
@@ -24,12 +23,6 @@ export class UserModifyComponent {
       response => {
         this.food = response;
         this.errorMessage = "";
-        
-        /*this.foodService.getImage(this.food.image).subscribe((blob) => {
-          const objectUrl = URL.createObjectURL(blob);
-          this.food.safeImageURL = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
-          this.imageUrl = this.food.safeImageURL;
-        })*/
       },
       error => {
         this.food.idFood = 0;

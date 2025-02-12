@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Food } from '../../../responses/FoodInterface';
 import { FoodService } from '../../../services/food.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -9,9 +9,8 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrl: './form-update-food.component.css'
 })
 export class FormUpdateFoodComponent {
-  imageUrl!: any;
-  food: Food = { idFood: 0, bareCode: "####", description: "", image: "", name: "", safeImageURL: "" };
-  barCode: string = "";
+  @Input() food: Food = { idFood: 0, bareCode: "####", description: "", image: "", name: "", safeImageURL: "" };
+  imageUrl: any;
   errorMessage: string = "";
 
   constructor(
@@ -19,26 +18,29 @@ export class FormUpdateFoodComponent {
     private sanitizer: DomSanitizer) {
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
+  ngOnChanges() {
+    this.searchFood();
+  }
+
+  changedImage(event: any): void {
+    const file = event?.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageUrl = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   searchFood() {
-    this.foodService.getFoodWithBarCode(this.barCode).subscribe(
-      response => {
-        this.food = response;
-        this.errorMessage = "";
-        this.foodService.getImage(this.food.image).subscribe((blob) => {
-          const objectUrl = URL.createObjectURL(blob);
-          this.food.safeImageURL = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
-          this.imageUrl = this.food.safeImageURL;
-        })
-      },
-      error => {
-        this.food.idFood = 0;
-        this.errorMessage = "The food is not found";
-      }
-    );
+    this.foodService.getImage(this.food.image).subscribe((blob) => {
+      const objectUrl = URL.createObjectURL(blob);
+      this.food.safeImageURL = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
+      this.imageUrl = this.food.safeImageURL;
+    })
   }
 
   updateFoodInformations() {
@@ -47,9 +49,9 @@ export class FormUpdateFoodComponent {
   }
 
   updateImageFood() {
-    const file = this.base64ToFile(this.imageUrl, "image.png");  //Convert Base64 into File to upload image
+    const file = this.base64ToFile(this.imageUrl, "image.png");
 
-    this.foodService.updateImageFood(this.barCode, file).subscribe(
+    this.foodService.updateImageFood(this.food.bareCode, file).subscribe(
       response => {
         console.log(response);
       }, error => {
@@ -59,7 +61,7 @@ export class FormUpdateFoodComponent {
   }
 
   updateFood() {
-    this.foodService.updateFood(this.barCode, this.food.name, this.food.description).subscribe(
+    this.foodService.updateFood(this.food.bareCode, this.food.name, this.food.description).subscribe(
       response => {
         console.log(response);
       }, error => {
