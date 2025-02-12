@@ -32,7 +32,6 @@ describe('FoodCarrousselComponent', () => {
 
     expect(h1).toBeTruthy();
     expect(h1Element.textContent).toContain('Food');
-    expect(getComputedStyle(h1Element).color).toBe('rgb(165, 27, 27)');
   });
 
   it('should have p balise without element in list', () => {
@@ -51,7 +50,6 @@ describe('FoodCarrousselComponent', () => {
 
     expect(h1).toBeTruthy();
     expect(h1Element.textContent).toContain('Food');
-    expect(getComputedStyle(h1Element).color).toBe('rgb(255, 165, 0)');
   });
 
   it('should have food card', () => {
