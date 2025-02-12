@@ -1,58 +1,61 @@
-<app-navbar></app-navbar>
+<div id="principal">
 
-<body>
-    <div class="container h-100 mt-4">
-        <div class="d-flex justify-content-center h-100">
-            <div class="search">
-                <input [(ngModel)]="barCode" class="form-control" class="search_input" type="text" name=""
-                    placeholder="Search here...">
-                <a (click)="searchFood()" class="search_icon"><i class="fa fa-search"></i></a>
-            </div>
-        </div>
-    </div>
+    <app-navbar></app-navbar>
 
-    <div *ngIf="errorMessage.length > 0">
-        <h1>{{ errorMessage }}</h1>
-
-        <app-form-add-food></app-form-add-food>
-    </div>
-
-
-    <div *ngIf="food.idFood != 0" class="form-container mt-4 row">
-        <div class="col-md-6">
-            <div class="border p-4 rounded shadow-sm bg-light">
-                <h2 class="mb-4">Information preview of the food</h2>
-                <div class="mb-3">
-                    <h4>Bar code of the food</h4>
-                    <label type="text">{{ food.bareCode }}</label>
-                </div>
-                <div class="mb-3">
-                    <h4>Name of the food</h4>
-                    <input type="text" [(ngModel)]="food.name">
-                </div>
-                <div class="mb-3">
-                    <h4>Description of the food</h4>
-                    <input type="text" [(ngModel)]="food.description">
+    <body style="background-color: transparent;">
+        <div class="container h-100 mt-4" style="width: 70%;">
+            <div class="d-flex justify-content-center h-100">
+                <div class="search">
+                    <input [(ngModel)]="barCode" class="form-control" class="search_input" type="text" name=""
+                        placeholder="Search here...">
+                    <a (click)="searchFood()" class="search_icon"><i class="fa fa-search"></i></a>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 d-flex flex-column">
-            <div class="col-12">
-                <div class="border p-3 rounded bg-light border">
-                    <h3 class="mb-2">Modify image Food</h3>
-                    <img id="imagePreview" [src]="imageUrl" class="img-preview"><br><br>
 
-                    <input (change)="changedImage($event)" type="file" class="" id="image-food" accept="image/*">
+        <div *ngIf="errorMessage.length > 0 && errorMessage == 'The food is not found'">
+            <div>
+                <p style="font-weight: bold; text-align: center;">The food is not found ! </p>
+                <app-form-add-food></app-form-add-food>
+            </div>
+        </div>
+
+        <div *ngIf="food.idFood != 0" class="form-container mt-4 row">
+            <div class="col-md-6">
+                <div class="border p-4 rounded shadow-sm bg-light">
+                    <h2 class="mb-4">Information preview of the food</h2>
+                    <div class="mb-3">
+                        <h4>Bar code of the food</h4>
+                        <label type="text">{{ food.bareCode }}</label>
+                    </div>
+                    <div class="mb-3">
+                        <h4>Name of the food</h4>
+                        <input type="text" [(ngModel)]="food.name">
+                    </div>
+                    <div class="mb-3">
+                        <h4>Description of the food</h4>
+                        <input type="text" [(ngModel)]="food.description">
+                    </div>
                 </div>
             </div>
-            <div class="col-12 mt-auto">
-                <div class="border p-3 rounded bg-light" style="height: auto;">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <p class="mb-0">Modify all informations ? </p>
-                        <button (click)="updateFoodInformations()" class="btn btn-primary">Modify</button>
+            <div class="col-md-6 d-flex flex-column">
+                <div class="col-12">
+                    <div class="border p-3 rounded bg-light border">
+                        <h3 class="mb-2">Modify image Food</h3>
+                        <img id="imagePreview" [src]="imageUrl" class="img-preview"><br><br>
+
+                        <input (change)="changedImage($event)" type="file" class="" id="image-food" accept="image/*">
+                    </div>
+                </div>
+                <div class="col-12 mt-auto">
+                    <div class="border p-3 rounded bg-light" style="height: auto;">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <p class="mb-0">Modify all informations ? </p>
+                            <button (click)="updateFoodInformations()" class="btn btn-primary">Modify</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
+</div>
