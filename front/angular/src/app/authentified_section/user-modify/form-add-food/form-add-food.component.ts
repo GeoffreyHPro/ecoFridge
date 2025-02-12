@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { FoodService } from '../../services/food.service';
+import { FoodService } from '../../../services/food.service';
 import { MatDialog } from '@angular/material/dialog';
-import { PopupMessageComponent } from '../../utils/popup-message/popup-message.component';
+import { PopupMessageComponent } from '../../../utils/popup-message/popup-message.component';
 
 @Component({
-  selector: 'app-post-food',
-  templateUrl: './post-food.component.html',
-  styleUrl: './post-food.component.css'
+  selector: 'app-form-add-food',
+  templateUrl: './form-add-food.component.html',
+  styleUrl: './form-add-food.component.css'
 })
-export class PostFoodComponent {
+export class FormAddFoodComponent {
   formAddFood!: FormGroup;
   addFoodErrorMessage: string = "";
 
@@ -17,6 +17,14 @@ export class PostFoodComponent {
     private fb: FormBuilder,
     private foodService: FoodService,
     private dialog: MatDialog) {
+  }
+
+  ngOnInit(): void {
+    this.formAddFood = this.fb.group({
+      foodBarcode: this.fb.control(""),
+      foodName: this.fb.control(""),
+      foodDescription: this.fb.control("")
+    })
   }
 
   handleAddFood() {

@@ -12,8 +12,11 @@
     </div>
 
     <div *ngIf="errorMessage.length > 0">
-        {{ errorMessage }}
+        <h1>{{ errorMessage }}</h1>
+
+        <app-form-add-food></app-form-add-food>
     </div>
+
 
     <div *ngIf="food.idFood != 0" class="form-container mt-4 row">
         <div class="col-md-6">
