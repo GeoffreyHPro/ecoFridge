@@ -7,8 +7,17 @@
 
 .card-group.card-group-scroll>.card {
     flex-basis: 25%;
+    max-width: 350px;
 }
 
 h1 {
     font-weight: bold;
+}
+
+svg {
+    width: 3%;
+    min-width: 30px;
+    height: auto;
+    margin-top: -10px;
+    margin-left: 5px;
 }
