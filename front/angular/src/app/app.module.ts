@@ -22,6 +22,7 @@ import { UserModifyComponent } from './authentified_section/user-modify/user-mod
 import { FormsModule } from '@angular/forms';
 import { FoodCardComponent } from './authentified_section/user-home/food-card/food-card.component';
 import { FoodCarrousselComponent } from './authentified_section/user-home/food-carroussel/food-carroussel.component';
+import { FormAddFoodbatchComponent } from './authentified_section/post-food/form-add-foodbatch/form-add-foodbatch.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FoodCarrousselComponent } from './authentified_section/user-home/food-c
     PopupMessageComponent,
     UserModifyComponent,
     FoodCardComponent,
-    FoodCarrousselComponent
+    FoodCarrousselComponent,
+    FormAddFoodbatchComponent
   ],
   imports: [
     BrowserModule,
