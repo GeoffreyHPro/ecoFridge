@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FormUpdateFoodComponent } from './form-update-food.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { FoodService } from '../../../services/food.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 describe('FormUpdateFoodComponent', () => {
   let component: FormUpdateFoodComponent;
@@ -8,12 +11,16 @@ describe('FormUpdateFoodComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FormUpdateFoodComponent]
+      declarations: [FormUpdateFoodComponent],
+      imports: [HttpClientModule, FormsModule],
+      providers: [FoodService, DomSanitizer]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(FormUpdateFoodComponent);
     component = fixture.componentInstance;
+    component.food = { idFood: 0, bareCode: "####", description: "", image: "", name: "", safeImageURL: "" };
+
     fixture.detectChanges();
   });
 
