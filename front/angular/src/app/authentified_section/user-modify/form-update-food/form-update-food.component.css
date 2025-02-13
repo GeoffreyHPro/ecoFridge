@@ -5,3 +5,16 @@
     width: 120px;
     height: 120px;
 }
+
+.section {
+    border-bottom: rgb(212, 209, 209) 2px solid;
+}
+
+h2 {
+    font-weight: bold;
+}
+
+button{
+    background-color: #4d745d;
+    color: white;
+}
