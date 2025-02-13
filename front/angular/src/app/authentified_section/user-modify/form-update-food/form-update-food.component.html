@@ -1,0 +1,37 @@
+<div class="form-container mt-4 row">
+    <div class="col-md-6">
+        <div class="border p-4 rounded shadow-sm bg-light">
+            <h2 class="section mb-4">Informations about food</h2>
+            <div class="mb-3">
+                <h4>Bar code of the food</h4>
+                <label type="text">{{ food.bareCode }}</label>
+            </div>
+            <div class="mb-4">
+                <h4>Name of the food</h4>
+                <input type="text" [(ngModel)]="food.name">
+            </div>
+            <div class="mb-4">
+                <h4>Description of the food</h4>
+                <input type="text" [(ngModel)]="food.description">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 d-flex flex-column">
+        <div class="col-12">
+            <div class="border p-3 rounded bg-light border">
+                <h2 class="mb-2 section">Modify image Food</h2>
+                <img id="imagePreview" [src]="imageUrl" class="img-preview"><br><br>
+
+                <input (change)="changedImage($event)" type="file" class="" id="image-food" accept="image/*">
+            </div>
+        </div>
+        <div class="col-12 mt-auto">
+            <div class="border p-3 rounded bg-light" style="height: auto;">
+                <div class="d-flex align-items-center justify-content-between">
+                    <p class="mb-0">Modify all informations ? </p>
+                    <button (click)="updateFoodInformations()" class="btn">Modify</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="p-3 flex-grow-1">
+    <button class="btn btn-toggle" data-bs-toggle="collapse" data-bs-target="#addFood">
+        <svg width="16" height="16" fill="currentColor" class="bi me-2" viewBox="0 0 16 16">
+            <path class="collapse-icon"
+                d="m12.14 8.82-4.482 4.482a.5.5 0 0 1-.708-.708L10.793 8 6.95 4.146a.5.5 0 1 1 .708-.708l4.482 4.482a.5.5 0 0 1 0 .708z" />
+        </svg>
+        Create a new food entity in database ?
+        <style>
+            [aria-expanded="true"] .collapse-icon {
+                d: path("M2.82 5.14l4.482 4.482a.5.5 0 0 0 .708 0L12.5 5.14a.5.5 0 1 0-.708-.708L8 8.293 3.528 4.432a.5.5 0 1 0-.708.708z");
+            }
+        </style>
+    </button>
+</div>
+<div id="addFood" class="collapse border-end">
+    <form [formGroup]="formAddFood" class="border p-4 rounded shadow-sm bg-light">
+        <div class="section mb-3">
+            <h2>Add new food in database</h2>
+        </div>
+        <div class="mb-3 g-2 row section">
+            <div class="col-md-4 title">
+                Reference of food
+            </div>
+            <div class="mb-3 col-md-8 ms-auto">
+                <label class="form-label mb-2">Bar code of food</label>
+                <input formControlName="foodBarcode" name="foodBarcode" type="text" class="form-control"
+                    id="foodBarcode" placeholder="Type the bar code of food">
+            </div>
+        </div>
+        <div class="mb-3 g-2 section">
+            <div class="col-md-4 title">
+                Informations of food
+            </div>
+            <div class="mb-3 col-md-8 ms-auto align-items-start">
+                <div class="col">
+                    <label for="foodName" class="form-label mb-2">Name of food</label>
+                    <input formControlName="foodName" name="foodName" type="text" class="form-control" id="foodName"
+                        placeholder="Type the name of food">
+                </div>
+                <br>
+                <div class="col-auto">
+                    <label for="foodDescription" class="form-label mb-2">Description of food</label>
+                    <input formControlName="foodDescription" type="text" class="form-control" id="foodDescription"
+                        placeholder="Type the description of food">
+                </div>
+            </div>
+        </div>
+        <div style="text-align: end;">
+            <button (click)="handleAddFood()" class="btn requestBtn">Add food</button>
+            <p class="mt-4" *ngIf="addFoodErrorMessage.length > 0" style="color:red">
+                {{ addFoodErrorMessage }}
+            </p>
+        </div>
+    </form>
+</div>

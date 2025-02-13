@@ -2,8 +2,8 @@ import { SafeUrl } from "@angular/platform-browser";
 
 export interface Food {
     idFood: Number;
-    bareCode: String;
-    image: String;
+    bareCode: string;
+    image: string;
     name: string;
     description: string;
     safeImageURL: SafeUrl;

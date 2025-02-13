@@ -1,0 +1,21 @@
+.section {
+    border-bottom: rgb(212, 209, 209) 2px solid;
+}
+
+h2 {
+    font-weight: bold;
+}
+
+button {
+    background-color: #4d5a74;
+    color: white;
+}
+
+.requestBtn {
+    background-color: #4d745d;
+    color: white;
+}
+
+.title {
+    font-weight: bold;
+}
