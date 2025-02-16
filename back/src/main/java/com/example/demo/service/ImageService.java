@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,5 +34,10 @@ public class ImageService {
         file.transferTo(filePath);
 
         foodService.updateFoodImage(bareCode, singleFileName);
+    }
+
+    public Resource getImage(String filename) {
+        return new org.springframework.core.io.FileSystemResource(
+                Paths.get(imageStoragePath).resolve(filename).toFile());
     }
 }

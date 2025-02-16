@@ -14,14 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.service.FoodService;
 import com.example.demo.service.ImageService;
 
 import org.springframework.core.io.Resource;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -37,27 +35,17 @@ public class ImageController {
     private String imageStoragePath;
 
     @Autowired
-    private FoodService foodService;
-
-    @Autowired
     private ImageService imageService;
 
     @GetMapping("/{filename}")
-    public ResponseEntity<Resource> getImage(@PathVariable String filename) {
+    public ResponseEntity<?> getImage(@PathVariable String filename) {
         if (isFile(imageStoragePath + "/" + filename)) {
-            try {
-                Resource file2 = new org.springframework.core.io.FileSystemResource(
-                        Paths.get(imageStoragePath).resolve(filename).toFile());
-
-                return ResponseEntity.ok()
-                        .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-                        .body(file2);
-            } catch (Exception e) {
-                return ResponseEntity.status(203).build();
-            }
+            Resource file = imageService.getImage(filename);
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+                    .body(file);
         } else {
-            System.out.println("Le fichier n'existe pas.");
-            return ResponseEntity.status(203).build();
+            return ResponseEntity.status(400).body("File not exist");
         }
     }
 
@@ -81,5 +69,4 @@ public class ImageController {
         File file = new File(pathFile);
         return file.exists() && file.isFile();
     }
-
 }
