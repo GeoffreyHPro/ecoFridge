@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,6 +17,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.example.demo.service.FoodService;
+import com.example.demo.service.ImageService;
 import com.example.demo.service.JWTUtils;
 import com.example.demo.service.UserService;
 
@@ -30,6 +30,9 @@ public class ImageControllerTest {
 
     @MockBean
     private UserService userService;
+
+    @MockBean
+    private ImageService imageService;
 
     @MockBean
     private JWTUtils jwtUtils;
@@ -53,17 +56,9 @@ public class ImageControllerTest {
     @Test
     @WithMockUser(username = "admin@admin.com")
     public void noGetDefaultImage() throws Exception {
-
-        /*
-         * mockMvc.perform(MockMvcRequestBuilders
-         * .get("/image/defau.png"))
-         * .andExpect(result -> assertTrue(result.getResolvedException() instanceof
-         * Exception));
-         */
-
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
                 .get("/image/defau.png"))
                 .andReturn();
-        assertEquals(203, result.getResponse().getStatus());
+        assertEquals(400, result.getResponse().getStatus());
     }
 }
